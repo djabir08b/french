@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Karim · Situations professionnelles et personnelles</title>
+  <!-- Bootstrap 5 + Icons + Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts: Inter + Outfit for modern sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f6f9fc 0%, #edf2f7 100%);
+      font-family: 'Inter', sans-serif;
+      color: #1a2c3e;
+      padding: 2rem 1.5rem;
+      min-height: 100vh;
+    }
+
+    /* modern card container */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(0px);
+      border-radius: 2rem;
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.02);
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+
+    /* custom tabs — modern pill style */
+    .custom-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      border-bottom: none;
+      padding: 0.5rem 1.5rem 0 1.5rem;
+      background: transparent;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 2.5rem;
+      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      color: #4a627a;
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: -0.2px;
+      backdrop-filter: blur(2px);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .tab-btn i {
+      font-size: 1.1rem;
+      transition: transform 0.2s;
+    }
+
+    .tab-btn:hover {
+      background: #eef2f8;
+      color: #1f4f6e;
+      transform: translateY(-1px);
+    }
+
+    .tab-btn.active {
+      background: #1e4f6e;
+      color: white;
+      box-shadow: 0 8px 18px -6px rgba(30, 79, 110, 0.35);
+    }
+
+    .tab-btn.active i {
+      transform: scale(1.02);
+    }
+
+    /* content panels */
+    .tab-pane {
+      display: none;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      animation: fadeUp 0.35s forwards;
+    }
+
+    .tab-pane.active-pane {
+      display: block;
+    }
+
+    @keyframes fadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* content styling */
+    .situation-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #1e4f6e, #2c7a5e);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      border-left: 5px solid #2c7a5e;
+      padding-left: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .conversation-block {
+      background: #f9fafc;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.2s;
+      border: 1px solid #e9edf2;
+    }
+
+    .speaker {
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #eef2ff;
+      padding: 0.25rem 1rem 0.25rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: #1e4f6e;
+      margin-bottom: 0.75rem;
+    }
+
+    .speaker i {
+      font-size: 0.85rem;
+    }
+
+    .message-text {
+      font-size: 1rem;
+      line-height: 1.55;
+      color: #1f2f3e;
+      font-weight: 450;
+      margin-left: 0.3rem;
+      padding-right: 0.5rem;
+    }
+
+    .badge-scene {
+      background: #eef2fa;
+      color: #1f5e7e;
+      border-radius: 40px;
+      padding: 0.3rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    hr.divider-light {
+      margin: 1rem 0;
+      opacity: 0.4;
+    }
+
+    footer {
+      font-size: 0.75rem;
+      text-align: center;
+      margin-top: 2rem;
+      color: #6c86a3;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem;
+      }
+      .tab-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+      }
+      .situation-title {
+        font-size: 1.4rem;
+      }
+      .message-text {
+        font-size: 0.93rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container-lg py-2">
+  <div class="glass-card p-0 overflow-hidden">
+    <!-- header minimal -->
+    <div class="px-4 pt-4 pb-1 d-flex align-items-center gap-3 flex-wrap border-0">
+      <div class="rounded-circle bg-white p-2 shadow-sm" style="background: #eef2fa;">
+        <i class="fas fa-comment-dots fs-4" style="color: #1e4f6e;"></i>
+      </div>
+      <div>
+        <h1 class="display-6 fw-bold" style="font-family: 'Outfit', sans-serif; color: #153e55;">Dialogues & Situations</h1>
+        <p class="text-secondary-emphasis mt-0 mb-0" style="font-size: 0.9rem;">Navigation par onglets — lectures immersives</p>
+      </div>
+    </div>
+    
+    <!-- Tabs navigation (4 situations) -->
+    <div class="custom-tabs mt-2" id="situationTabs">
+      <button class="tab-btn active" data-tab="tab1">
+        <i class="fas fa-code"></i> <span>Situation 1 · Jasper technique</span>
+      </button>
+      <button class="tab-btn" data-tab="tab2">
+        <i class="fas fa-store"></i> <span>Situation 2 · Remboursement magasin</span>
+      </button>
+      <button class="tab-btn" data-tab="tab3">
+        <i class="fas fa-users"></i> <span>Situation 3 · Interactions pro</span>
+      </button>
+      <button class="tab-btn" data-tab="tab4">
+        <i class="fas fa-mountain-sun"></i> <span>Situation 4 · Présentation & passions</span>
+      </button>
+    </div>
+
+    <div class="p-4 pt-3">
+      <!-- ========== SITUATION 1 : Jasper examinateur technique ========= -->
+      <div id="tab1" class="tab-pane active-pane">
+        <div class="badge-scene"><i class="fas fa-microphone-alt"></i> Entretien technique · Gestion d'erreurs & Jasper</div>
+        <div class="situation-title">📄 Problèmes Jasper & résilience technique</div>
+        
+        <div class="conversation-block">
+          <div class="speaker"><i class="fas fa-user-graduate"></i> Examinateur</div>
+          <div class="message-text">Dans votre travail de développeur, vous préparez des templates Jasper pour des factures. Vous avez récemment rencontré des problèmes techniques. Pouvez-vous nous expliquer cette situation et nous donner votre avis sur la gestion de ce type de problème ?</div>
+        </div>
+        <div class="conversation-block">
+          <div class="speaker"><i class="fas fa-user-check"></i> Karim</div>
+          <div class="message-text">Oui, justement. Je m'occupe de la préparation des templates de factures en utilisant Jasper, afin de générer automatiquement des factures en format PDF à partir d'un fichier XML ou directement depuis le système BS. Le fait est que c'est ma première expérience avec Jasper, je n'avais aucune connaissance préalable. La partie avec laquelle j'ai eu le plus de difficultés, c'est de générer une page par souscription. Le fichier XML sur lequel je me suis basé n'est pas structuré — les charges sont listées de manière séparée et pas dans l'ordre. Donc j'étais obligé d'implémenter une logique un peu complexe pour grouper et agréger les charges. Comme prévu, j'avais plein d'erreurs de compilation, parce que Jasper reste quand même limité pour les logiques complexes. Et le pire, c'est que JasperStudio n'affiche même pas le message d'erreur — il me donne juste un symbole d'erreur au-dessus du fichier, sans rien d'autre.</div>
+        </div>
+        <div class="conversation-block">
+          <div class="speaker"><i class="fas fa-user-graduate"></i> Examinateur</div>
+          <div class="message-text">C'est frustrant effectivement ! Alors comment vous avez réagi face à ces erreurs sans message ? Quelle a été votre méthode pour trouver la solution ?</div>
+        </div>
+        <div class="conversation-block">
+          <div class="speaker"><i class="fas fa-user-check"></i> Karim</div>
+          <div class="message-text">Plusieurs méthodes ont été utilisées, j'ai essayé différentes approches. Finalement, j'ai décidé de laisser l'affichage des charges tel quel, comme elles apparaissent dans le fichier XML — chacune dans une page distincte. J'ai noté ça comme une remarque à discuter avec Comarch. Je propose d'appliquer une logique de groupement des charges par contrat, ce qui, soit dit en passant, n'est pas mentionné dans le fichier XML actuel. Donc ça va faciliter l'affichage avec Jasper.</div>
+        </div>
+        <div class="conversation-block">
+          <div class="speaker"><i class="fas fa-user-graduate"></i> Examinateur</div>
+          <div class="message-text">Intéressant ! Et par rapport à l'incompatibilité de version entre Jasper et le runtime — vous pouvez nous expliquer ce problème et comment vous l'avez géré ?</div>
+        </div>
+        <div class="conversation-block">
+          <div class="speaker"><i class="fas fa-user-check"></i> Karim</div>
+          <div class="message-text">Honnêtement, c'est une erreur de ma part. Comme je l'ai dit, je n'avais aucune expérience préalable avec Jasper, donc je ne savais pas que le runtime Jasper nécessite une compatibilité avec le fichier Jasper. De plus, personne ne m'avait informé de l'état actuel du projet ni du stack utilisé. Mais finalement, j'assume entièrement la responsabilité et je vais retenir ça comme une erreur que je ne dois jamais répéter. En ce qui concerne ma réaction et la façon dont je l'ai gérée : j'ai demandé à Comarch s'il y avait une possibilité de mettre à jour la version du runtime. En même temps, j'ai essayé de downgrader ma version pour la rendre compatible avec le runtime 6.20. Et j'y suis arrivé, avec l'aide de l'IA bien sûr.</div>
+        </div>
+        <div class="conversation-block">
+          <div class="speaker"><i class="fas fa-user-graduate"></i> Examinateur</div>
+          <div class="message-text">Pour finir, selon vous, est-ce que savoir gérer le blocage et l'incertitude est une compétence importante dans les métiers techniques ? Et comment vous, personnellement, vous développez cette compétence ?</div>
+        </div>
+        <div class="conversation-block">
+          <div class="speaker"><i class="fas fa-user-check"></i> Karim</div>
+          <div class="message-text">Gérer le blocage et les situations difficiles, c'est bien sûr une compétence très importante et très demandée dans le milieu professionnel — et même pour nous-mêmes, personnellement. On le dit toujours. La façon de l'acquérir et de la gérer diffère d'une personne à l'autre. Pour ma part, ma méthode c'est de rester calme, de comprendre d'abord quel est le problème, et de déterminer si c'est lié à moi en premier lieu ou si ça vient d'une partie externe. Ensuite, je me base principalement sur Internet pour voir ce que la communauté dit. Si rien ne fonctionne, je le signale à mon supérieur afin qu'on puisse discuter ensemble de nos options.</div>
+        </div>
+      </div>
+
+      <!-- ========== SITUATION 2 : Remboursement magasin ========= -->
+      <div id="tab2" class="tab-pane">
+        <div class="badge-scene"><i class="fas fa-hand-holding-usd"></i> Négociation client / responsable</div>
+        <div class="situation-title">🛍️ Litige remboursement · droit de rétractation</div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-user-tie"></i> Vendeur</div><div class="message-text">Bonjour ! Je peux vous aider ?</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-user-check"></i> Karim</div><div class="message-text">Bonjour, s'il vous plaît. J'ai acheté récemment un article dans votre boutique, mais après réflexion et sur recommendation de mes amis, je ne le trouve pas bien et je suis convaincu qu'il ne me convient pas. Je souhaite me faire rembourser car je suis toujours dans le délai autorisé. Voilà le reçu.</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-user-tie"></i> Vendeur</div><div class="message-text">Je comprends votre situation, mais notre politique de magasin ne permet pas les remboursements. Ce que je peux faire pour vous, c'est vous proposer un échange contre un autre article. Qu'est-ce que vous en pensez ?</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-user-check"></i> Karim</div><div class="message-text">Non, je ne suis pas d'accord. La politique ne dit pas du tout ce que vous affirmez. La publicité précisait que le remboursement est possible. Donc merci pour votre proposition, mais je ne l'accepte pas.</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-user-tie"></i> Vendeur</div><div class="message-text">Je comprends monsieur, mais je vous assure que notre politique actuelle propose uniquement l'échange. Je suis désolé mais je ne peux pas vous rembourser. L'échange est vraiment la meilleure solution que je peux vous offrir.</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-user-check"></i> Karim</div><div class="message-text">Dans ce cas, je n'ai pas le choix — je vous demande d'appeler votre responsable pour résoudre ce problème, sinon il va être difficile de trouver un accord entre nous.</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-user-tie"></i> Vendeur</div><div class="message-text">D'accord monsieur, je vais appeler le responsable. Un moment s'il vous plaît.</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-chalkboard-user"></i> Responsable</div><div class="message-text">Bonjour monsieur, je suis le responsable du magasin. Mon collègue m'a expliqué la situation. Qu'est-ce que je peux faire pour vous ?</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-user-check"></i> Karim</div><div class="message-text">Il n'y a pas d'autre solution que le remboursement. C'est mon droit, c'est ce qui est affiché dans votre publicité. Donc c'est ce qui va se passer — je souhaite être remboursé.</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-chalkboard-user"></i> Responsable</div><div class="message-text">Je comprends votre frustration monsieur. Mais avant de prendre une décision, pouvez-vous me montrer où exactement vous avez vu cette publicité ? Sur notre site internet, en magasin, ou ailleurs ?</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-user-check"></i> Karim</div><div class="message-text">C'était sur votre site internet. En fait, c'était une annonce sur Instagram qui m'a redirigé vers votre site.</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-chalkboard-user"></i> Responsable</div><div class="message-text">Je vois monsieur. Si c'est effectivement indiqué sur notre site, vous avez tout à fait raison. Mais j'ai besoin de vérifier avant de procéder au remboursement. Avez-vous une capture d'écran de cette publicité sur votre téléphone ?</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-user-check"></i> Karim</div><div class="message-text">Non, je n'en ai pas. Mais c'est à vous de vérifier — comment peut-on lancer une publicité et ensuite prétendre qu'elle n'a jamais existé ? C'est une très mauvaise image que vous donnez de votre magasin.</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-chalkboard-user"></i> Responsable</div><div class="message-text">Vous avez tout à fait raison monsieur, je vous présente mes excuses. Ce n'est pas acceptable de notre part. Je vais procéder à votre remboursement immédiatement. Pouvez-vous me donner votre reçu et votre moyen de paiement ?</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-user-check"></i> Karim</div><div class="message-text">Voici le reçu. Je n'ai pas payé par carte, donc le remboursement se fera en espèces ou par virement sur mon compte ?</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-chalkboard-user"></i> Responsable</div><div class="message-text">Pas de problème monsieur. Puisque vous avez payé en espèces, nous allons vous rembourser en espèces également. Voici votre remboursement. Encore une fois, toutes mes excuses pour ce malentendu. Nous allons vérifier notre publicité pour éviter ce genre de situation à l'avenir.</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-user-check"></i> Karim</div><div class="message-text">Merci monsieur, c'est tout ce que je demandais. Au revoir !</div></div>
+      </div>
+
+      <!-- ========== SITUATION 3 : Interactions professionnelles (5 micro-situations) ========= -->
+      <div id="tab3" class="tab-pane">
+        <div class="badge-scene"><i class="fas fa-briefcase"></i> 5 dialogues pro · gestion d'équipe & décisions</div>
+        <div class="situation-title">🤝 Scrum, blocages & communication assertive</div>
+        
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-comment-dots"></i> Situation 1 — Abdallah (RabbitMQ)</div><div class="message-text"><strong>Abdallah :</strong> "Karim, je suis très occupé en ce moment, la config RabbitMQ ça peut attendre encore une semaine."<br><strong>Réponse Karim :</strong> "Je comprends que tu es occupé, mais je dois être honnête avec toi — c'est bloquant pour moi. Je dépends de cette configuration pour pouvoir avancer. Sans ces informations, le projet risque de prendre du retard. Est-ce qu'on peut fixer un moment aujourd'hui, même 15 minutes, pour que tu me transmettes les infos essentielles ?"</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-clipboard-list"></i> Situation 2 — Jérôme (spécifications)</div><div class="message-text"><strong>Jérôme :</strong> "Karim, il y a un deuxième ticket avec de nouvelles spécifications pour la facture nationale. Tu peux t'en occuper en parallèle du premier ?"<br><strong>Réponse :</strong> "Honnêtement, je ne suis pas totalement d'accord avec cette approche. J'ai déjà bien avancé sur le premier ticket et les nouvelles spécifications n'existaient pas au départ. Ce n'est pas viable dans ce délai si on traite les deux en parallèle. Je te propose une alternative — on finalise le premier ticket, puis on attaque le deuxième. Ça mérite qu'on en discute ensemble pour revoir le planning."</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-chart-line"></i> Situation 3 — Daily meeting (blocage Jasper)</div><div class="message-text"><strong>Jérôme :</strong> "Karim, t'es où sur le template Jasper facture nationale ? T'as des blocages ?"<br><strong>Réponse :</strong> "J'ai bien avancé sur la partie affichage des charges. Pour l'instant, je suis bloqué sur la logique de groupement par contrat — le problème vient du fichier XML qui n'est pas structuré de mon côté. J'ai procédé par élimination pour trouver une solution, mais ça ne rentre pas vraiment dans le scope de ce ticket. J'ai noté ça comme une remarque à discuter avec Comarch. J'attends leur retour pour pouvoir continuer."</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-handshake"></i> Situation 4 — Réunion Comarch (feedback XML)</div><div class="message-text"><strong>Responsable Comarch :</strong> "Karim, vous avez des remarques sur la structure du fichier XML qu'on vous a fourni ?"<br><strong>Réponse :</strong> "Oui, justement. J'ai plusieurs remarques à ce sujet. Premièrement, les charges sont listées de manière séparée et pas dans l'ordre, ce qui rend l'affichage avec Jasper assez complexe. Je ne suis pas totalement d'accord avec cette structure. Je maintiens ma proposition d'appliquer une logique de groupement des charges par contrat — ça va faciliter le traitement de notre côté et éviter ce genre de situation à l'avenir. Est-ce qu'on peut fixer un point là-dessus pour en discuter ensemble ?"</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-bug"></i> Situation 5 — Erreur sans message (JasperStudio)</div><div class="message-text"><strong>Collègue :</strong> "Karim, t'as réussi à résoudre l'erreur de compilation sur Jasper ? C'était quoi le problème ?"<br><strong>Réponse :</strong> "Honnêtement, c'était assez compliqué à identifier parce que JasperStudio n'affichait même pas le message d'erreur — juste un symbole rouge au dessus du fichier, sans rien d'autre. J'ai procédé par élimination, j'ai essayé différentes approches. Le problème venait d'une incompatibilité entre ma version de Jasper et le runtime 6.20. J'assume entièrement la responsabilité — j'aurais dû vérifier la compatibilité des versions au départ. J'ai fini par downgrader ma version et j'y suis arrivé, avec l'aide de l'IA bien sûr."</div></div>
+      </div>
+
+      <!-- ========== SITUATION 4 : Présentation personnelle, randonnée, cinéma & philosophie ========= -->
+      <div id="tab4" class="tab-pane">
+        <div class="badge-scene"><i class="fas fa-person-hiking"></i> Portrait · famille · passions · mindset</div>
+        <div class="situation-title">🏔️ Karim · ingénieur, randonneur & amoureux des séries</div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-user-graduate"></i> Examinateur</div><div class="message-text">Bonjour ! Pouvez-vous vous présenter et me parler un peu de vous et de votre famille ?</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-user-check"></i> Karim</div><div class="message-text">Bonjour, je m'appelle Karim, j'ai vingt-cinq ans. Je suis originaire de Safi et j'habite à Casablanca depuis quatre ans. Je travaille comme ingénieur informatique chez Inetum. Je m'occupe du développement et de la maintenance des applications, ainsi que de la mise en place de mécanismes comme la Gateway — c'est un système qui configure l'accès à plusieurs services depuis un seul point d'entrée — et Kafka, qui est une pratique de communication entre les applications de manière asynchrone. Ça veut dire qu'on envoie des demandes à un service sans attendre sa réponse immédiatement. C'est une bonne pratique pour éviter la surcharge d'un service et ne pas bloquer le service demandeur, afin qu'il puisse traiter d'autres demandes. C'est globalement ce que je fais la plupart du temps. Je vis avec ma famille. J'ai une sœur ingénieure, elle s'occupe de l'étude et de l'installation des systèmes de sécurité incendie et de climatisation, et un frère qui est professeur agrégé de mécanique et sciences de l'ingénieur. Ma mère est fonctionnaire et mon père est directeur d'une école primaire.</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-user-graduate"></i> Examinateur</div><div class="message-text">C'est très intéressant ! Dites-moi, où avez-vous passé vos dernières vacances et qu'est-ce que vous avez fait ?</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-user-check"></i> Karim</div><div class="message-text">Ma dernière sortie, c'était il y a environ quatre mois, au sommet de Bouiblane, dans le massif de l'Atlas. C'était ma première randonnée en neige, que j'ai faite avec une agence. Je n'avais aucune expérience précédente dans ce domaine. J'adore le temps neigeux, et on a grimpé dans des conditions difficiles, avec beaucoup de neige, mais malgré cela j'ai pu atteindre le sommet. On était cinq personnes à avoir réussi à l'atteindre. Ce qui m'a le plus marqué, c'était la gentillesse des habitants de la région, leur accueil et leur sympathie. C'était une belle expérience qui m'a motivé à aller au Toubkal.</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-user-graduate"></i> Examinateur</div><div class="message-text">C'est vraiment une belle aventure ! Dites-moi, quels sont vos passe-temps préférés en dehors du travail et de la randonnée ?</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-user-check"></i> Karim</div><div class="message-text">Je suis une personne qui trouve son calme dans un environnement tranquille. La plupart du temps, je reste chez moi. J'adore les séries et les films américains, en deuxième place les œuvres cinématographiques françaises, et le Japon aussi, si on parle d'animé. Donc la plupart du temps, quand je veux me reposer, je prépare un repas que j'aime et je regarde une série ou un film. Je préfère les séries plutôt que les films, car j'ai l'impression que les films essaient de comprimer une idée intéressante et un sujet très riche et beau dans une durée très courte — on parle d'entre une heure trente et deux heures — ce qui est quand même un temps court pour traiter un sujet intéressant. Les séries, elles, prennent le temps suffisant pour bien décrire et présenter les idées, les personnages et tout ça. Donc la plupart du temps, je préfère regarder des séries plutôt que des films.</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-user-graduate"></i> Examinateur</div><div class="message-text">C'est très intéressant ! Vous parlez de séries américaines, françaises et d'animés japonais... Est-ce que le cinéma et les séries ont une influence sur votre façon de voir le monde ou d'apprendre des choses ?</div></div>
+        <div class="conversation-block"><div class="speaker"><i class="fas fa-user-check"></i> Karim</div><div class="message-text">Si on parle d'influence, ça voudrait dire que je vivais d'une certaine façon et qu'après avoir regardé des films, ma façon de voir a changé. Pas vraiment. La plupart du temps, je trouve que ma façon de penser correspond à la façon dont les séries voient les choses — de manière philosophique et critique. Il y a cependant un point de divergence, là où chaque personne a son propre point de vue. Par exemple, parmi les séries qui m'ont intéressé, il y a Game of Thrones. Je vais mettre de côté l'histoire elle-même, qui était cent pour cent excellente, pour parler d'un personnage très puissant, parmi les deux personnes les plus riches dans l'univers de Game of Thrones. Je parle de Littlefinger. C'est un homme qui se trouve seul dans un monde plein d'ego, où avoir une famille et un rang élevé définit ta valeur. Pourtant, Littlefinger n'avait ni famille riche ni nom connu, il ne savait même pas qui étaient ses parents. Au lieu de rester à pleurer ce qui lui manquait, il a compris que ce monde n'est pas totalement figé. Ça veut dire que ce n'est pas parce qu'on naît dans de bonnes conditions qu'on les mérite ou qu'on peut les conserver. Beaucoup de royaumes se sont effondrés, et c'est exactement ce que Littlefinger a compris — sa situation pouvait basculer vers quelque chose de meilleur. Parmi les choses qui l'ont aidé : il n'avait rien à perdre, ni honneur ni réputation, ce qui lui permettait de tout oser. Il a construit une maison close où il pouvait rassembler des contacts, rencontrer des personnes influentes qui l'ont aidé à gravir l'échelle sociale et à accumuler du pouvoir. Il investissait aussi dans le chaos — ses gains venaient des moments où les guerres éclataient. Je ne suis pas totalement d'accord avec ses méthodes, mais ce que je trouve en commun entre sa façon de penser et la mienne, c'est de ne pas paniquer face à l'avenir, et de ne pas se sentir totalement perdu après une défaite. C'est de vivre chaque bataille d'abord dans sa tête. Chaque situation, chaque défi — je les vis mentalement à l'avance. Donc rien ne me surprend vraiment. Tout devient quelque chose que j'ai déjà vécu en pensée, ce qui me permet de toujours continuer mon chemin. Si c'est une victoire, tant mieux. Si c'est une défaite, je l'ai déjà vécue dans ma tête et j'ai déjà réfléchi à comment la dépasser. C'est une façon de penser que j'applique aussi dans ma propre vie.</div></div>
+      </div>
+    </div>
+    <footer class="pb-3 text-center opacity-50 small">✨ Tous les dialogues retranscrits avec authenticité · UX conversationnelle</footer>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panes = document.querySelectorAll('.tab-pane');
+
+    function activateTab(tabId) {
+      // update panes
+      panes.forEach(pane => {
+        if (pane.id === tabId) {
+          pane.classList.add('active-pane');
+        } else {
+          pane.classList.remove('active-pane');
+        }
+      });
+      // update buttons active style
+      tabs.forEach(btn => {
+        const target = btn.getAttribute('data-tab');
+        if (target === tabId) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    tabs.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const targetId = btn.getAttribute('data-tab');
+        if (targetId) {
+          activateTab(targetId);
+          // optional: smooth scroll to content
+          document.querySelector('.glass-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // initial active already set via active-pane + .active class
+    const activeTabBtn = document.querySelector('.tab-btn.active');
+    if (!activeTabBtn) {
+      // fallback first tab
+      activateTab('tab1');
+    }
+  })();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

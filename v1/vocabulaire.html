@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expressions Réunion · Software Engineering</title>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2232/2232688.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: #f4f7fc;
+            color: #1a2639;
+            line-height: 1.5;
+        }
+
+        /* header stylisé comme l'exemple, mais avec teinte tech */
+        header {
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,20,50,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: #2563eb;
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .logo-text span {
+            color: #2563eb;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #334155;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 30px;
+            transition: 0.2s;
+        }
+
+        nav a:hover, nav a.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: #1e293b;
+        }
+
+        /* hero propre au sujet */
+        .expression-hero {
+            background: linear-gradient(145deg, #0b2b5c, #1e4a7a);
+            color: white;
+            padding: 50px 0 60px;
+            border-radius: 0 0 40px 40px;
+            margin-bottom: 40px;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .expression-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .expression-hero h1 i {
+            background: #facc15;
+            color: #1e293b;
+            border-radius: 60%;
+            padding: 12px;
+            font-size: 2rem;
+        }
+
+        .expression-hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 700px;
+        }
+
+        /* layout à onglets / sections */
+        .section-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 30px 0 25px;
+            border-bottom: 2px solid #dbe0e8;
+            padding-bottom: 10px;
+        }
+
+        .tab-btn {
+            background: white;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 40px;
+            color: #334155;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #dee4ed;
+        }
+
+        .tab-btn i {
+            color: #2563eb;
+        }
+
+        .tab-btn.active {
+            background: #1e3a5f;
+            color: white;
+            border-color: #1e3a5f;
+        }
+        .tab-btn.active i {
+            color: white;
+        }
+
+        /* cartes d'expressions */
+        .expressions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 24px;
+            margin-top: 15px;
+            margin-bottom: 60px;
+        }
+
+        .expression-card {
+            background: white;
+            border-radius: 24px;
+            padding: 0;
+            box-shadow: 0 10px 25px -8px rgba(0,20,40,0.15);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .expression-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -8px rgba(37,99,235,0.2);
+        }
+
+        .card-header {
+            background: #f0f4fe;
+            padding: 18px 22px 12px;
+            border-bottom: 2px solid #dbe4f2;
+        }
+
+        .expression-phrase {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0b2b5c;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .expression-phrase i {
+            color: #2563eb;
+            font-size: 1.4rem;
+            background: white;
+            border-radius: 50%;
+            padding: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .card-body {
+            padding: 20px 22px 25px;
+            flex: 1;
+        }
+
+        .example-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            color: #4b6589;
+            margin-bottom: 10px;
+        }
+
+        .example-sentence {
+            background: #f8fbff;
+            padding: 18px;
+            border-radius: 18px;
+            font-size: 1rem;
+            border-left: 5px solid #2563eb;
+            color: #1e293b;
+            box-shadow: inset 0 1px 4px #e9edf4;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .example-sentence i {
+            color: #2563eb;
+            margin-right: 6px;
+            opacity: 0.8;
+        }
+
+        .card-footer {
+            padding: 12px 22px 16px;
+            border-top: 1px dashed #b7c9e2;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #2c3e66;
+            font-size: 0.9rem;
+        }
+
+        .card-footer i {
+            color: #f59e0b;
+        }
+
+        /* pour les catégories plus compactes, on garde la meme structure */
+
+        .category-badge {
+            background: #dbeafe;
+            color: #1e3a8a;
+            padding: 6px 15px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        /* message "aucune" */
+        .no-expressions {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 70px;
+            background: white;
+            border-radius: 40px;
+            color: #64748b;
+            font-size: 1.3rem;
+        }
+
+        /* footer identique à l'exemple (adapté) */
+        footer {
+            background: #0f2a44;
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: #ffb347;
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: #cfdeff;
+            text-decoration: none;
+        }
+
+        .social-links a {
+            background: #1f3a5f;
+            padding: 10px 14px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #2f4b70;
+            padding-top: 25px;
+            color: #aac2df;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #2563eb;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+        }
+
+        @media (max-width: 700px) {
+            .nav-container { flex-wrap: wrap; }
+            .mobile-menu-btn { display: block; }
+            nav ul { display: none; width: 100%; flex-direction: column; }
+            nav ul.show { display: flex; }
+            .expression-hero h1 { font-size: 2.2rem; }
+            .expressions-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-microchip"></i>
+                <div class="logo-text">Dev<span>Français</span></div>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#" class="active">Expressions réunion</a></li>
+                    <li><a href="#">Architecture</a></li>
+                    <li><a href="#">Incidents</a></li>
+                    <li><a href="#">Métriques</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="expression-hero">
+        <div class="container hero-content">
+            <h1><i class="fas fa-comments"></i> Software Engineering · Full Stack · Réunions</h1>
+            <p>60+ expressions techniques avec contexte réel · pour parler code, architecture, incidents et décisions</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- navigation par catégories (inspiré des tabs de l'exemple) -->
+        <div class="section-tabs" id="categoryTabs">
+            <button class="tab-btn active" data-cat="toutes"><i class="fas fa-layer-group"></i>Toutes</button>
+            <button class="tab-btn" data-cat="explication"><i class="fas fa-lightbulb"></i>Explication</button>
+            <button class="tab-btn" data-cat="investigation"><i class="fas fa-magnifying-glass"></i>Investigation</button>
+            <button class="tab-btn" data-cat="avancement"><i class="fas fa-chart-line"></i>Avancement</button>
+            <button class="tab-btn" data-cat="architecture"><i class="fas fa-sitemap"></i>Architecture</button>
+            <button class="tab-btn" data-cat="demande"><i class="fas fa-hand"></i>Demande</button>
+            <button class="tab-btn" data-cat="justification"><i class="fas fa-scale-balanced"></i>Justification</button>
+        </div>
+
+        <!-- grille expressions injectée via js -->
+        <div id="expressionsGrid" class="expressions-grid"></div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>DevFrançais</h3>
+                    <p>Maîtriser le français technique en environnement software engineering.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Catégories</h3>
+                    <ul>
+                        <li><a href="#">Explication</a></li>
+                        <li><a href="#">Investigation</a></li>
+                        <li><a href="#">Architecture</a></li>
+                        <li><a href="#">Demandes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Ressources</h3>
+                    <ul>
+                        <li><a href="#">Daily meeting</a></li>
+                        <li><a href="#">Post-mortem</a></li>
+                        <li><a href="#">Code review</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">© 2026 DevFrançais · expressions pour ingénieurs · libre inspiration </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+
+    <script>
+        // ------------------------------------------------------------
+        // Base de données des expressions (copiée depuis l'énoncé)
+        // ------------------------------------------------------------
+        const expressionsData = [
+            // SECTION EXPLICATION
+            { category: 'explication', expression: 'concrètement', exemple: 'Concrètement, le service expose trois endpoints REST — un pour les abonnements, un pour les paiements, un pour les remboursements.' },
+            { category: 'explication', expression: 'il dessert et stimule les secteurs', exemple: 'Ce module dessert et stimule à la fois le frontend et les services internes — il est au cœur de toute la chaîne de traitement.' },
+            { category: 'explication', expression: 'surveille / en permanence', exemple: 'Le monitoring surveille en permanence les métriques de chaque pod — CPU, mémoire, latence — et déclenche une alerte si un seuil est dépassé.' },
+            { category: 'explication', expression: 'Contrairement aux / se contenter de', exemple: 'Contrairement aux approches classiques qui se contentent de logger les erreurs, notre système les détecte et les redirige instantanément.' },
+            { category: 'explication', expression: 'incontournable', exemple: "L'API Gateway est devenue un composant incontournable — sans elle, aucun service ne peut communiquer avec l'extérieur." },
+            { category: 'explication', expression: 'la bande passante', exemple: 'On a dimensionné la bande passante du réseau interne pour supporter jusqu\'à 10 000 requêtes par seconde sans dégradation.' },
+            { category: 'explication', expression: 'rerouter / rediriger', exemple: 'En cas de surcharge, le load balancer reroute automatiquement le trafic en redirigeant les requêtes vers les instances les moins chargées.' },
+            { category: 'explication', expression: 'répartir', exemple: 'Le système répartit les tâches entre plusieurs workers pour éviter les goulots d\'étranglement.' },
+            { category: 'explication', expression: 'prédéfinis', exemple: 'Le pipeline CI/CD s\'exécute selon des critères prédéfinis — si les tests échouent, le déploiement est bloqué automatiquement.' },
+            { category: 'explication', expression: 'englobent', exemple: 'Les changements de cette release englobent les correctifs critiques, les nouvelles features et les améliorations de performance.' },
+            { category: 'explication', expression: 'cette position fait de...', exemple: 'Cette position stratégique fait de Redis le point central de notre système de cache — tout transite par lui.' },
+            { category: 'explication', expression: 'exclusivement', exemple: 'Le service d\'authentification communique exclusivement via des tokens JWT signés — aucune session côté serveur.' },
+            { category: 'explication', expression: 'prolonger', exemple: 'On peut prolonger la durée de vie du token d\'accès en configurant un refresh token avec une expiration plus longue.' },
+            { category: 'explication', expression: 'mise en service', exemple: 'La mise en service du nouveau module de reporting est prévue la semaine prochaine, après validation en staging.' },
+            { category: 'explication', expression: 'promettent / offrent', exemple: 'Ces nouvelles librairies de monitoring promettent des alertes ultra-rapides et des économies massives sur le temps de diagnostic.' },
+
+            // SECTION INVESTIGATION
+            { category: 'investigation', expression: 'frappe', exemple: 'Une panne a frappé l\'environnement de production hier soir — le service de paiement ne répondait plus du tout.' },
+            { category: 'investigation', expression: 'diagnostiquer', exemple: 'Le technicien a analysé les logs pour diagnostiquer la cause racine de l\'incident avant d\'intervenir.' },
+            { category: 'investigation', expression: 'survenait', exemple: 'Lorsque l\'incident survenait, le processus de détection prenait trop de temps — les clients subissaient déjà des interruptions.' },
+            { category: 'investigation', expression: 'intervenir / après coup', exemple: 'L\'équipe n\'intervenait qu\'après coup, une fois que les utilisateurs avaient déjà signalé le problème via le support.' },
+            { category: 'investigation', expression: 'Pire encore / se trompe / là où il n\'y en avait pas', exemple: 'Pire encore, si on se trompe de diagnostic et redémarre le mauvais service, on risque de créer une panne là où il n\'y en avait pas.' },
+            { category: 'investigation', expression: 'se résout', exemple: 'Le problème se résout temporairement avec un restart du container, mais ça ne traite pas la cause racine.' },
+            { category: 'investigation', expression: "s'est produit / une baisse / inutilement", exemple: 'Un incident s\'est produit où le load balancer a interprété une baisse de trafic normale comme une panne et a redirigé inutilement toutes les connexions.' },
+            { category: 'investigation', expression: 'endommagé', exemple: 'Le serveur de staging semble endommagé depuis la dernière mise à jour — les fichiers de config ne sont plus cohérents.' },
+            { category: 'investigation', expression: 'coupure', exemple: 'Une coupure du service de cache a déclenché une cascade d\'erreurs sur tous les services qui en dépendent.' },
+            { category: 'investigation', expression: 'défaillants', exemple: 'On doit identifier les composants défaillants avant de décider si on redémarre ou si on bascule sur le système de secours.' },
+            { category: 'investigation', expression: 'risquait', exemple: 'Sans monitoring proactif, l\'équipement risquait de tomber en panne sans qu\'on soit alerté avant que les clients ne se plaignent.' },
+            { category: 'investigation', expression: 'semblait', exemple: 'Le problème semblait venir du réseau, mais c\'était en réalité une fuite mémoire dans le service de notification.' },
+            { category: 'investigation', expression: 'interrogation soulève également une question', exemple: 'Cette interrogation soulève également une question sur la robustesse de notre stratégie de retry — est-elle bien configurée ?' },
+            { category: 'investigation', expression: 'perturbé', exemple: 'La maintenance non planifiée a perturbé le service pendant trois heures — il faut revoir notre procédure de communication d\'incident.' },
+            { category: 'investigation', expression: 'la pénétration interne', exemple: 'La pénétration interne lors de l\'audit a permis de détecter plusieurs failles critiques dans le service d\'authentification.' },
+
+            // SECTION AVANCEMENT
+            { category: 'avancement', expression: 'a subi plusieurs reports', exemple: 'Le déploiement a subi plusieurs reports à cause de problèmes de configuration en staging — on vise maintenant vendredi.' },
+            { category: 'avancement', expression: 'passer (de… à…) / soit', exemple: 'Le temps moyen de résolution d\'un bug critique est passé de 3 jours à 4 heures, soit une réduction de 83% grâce aux logs améliorés.' },
+            { category: 'avancement', expression: 'Jusqu\'à récemment / reposer sur', exemple: 'Jusqu\'à récemment, la gestion des releases reposait sur des scripts manuels — on a maintenant automatisé tout le pipeline CI/CD.' },
+            { category: 'avancement', expression: 'd\'un côté, de l\'autre', exemple: 'D\'un côté, le module de reporting est terminé — de l\'autre, l\'intégration avec le service tiers reste bloquée.' },
+            { category: 'avancement', expression: 'impressionnants', exemple: 'Les résultats sont impressionnants : le temps de détection d\'anomalie est passé de 45 minutes à 2 minutes.' },
+            { category: 'avancement', expression: 'en moins / rien que', exemple: 'Le script automatisé résout le problème en moins de 3 minutes, alors qu\'un technicien aurait besoin de 30 minutes rien que pour l\'identifier.' },
+            { category: 'avancement', expression: 'Pendant ce temps / subissaient', exemple: 'Pendant ce temps, les utilisateurs subissaient des erreurs 500 sans qu\'on soit alerté — le monitoring n\'était pas configuré correctement.' },
+            { category: 'avancement', expression: 'incertains', exemple: 'Les résultats des tests de charge restent incertains — on a besoin de données supplémentaires avant de valider le passage en production.' },
+            { category: 'avancement', expression: 'prévoit', exemple: 'Le plan de release prévoit trois phases de déploiement progressif pour minimiser l\'impact sur les utilisateurs.' },
+            { category: 'avancement', expression: 'économies / proviennent / diminution', exemple: 'Ces économies proviennent principalement de la diminution des interventions manuelles et de l\'automatisation des tests de régression.' },
+            { category: 'avancement', expression: 'annoncé avoir économisé', exemple: 'L\'équipe DevOps a annoncé avoir économisé environ 15 heures par semaine grâce à l\'automatisation du pipeline.' },
+            { category: 'avancement', expression: 'éventuellement', exemple: 'On pourra éventuellement migrer vers une architecture serverless, mais pour le moment la priorité reste la stabilité de l\'existant.' },
+            { category: 'avancement', expression: '12 heures peuvent suffire', exemple: 'Pour un correctif mineur bien préparé, 12 heures peuvent suffire pour tester, valider et déployer en production sans risque.' },
+            { category: 'avancement', expression: 's\'intensifie', exemple: 'La concurrence entre les équipes pour livrer les features s\'intensifie à l\'approche de la deadline — il faut rester coordonnés.' },
+
+            // SECTION ARCHITECTURE
+            { category: 'architecture', expression: 'un pari risqué / audacieux', exemple: 'Migrer l\'ensemble du système vers une architecture event-driven en une seule itération, c\'est un pari audacieux — il faudrait procéder progressivement.' },
+            { category: 'architecture', expression: 'diversification et résilience', exemple: 'La diversification et la résilience de notre architecture sont assurées par le découpage en microservices — si un service tombe, les autres continuent.' },
+            { category: 'architecture', expression: 'il comporte', exemple: 'Ce plan d\'architecture comporte des avantages indéniables, mais aussi des défis opérationnels qu\'on ne doit pas sous-estimer.' },
+            { category: 'architecture', expression: 'souveraineté technologique', exemple: 'En hébergeant notre propre infrastructure Kubernetes, on maintient une souveraineté technologique totale — sans dépendance à un cloud provider externe.' },
+            { category: 'architecture', expression: 'créer des vulnérabilités', exemple: 'Un système d\'authentification mal conçu peut créer des vulnérabilités critiques qui exposent toutes les données utilisateurs.' },
+            { category: 'architecture', expression: 'et consolider la position', exemple: 'Adopter une architecture API-first va renforcer notre agilité et consolider notre position face aux équipes qui intégreront nos services.' },
+            { category: 'architecture', expression: '(risques) substantiels', exemple: 'Ce choix d\'architecture présente des risques substantiels si on ne met pas en place une stratégie de rollback claire dès le départ.' },
+            { category: 'architecture', expression: 'incertitudes', exemple: 'Les incertitudes liées à la montée en charge nous empêchent de valider définitivement le choix de la base de données.' },
+            { category: 'architecture', expression: 'était-ce visionnaire ou trop ambitieux', exemple: 'Le choix du monorepo pour l\'ensemble de nos services — était-ce visionnaire ou trop ambitieux pour notre taille d\'équipe actuelle ?' },
+            { category: 'architecture', expression: 'sous-utilisée', exemple: 'La capacité de notre cluster est largement sous-utilisée — on devrait réévaluer le dimensionnement pour optimiser les coûts.' },
+            { category: 'architecture', expression: 'rupture', exemple: 'L\'intégration de l\'IA dans notre pipeline de détection représente une rupture technologique majeure dans notre façon de gérer les incidents.' },
+            { category: 'architecture', expression: 'Permettant / préventive', exemple: 'Ce système de monitoring avancé permet une maintenance préventive — on détecte les signes de défaillance avant que la panne ne survienne.' },
+            { category: 'architecture', expression: 'privilégiée / parvenir à tromper / corrompre', exemple: 'Un service centralisé d\'authentification devient une cible privilégiée — si des hackers parviennent à le corrompre, tout le système est compromis.' },
+            { category: 'architecture', expression: 'Face à ces risques / prudente', exemple: 'Face à ces risques, l\'équipe adopte une approche prudente — on déploie les nouvelles fonctionnalités en feature flags pour pouvoir les désactiver instantanément.' },
+            { category: 'architecture', expression: 'Plus fondamentalement', exemple: 'Plus fondamentalement : peut-on faire confiance à un système automatisé pour prendre des décisions d\'infrastructure sans validation humaine ?' },
+            { category: 'architecture', expression: 'inévitablement / à mesure que', exemple: 'Cet équilibre évoluera inévitablement avec le temps, à mesure que nos systèmes deviendront plus fiables et matures.' },
+            { category: 'architecture', expression: 'maintenir', exemple: 'La vraie question est : préférons-nous maintenir des humains dans la boucle décisionnelle pour les changements critiques d\'infrastructure ?' },
+            { category: 'architecture', expression: 'autant', exemple: 'Investir autant dans le monitoring pour un projet de cette taille est une décision qui doit être justifiée par des données concrètes.' },
+            { category: 'architecture', expression: 'colossal', exemple: 'La refonte complète de la base de données en production représente un chantier colossal — il faut le découper en étapes avec des points de contrôle.' },
+            { category: 'architecture', expression: 'au fond de', exemple: 'Le vrai problème est au fond de la logique de traitement des événements — il faut revoir l\'ordre d\'exécution des handlers.' },
+            { category: 'architecture', expression: 'concurrent', exemple: 'Chaque équipe est devenue un concurrent indirect en termes de ressources cloud — on doit se mettre d\'accord sur une politique de quotas.' },
+            { category: 'architecture', expression: 'des décennies', exemple: 'Ce choix d\'architecture va impacter nos systèmes des décennies durant — il faut le faire correctement dès maintenant.' },
+
+            // SECTION DEMANDE
+            { category: 'demande', expression: 'intervienne', exemple: 'Est-ce qu\'un DevOps peut intervenir sur le serveur de staging ? Les fichiers de configuration semblent endommagés depuis la dernière mise à jour.' },
+            { category: 'demande', expression: 'éventuellement', exemple: 'Il faudrait éventuellement obtenir les autorisations d\'accès à la production avant qu\'on puisse diagnostiquer le problème côté base de données.' },
+            { category: 'demande', expression: 'suffisamment', exemple: 'Est-ce qu\'on aura des ingénieurs suffisamment disponibles pour assurer une astreinte ce week-end, en cas d\'incident post-déploiement ?' },
+            { category: 'demande', expression: 'd\'astreinte', exemple: 'Est-ce que quelqu\'un peut être d\'astreinte vendredi soir pour surveiller le premier déploiement en production ?' },
+            { category: 'demande', expression: 's\'associer avec des partenaires privés', exemple: 'On devrait envisager de s\'associer avec un partenaire externe spécialisé pour l\'audit de sécurité — on n\'a pas les ressources en interne.' },
+            { category: 'demande', expression: 'dispose de ressources considérables pour', exemple: 'Est-ce que l\'équipe dispose de ressources suffisantes pour mener en parallèle la migration et le développement des nouvelles features ?' },
+            { category: 'demande', expression: 'a le droit d\'agir sur', exemple: 'Est-ce que le système automatisé a le droit d\'agir sur la production sans validation humaine pour les correctifs mineurs ?' },
+            { category: 'demande', expression: 'prolonger', exemple: 'Est-ce qu\'on peut prolonger le sprint d\'une semaine pour finaliser les tests de régression avant la mise en production ?' },
+            { category: 'demande', expression: 'revenir à', exemple: 'Est-ce qu\'on peut revenir à la version précédente de l\'API temporairement, le temps qu\'on stabilise la nouvelle ?' },
+            { category: 'demande', expression: 'faire confiance', exemple: 'Avant de donner un accès admin au script automatique, est-ce qu\'on peut vraiment faire confiance à son niveau de maturité actuel ?' },
+            { category: 'demande', expression: 'redirigé', exemple: 'Est-ce que le trafic peut être redirigé vers le serveur secondaire pendant qu\'on effectue la maintenance sur le principal ?' },
+            { category: 'demande', expression: 'emprunter auprès de banques', exemple: 'Pour financer la migration vers le nouveau cloud provider, est-ce qu\'il vaut mieux utiliser le budget R&D ou explorer d\'autres sources de financement ?' },
+
+            // SECTION JUSTIFICATION
+            { category: 'justification', expression: 'les chiffres parlent d\'eux-mêmes', exemple: 'Les chiffres parlent d\'eux-mêmes : depuis l\'automatisation du pipeline, le temps de déploiement a été divisé par 6 et le taux d\'erreur humaine a chuté à zéro.' },
+            { category: 'justification', expression: 'arguments en faveur du projet', exemple: 'Les arguments en faveur du projet sont solides : réduction des coûts, amélioration de la disponibilité et scalabilité automatique.' },
+            { category: 'justification', expression: 'indéniables', exemple: 'Les bénéfices de cette architecture sont indéniables — trois mois après la migration, la disponibilité est passée de 98,5% à 99,95%.' },
+            { category: 'justification', expression: 'voire', exemple: 'Une mauvaise configuration du load balancer peut impacter des milliers, voire des millions d\'utilisateurs — ce changement doit être validé en staging.' },
+            { category: 'justification', expression: 'rigueur / ressentir', exemple: 'Un pipeline CI/CD applique toujours les mêmes tests avec la même rigueur — contrairement à un processus manuel qui varie selon la fatigue de l\'équipe.' },
+            { category: 'justification', expression: 'enrichit', exemple: 'Chaque incident résolu enrichit notre base de connaissance — à terme, le système diagnostiquera automatiquement les pannes récurrentes.' },
+            { category: 'justification', expression: 'reconnaîtra', exemple: 'Si le système rencontre une panne similaire dans six mois, il la reconnaîtra immédiatement grâce à l\'historique des incidents documentés.' },
+            { category: 'justification', expression: 'incitent', exemple: 'Les pénalités contractuelles de SLA incitent toute l\'équipe à prioriser la stabilité plutôt que la vitesse de livraison des features.' },
+            { category: 'justification', expression: 'peser lourdement sur', exemple: 'Une dette technique non traitée peut peser lourdement sur la vélocité de l\'équipe — c\'est pourquoi on alloue 20% du sprint au refactoring.' },
+            { category: 'justification', expression: 'révolutionné la connectivité', exemple: 'L\'adoption de GraphQL a révolutionné la communication entre nos services — les problèmes de sur-fetching ont complètement disparu.' },
+            { category: 'justification', expression: 'mais au-delà', exemple: 'Le service gère jusqu\'à 500 requêtes par seconde de manière autonome, mais au-delà, une validation humaine est requise avant de scaler.' },
+            { category: 'justification', expression: 'instantanément', exemple: 'Les feature flags nous permettent de désactiver instantanément une fonctionnalité défaillante sans déclencher un rollback complet.' },
+            { category: 'justification', expression: 'être tenus', exemple: 'Les équipes doivent être tenues responsables des incidents causés par des déploiements non validés — c\'est pourquoi la revue de code est obligatoire.' },
+            { category: 'justification', expression: 's\'habituent / risquent', exemple: 'Si les développeurs s\'habituent à ne jamais tester en local, ils risquent de perdre la capacité de déboguer sans les outils de production.' },
+            { category: 'justification', expression: 'la fiabilité technique une fois opérationnel', exemple: 'La fiabilité technique du nouveau système de cache une fois opérationnel reste à vérifier — c\'est pourquoi on garde l\'ancien en parallèle deux semaines.' },
+            { category: 'justification', expression: 'condamnés', exemple: 'Sans documentation technique, les équipes futures sont condamnées à répéter les mêmes erreurs — le wiki technique est non négociable.' },
+            { category: 'justification', expression: 'les revenus espérés', exemple: 'Les gains de productivité espérés grâce à cette refactorisation justifient largement l\'investissement en temps de l\'équipe sur ce sprint.' },
+            { category: 'justification', expression: 'féroce', exemple: 'La concurrence entre équipes pour les ressources cloud est devenue féroce — une politique de quotas claire et partagée est indispensable.' }
+        ];
+
+        // Rendu des cartes
+        function renderExpressions(category = 'toutes') {
+            const container = document.getElementById('expressionsGrid');
+            const filtered = category === 'toutes' ? expressionsData : expressionsData.filter(e => e.category === category);
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="no-expressions"><i class="fas fa-message-slash"></i> Aucune expression dans cette catégorie</div>';
+                return;
+            }
+
+            let html = '';
+            filtered.forEach(exp => {
+                html += `
+                    <div class="expression-card" data-category="${exp.category}">
+                        <div class="card-header">
+                            <div class="expression-phrase">
+                                <i class="fas fa-quote-right"></i> ${exp.expression}
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="example-label">📌 CONTEXTE RÉEL</div>
+                            <div class="example-sentence"><i class="fas fa-angle-right"></i> ${exp.exemple}</div>
+                        </div>
+                        <div class="card-footer">
+                            <i class="fas fa-tag"></i> ${exp.category.charAt(0).toUpperCase() + exp.category.slice(1)}
+                            <span style="flex:1; text-align:right;"><i class="far fa-comment-dots"></i> expression clé</span>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // tabs
+        const tabs = document.querySelectorAll('.tab-btn');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const cat = tab.dataset.cat;
+                renderExpressions(cat);
+            });
+        });
+
+        // Initialisation
+        renderExpressions('toutes');
+
+        // mobile menu / back to top (copié adapté de l'exemple)
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        if (mobileBtn) {
+            mobileBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('show');
+                const icon = mobileBtn.querySelector('i');
+                if (navMenu.classList.contains('show')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+
+        // back to top
+        const backBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) backBtn.classList.add('show');
+            else backBtn.classList.remove('show');
+        });
+        backBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

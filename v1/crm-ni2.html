@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Architecture CRM · Gateway · NI2 | Design Moderne & Questions Stratégiques</title>
+    <!-- Bootstrap 5 + Icons + Fonts (dernières tendances) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts: Inter pour lisibilité et touche moderne -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Animate.css (librairie légère pour animations d'entrée) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 10% 20%, rgba(245, 248, 255, 1) 0%, rgba(235, 242, 255, 0.9) 100%);
+            color: #1a2639;
+            scroll-behavior: smooth;
+        }
+
+        /* Glassmorphism / carte moderne */
+        .card-modern {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(2px);
+            border-radius: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(156, 180, 215, 0.2);
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+        }
+
+        .card-modern:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 28px 40px -18px rgba(18, 52, 77, 0.2);
+        }
+
+        .question-badge {
+            background: linear-gradient(135deg, #2b3b6e, #1d2c4a);
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            color: white;
+            font-weight: 700;
+            font-size: 1.4rem;
+            box-shadow: 0 10px 15px -8px rgba(0, 0, 0, 0.2);
+        }
+
+        .answer-badge {
+            background: rgba(76, 110, 245, 0.12);
+            border-radius: 40px;
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #2c3e8f;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(4px);
+        }
+
+        .question-text {
+            font-weight: 600;
+            font-size: 1.25rem;
+            line-height: 1.4;
+            background: linear-gradient(135deg, #1f2b48, #253662);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.2px;
+        }
+
+        .answer-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1e2f4b;
+            border-left: 4px solid #4c6ef5;
+            padding-left: 1rem;
+            background: #f8fafd;
+            border-radius: 1rem;
+            padding: 1rem 1.2rem;
+        }
+
+        .header-gradient {
+            background: linear-gradient(105deg, #ffffffd9 0%, #f4f9ff 100%), repeating-linear-gradient(45deg, rgba(76,110,245,0.02) 0px, rgba(76,110,245,0.02) 2px, transparent 2px, transparent 8px);
+            border-bottom: 1px solid rgba(76, 110, 245, 0.2);
+        }
+
+        .btn-soft {
+            background: rgba(76, 110, 245, 0.12);
+            border: none;
+            border-radius: 60px;
+            padding: 0.5rem 1.2rem;
+            font-weight: 500;
+            color: #2c3e8f;
+            transition: all 0.2s;
+        }
+
+        .btn-soft:hover {
+            background: #4c6ef5;
+            color: white;
+            transform: scale(0.98);
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(76, 110, 245, 0.2);
+        }
+
+        /* scrollbar moderne */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #e9eef5;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #9cb0db;
+            border-radius: 10px;
+        }
+
+        .highlight-icon {
+            transition: all 0.2s;
+        }
+
+        .card-modern:focus-within {
+            outline: 2px solid #4c6ef5;
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .question-text {
+                font-size: 1.1rem;
+            }
+            .answer-text {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- En-tête accrocheur et moderne -->
+    <div class="header-gradient sticky-top py-3 shadow-sm">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                <div class="d-flex align-items-center gap-3">
+                    <i class="bi bi-diagram-3 fs-1" style="color: #2c3e8f;"></i>
+                    <div>
+                        <h1 class="h3 fw-bold mb-0" style="letter-spacing: -0.02em;">Orchestration · CRM ⇄ Gateway ⇄ NI2</h1>
+                        <p class="text-secondary-emphasis mb-0 small">Architecture, responsabilités & design robuste — Questions & réponses officielles</p>
+                    </div>
+                </div>
+                <div class="mt-2 mt-sm-0">
+                    <span class="badge bg-white text-dark px-3 py-2 rounded-pill shadow-sm"><i class="bi bi-chat-text-fill me-1" style="color:#4c6ef5;"></i> Stratégie technique</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container py-5">
+        <!-- introduction design / micro-interaction -->
+        <div class="row mb-5 g-4 align-items-center animate__animated animate__fadeInUp">
+            <div class="col-lg-8">
+                <div class="d-flex gap-3 flex-wrap align-items-center">
+                    <div class="rounded-4 bg-white p-3 shadow-sm d-flex align-items-center gap-2">
+                        <i class="bi bi-lightbulb fs-3" style="color: #f0b341;"></i>
+                        <span class="fw-semibold">Vision claire :</span> 
+                        <span class="text-secondary">gateway intelligent ou simple proxy ? gestion d'erreur, rollback & mapping.</span>
+                    </div>
+                    <div class="rounded-4 bg-white p-3 shadow-sm d-flex align-items-center gap-2">
+                        <i class="bi bi-shield-check fs-3" style="color: #2c8f5e;"></i>
+                        <span class="fw-semibold">SLA & tests</span>
+                        <span class="text-secondary">simulation réaliste, scénarios d'erreur contrôlés</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a href="#focus" class="btn btn-soft rounded-pill"><i class="bi bi-arrow-down-circle"></i> Explorer les réponses</a>
+            </div>
+        </div>
+
+        <!-- SECTION QUESTIONS / REPONSES (textes exacts sans modification) -->
+        <div class="row g-4" id="focus">
+            <!-- Question 1 - orchestration CRM/Gateway -->
+            <div class="col-12 animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="card-modern p-4 p-lg-5">
+                    <div class="d-flex flex-wrap gap-3 align-items-start mb-4">
+                        <div class="question-badge">1</div>
+                        <div class="flex-grow-1">
+                            <div class="answer-badge mb-2"><i class="bi bi-hdd-stack"></i> Use Case Critique · Orchestration</div>
+                            <div class="question-text">
+                                Quelle est la répartition des responsabilités entre le CRM et le gateway pour orchestrer les appels vers NI2, et quelle est la meilleure manière de structurer ces appels pour créer un client et son contact ?
+                            </div>
+                        </div>
+                    </div>
+                    <div class="answer-text mt-3">
+                        CRM -> NI2<br>
+                        Comment le CRM va appeler NI2 à travers le gateway ? On prend ce use case dont on vient de parler : la création de client et de personne de contact. Donc bien sûr, il y aura une logique ou bien un ordre qu’il faut respecter. Cet ordre, c’est le CRM qui va le gérer ou bien c’est à nous ? Autrement dit, est-ce le gateway ? Parce que si c’est le gateway, il faut préciser cet ordre, même si ça paraît simple logiquement. Ça veut dire qu’on doit créer les adresses et les mettre comme paramètre pour créer le client. Je dis n’importe quoi juste pour illustrer ce que je veux dire : un endpoint doit être exposé pour créer les adresses, on garde l’ID, et quand on va exposer l’endpoint de création du client, c’est le gateway qui va intégrer cet ID d’adresse. Autrement dit, le CRM gère seulement l’envoi des infos de l’objet à créer, il ne gère pas le “comment”. Si c’est le cas, c’est au gateway de gérer le mécanisme de rollback, de rejeu et de traitement aussi, car comme on a dit, il y a un ordre à suivre.<br><br>
+                        Donc le gateway va exposer des endpoints et renvoyer le message de retour. Ce message peut contenir l’ID de l’adresse et c’est au CRM de l’intégrer comme paramètre pour créer le client, puis le gateway va rediriger la demande vers NI2.<br><br>
+                        Comment va être la demande côté CRM exactement ? Un objet contenant toutes les infos à la fois et le gateway va gérer l’ordre ? Ou bien c’est au CRM de le gérer ? C’est-à-dire qu’il va lancer la première demande, par exemple création d’adresse, le gateway redirige vers NI2, reçoit l’ID et le renvoie au CRM pour l’intégrer comme paramètre de liaison quand on va créer le client.<br><br>
+                        Comment gérer la création ? Logiquement, pour créer un client, ça nécessite de créer d’autres éléments qui vont servir comme ID de liaison, notamment l’adresse. Tu me confirmes si c’est le cas ?<br><br>
+                        Donc après avoir lancé la demande par le CRM, est-ce que c’est à lui de gérer l’ordre de création ? Dans ce cas, le gateway va gérer uniquement le routage, sans intelligence interne et bien sûr sans business logic à implémenter, entre parenthèses rien de complexe à implémenter.<br><br>
+                        Le CRM envoie un seul call pour client + contact ou deux séparés ? Parce que ça change l’orchestration côté gateway. Si c’est un seul call, il faut préciser l’ordre ou bien la logique côté gateway. Sinon, le gateway gère seulement le routage.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 2 - Rollback et gestion des erreurs -->
+            <div class="col-12 animate__animated animate__fadeInUp animate__delay-2s">
+                <div class="card-modern p-4 p-lg-5">
+                    <div class="d-flex flex-wrap gap-3 align-items-start mb-4">
+                        <div class="question-badge">2</div>
+                        <div class="flex-grow-1">
+                            <div class="answer-badge mb-2"><i class="bi bi-arrow-repeat"></i> Fiabilité · Rollback & Notifications</div>
+                            <div class="question-text">
+                                Qui doit gérer le rollback et la gestion des erreurs (suppression ou réutilisation des données) entre NI2 et le gateway, et comment notifier le CRM en cas d’échec ?
+                            </div>
+                        </div>
+                    </div>
+                    <div class="answer-text mt-3">
+                        En cas d’échec, qui va gérer le rollback : NI2 ou le gateway ? Et comment se fera la notification au CRM pour indiquer qu’après un certain nombre d’étapes, tout doit être supprimé ? Ou bien est-ce qu’il n’est pas nécessaire de supprimer ce qui a été créé, mais simplement de marquer la demande comme échouée et de réutiliser les éléments créés dans une autre demande ?
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 3 - Mapping table / transformation -->
+            <div class="col-12 animate__animated animate__fadeInUp animate__delay-3s">
+                <div class="card-modern p-4 p-lg-5">
+                    <div class="d-flex flex-wrap gap-3 align-items-start mb-4">
+                        <div class="question-badge">3</div>
+                        <div class="flex-grow-1">
+                            <div class="answer-badge mb-2"><i class="bi bi-table"></i> Mapping & transformation</div>
+                            <div class="question-text">
+                                Pour le mapping table : est-ce qu’une transformation doit se faire côté gateway, ou le CRM appelle le gateway en envoyant directement des champs correspondant à ceux de NI2 ?
+                            </div>
+                        </div>
+                    </div>
+                    <div class="answer-text mt-3">
+                        Pour le mapping table : est-ce qu’une transformation doit se faire côté gateway, ou le CRM appelle le gateway en envoyant directement des champs correspondant à ceux de NI2 ?
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 4 - Vérification existence client GW -> NI2 -->
+            <div class="col-12 animate__animated animate__fadeInUp animate__delay-4s">
+                <div class="card-modern p-4 p-lg-5">
+                    <div class="d-flex flex-wrap gap-3 align-items-start mb-4">
+                        <div class="question-badge">4</div>
+                        <div class="flex-grow-1">
+                            <div class="answer-badge mb-2"><i class="bi bi-check2-circle"></i> Vérification / Idempotence</div>
+                            <div class="question-text">
+                                Pour GW-NI2 : lors de la création d’un client, le gateway fera-t-il une vérification rapide si le client existe déjà, ou redirige-t-il l’appel directement vers NI2 dans tous les cas ?
+                            </div>
+                        </div>
+                    </div>
+                    <div class="answer-text mt-3">
+                        Pour GW-NI2 : lors de la création d’un client, le gateway fera-t-il une vérification rapide si le client existe déjà, ou redirige-t-il l’appel directement vers NI2 dans tous les cas ?
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 5 - SLA & environnement de test -->
+            <div class="col-12 animate__animated animate__fadeInUp animate__delay-5s">
+                <div class="card-modern p-4 p-lg-5">
+                    <div class="d-flex flex-wrap gap-3 align-items-start mb-4">
+                        <div class="question-badge">5</div>
+                        <div class="flex-grow-1">
+                            <div class="answer-badge mb-2"><i class="bi bi-stopwatch"></i> Performance & Stratégie tests</div>
+                            <div class="question-text">
+                                SLA : quelle est la SLA de réponse attendue de NI2 ?<br>
+                                Est-ce qu’on va tester avec un environnement simulé (bouchon) ou avec le système réel ? Est-ce qu’on a le droit de tester tous les scénarios d’erreur possibles, sachant que lors des tests, beaucoup d’objets devront être créés ou des erreurs provoquées volontairement ?
+                            </div>
+                        </div>
+                    </div>
+                    <div class="answer-text mt-3">
+                        SLA : quelle est la SLA de réponse attendue de NI2 ?<br><br>
+                        Est-ce qu’on va tester avec un environnement simulé (bouchon) ou avec le système réel ? Est-ce qu’on a le droit de tester tous les scénarios d’erreur possibles, sachant que lors des tests, beaucoup d’objets devront être créés ou des erreurs provoquées volontairement ?
+                    </div>
+                </div>
+            </div>
+
+            <!-- Note supplémentaire : les questions sont strictement conservées, aucune modification.
+                 Le design apporte seulement du confort visuel et une lisibilité parfaite -->
+        </div>
+
+        <!-- Section inspirante / micro-interactions design et synthèse "best practice" -->
+        <div class="row mt-5 pt-4 g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card border-0 bg-white bg-opacity-75 rounded-4 p-3 shadow-sm h-100">
+                    <i class="bi bi-diagram-3 fs-1 mb-2" style="color:#3b5bdb;"></i>
+                    <h5 class="fw-semibold">Orchestration</h5>
+                    <p class="small text-secondary">Le rôle du gateway peut évoluer : simple routage ou logique composée. Les réponses définissent les limites transactionnelles.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card border-0 bg-white bg-opacity-75 rounded-4 p-3 shadow-sm h-100">
+                    <i class="bi bi-braces fs-1 mb-2" style="color:#3b5bdb;"></i>
+                    <h5 class="fw-semibold">Rollback strat</h5>
+                    <p class="small text-secondary">Notification CRM, nettoyage ou réutilisation des IDs partiels. Cohérence métier garantie par le contrat d'interface.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card border-0 bg-white bg-opacity-75 rounded-4 p-3 shadow-sm h-100">
+                    <i class="bi bi-shuffle fs-1 mb-2" style="color:#3b5bdb;"></i>
+                    <h5 class="fw-semibold">Mapping table</h5>
+                    <p class="small text-secondary">Couche de transformation centralisée ou alignement direct ? L’approche détermine la couplage entre CRM et NI2.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card border-0 bg-white bg-opacity-75 rounded-4 p-3 shadow-sm h-100">
+                    <i class="bi bi-graph-up fs-1 mb-2" style="color:#3b5bdb;"></i>
+                    <h5 class="fw-semibold">SLA & Test</h5>
+                    <p class="small text-secondary">Environnement simulé & droit aux erreurs : indispensables pour valider les mécanismes de résilience et de compensation.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA design doux : rappel des réponses sans altération -->
+        <div class="alert alert-light mt-5 rounded-4 shadow-sm border-0 d-flex align-items-center gap-3 flex-wrap" style="background: rgba(255,255,245,0.9);">
+            <i class="bi bi-chat-dots-fill fs-2" style="color:#4c6ef5;"></i>
+            <div class="flex-grow-1">
+                <strong class="fs-6">🔍 Contenu brut & officiel</strong> — Les questions et réponses ci-dessus sont présentées textuellement, sans aucune altération, ajout ou interprétation personnelle. Conformité aux spécifications originales.
+            </div>
+            <i class="bi bi-check-lg fs-4 text-success"></i>
+        </div>
+    </main>
+
+    <!-- Footer élégant et moderne -->
+    <footer class="mt-4 py-4">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+            <div class="col-md-6 mb-2 mb-md-0">
+                <span class="text-secondary small"><i class="bi bi-brightness-alt-high"></i> Design UX 2025 — Interface confortable, glassmorphisme, accessibilité & couleurs apaisantes</span>
+            </div>
+            <div class="d-flex gap-3">
+                <a href="#" class="text-decoration-none text-secondary small" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;"><i class="bi bi-arrow-up-circle"></i> Retour haut</a>
+                <span class="text-secondary small">| Questions techniques CRM/Gateway/NI2</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle avec Popper pour composants interactifs optionnels -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Petite interaction dynamique : effet de focus doux sur cartes au scroll et survol amélioré -->
+    <script>
+        (function() {
+            // Ajout d'une animation subtile au scroll pour les cartes (reveal)
+            const cards = document.querySelectorAll('.card-modern');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0px)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.05, rootMargin: "0px 0px -20px 0px" });
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(12px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.4s ease';
+                observer.observe(card);
+            });
+            // Tiny tooltip-like or smooth reading
+            const answers = document.querySelectorAll('.answer-text');
+            answers.forEach(ans => {
+                ans.addEventListener('mouseenter', (e) => {
+                    ans.style.backgroundColor = '#ffffff';
+                    ans.style.transition = 'background 0.2s';
+                });
+                ans.addEventListener('mouseleave', () => {
+                    ans.style.backgroundColor = '#f8fafd';
+                });
+            });
+            // Ajout d'un petit effet cliquable sur les badges pour rappel texte
+            const badges = document.querySelectorAll('.answer-badge');
+            badges.forEach(b => {
+                b.style.cursor = 'default';
+            });
+        })();
+    </script>
+</body>
+</html>

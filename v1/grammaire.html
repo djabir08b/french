@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammaire française - Français Facile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --border-radius: 10px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .logo i {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .logo-text span {
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        nav a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 20px 0;
+            background-color: white;
+            margin-bottom: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .breadcrumb ul {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+        }
+        
+        .breadcrumb li {
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumb a {
+            text-decoration: none;
+            color: var(--dark-color);
+            transition: color 0.3s ease;
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--primary-color);
+        }
+        
+        .breadcrumb .separator {
+            margin: 0 10px;
+            color: #aaa;
+        }
+        
+        .breadcrumb .current {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        /* Grammar Categories */
+        .grammar-categories {
+            padding: 40px 0;
+        }
+        
+        .section-title {
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+        
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .category-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .category-card-header {
+            padding: 25px;
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .category-card-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .category-card-body {
+            padding: 25px;
+        }
+        
+        .category-card-body p {
+            margin-bottom: 20px;
+        }
+        
+        .lessons-list {
+            list-style: none;
+        }
+        
+        .lessons-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .lessons-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .lesson-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .lesson-link:hover {
+            text-decoration: underline;
+        }
+        
+        .difficulty {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .beginner {
+            background-color: rgba(46, 204, 113, 0.2);
+            color: var(--success-color);
+        }
+        
+        .intermediate {
+            background-color: rgba(243, 156, 18, 0.2);
+            color: var(--warning-color);
+        }
+        
+        .advanced {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+        }
+        
+        /* Featured Lessons */
+        .featured-lessons {
+            background-color: white;
+            padding: 60px 0;
+            border-radius: var(--border-radius);
+            margin-bottom: 60px;
+        }
+        
+        .lesson-highlight {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .highlight-card {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            border-left: 5px solid var(--primary-color);
+        }
+        
+        .highlight-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .highlight-card p {
+            margin-bottom: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .lesson-highlight {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="main.html" class="logo">
+                <i class="fas fa-language"></i>
+                <div class="logo-text">Français<span>Facile</span></div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="main.html" class="active">Accueil</a></li>
+                    <li><a href="grammaire.html">Grammaire</a></li>
+                    <li><a href="vocabulaire.html">Vocabulaire</a></li>
+
+                    <li><a href="subjects.html">Sujets</a></li> 
+             
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Grammaire française</h1>
+            <p>Maîtrisez les règles essentielles de la grammaire française avec nos leçons détaillées et exercices pratiques.</p>
+        </div>
+    </section>
+    
+    <!-- Breadcrumb -->
+    <div class="container">
+        <nav class="breadcrumb">
+            <ul>
+                <li><a href="main.html">Accueil</a></li>
+                <li class="separator">/</li>
+                <li class="current">Grammaire</li>
+            </ul>
+        </nav>
+    </div>
+    
+    <!-- Grammar Categories -->
+    <section class="grammar-categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Catégories de grammaire</h2>
+                <p>Sélectionnez une catégorie pour accéder aux leçons correspondantes</p>
+            </div>
+            
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-card-header">
+                        <h3>Prépositions</h3>
+                        <p>Localisation, temps, manière</p>
+                    </div>
+                    <div class="category-card-body">
+                        <p>Apprenez à utiliser correctement les prépositions pour exprimer la localisation, le temps, la manière, la cause, etc.</p>
+                        <ul class="lessons-list">
+                            <li>
+                                <a href="lieu1.html" class="lesson-link">DANS, SUR, À, CHEZ</a>
+                            </li>
+                            <li>
+                                <a href="lieu2.html" class="lesson-link">DESSUS, DESSOUS, DEDANS, DEHORS</a>
+                            </li>
+
+                            <li>
+                                <a href="lieu3.html" class="lesson-link">DEVANT, DERRIÈRE, EN HAUT, EN BAS</a>
+                            </li>
+                            <li>
+                                <a href="#" class="lesson-link">Prépositions de temps</a>
+                            </li>
+                            <li>
+                                <a href="#" class="lesson-link">Prépositions de cause</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-card-header" style="background-color: var(--secondary-color);">
+                        <h3>Articles</h3>
+                        <p>Définis, indéfinis, partitifs</p>
+                    </div>
+                    <div class="category-card-body">
+                        <p>Maîtrisez l'utilisation des articles définis, indéfinis et partitifs selon le genre, le nombre et le contexte.</p>
+                        <ul class="lessons-list">
+                            <li>
+                                <a href="#" class="lesson-link">Articles définis (le, la, les)</a>
+                                <span class="difficulty beginner">Débutant</span>
+                            </li>
+                            <li>
+                                <a href="#" class="lesson-link">Articles indéfinis (un, une, des)</a>
+                                <span class="difficulty beginner">Débutant</span>
+                            </li>
+                            <li>
+                                <a href="#" class="lesson-link">Articles partitifs (du, de la)</a>
+                                <span class="difficulty intermediate">Intermédiaire</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-card-header" style="background-color: var(--accent-color);">
+                        <h3>Verbes et conjugaison</h3>
+                        <p>Temps, modes, auxiliaires</p>
+                    </div>
+                    <div class="category-card-body">
+                        <p>Apprenez à conjuguer les verbes aux différents temps et modes, et à utiliser correctement les auxiliaires.</p>
+                        <ul class="lessons-list">
+                            <li>
+                                <a href="#" class="lesson-link">Présent de l'indicatif</a>
+                                <span class="difficulty beginner">Débutant</span>
+                            </li>
+                            <li>
+                                <a href="#" class="lesson-link">Passé composé</a>
+                                <span class="difficulty intermediate">Intermédiaire</span>
+                            </li>
+                            <li>
+                                <a href="#" class="lesson-link">Subjonctif présent</a>
+                                <span class="difficulty advanced">Avancé</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Français Facile</h3>
+                    <p>Plateforme d'apprentissage du français en ligne. Des ressources gratuites pour tous les niveaux.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Catégories</h3>
+                    <ul>
+                        <li><a href="grammaire.html">Grammaire</a></li>
+                        <li><a href="#">Vocabulaire</a></li>
+                        <li><a href="#">Conjugaison</a></li>
+                        <li><a href="#">Prononciation</a></li>
+                        <li><a href="#">Culture française</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="main.html">Accueil</a></li>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                        <li><a href="#">Politique de confidentialité</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Français Facile. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+            
+            // Change icon
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navMenu.classList.contains('show')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('show')) {
+                    navMenu.classList.remove('show');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+        
+        // Add active class to current page
+        const currentPage = window.location.pathname.split('/').pop();
+        navLinks.forEach(link => {
+            const linkPage = link.getAttribute('href');
+            if (linkPage === currentPage) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prépositions de lieu (1) - DANS, SUR, À, CHEZ - Français Facile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --border-radius: 10px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .logo i {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .logo-text span {
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        nav a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 20px 0;
+            background-color: white;
+            margin-bottom: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .breadcrumb ul {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+        }
+        
+        .breadcrumb li {
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumb a {
+            text-decoration: none;
+            color: var(--dark-color);
+            transition: color 0.3s ease;
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--primary-color);
+        }
+        
+        .breadcrumb .separator {
+            margin: 0 10px;
+            color: #aaa;
+        }
+        
+        .breadcrumb .current {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        /* Lesson Content */
+        .lesson-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        @media (max-width: 992px) {
+            .lesson-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .lesson-main {
+            background-color: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .lesson-sidebar {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            height: fit-content;
+        }
+        
+        .lesson-title {
+            font-size: 2.2rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .lesson-subtitle {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin: 30px 0 20px;
+        }
+        
+        .lesson-text {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+        
+        .example-box {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            border-left: 5px solid var(--primary-color);
+            margin: 25px 0;
+        }
+        
+        .example-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .example-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .example-item:last-child {
+            border-bottom: none;
+        }
+        
+        .correct {
+            color: var(--success-color);
+            font-weight: 600;
+        }
+        
+        .incorrect {
+            color: #e74c3c;
+            text-decoration: line-through;
+        }
+        
+        .preposition-highlight {
+            background-color: rgba(67, 97, 238, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .sidebar-title {
+            font-size: 1.4rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .sidebar-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .sidebar-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .sidebar-list i {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        .lesson-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .nav-button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        /* Exercise Section */
+        .exercise-section {
+            background-color: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 60px;
+        }
+        
+        .exercise-title {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .exercise-box {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+        }
+        
+        .exercise-instruction {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .exercise-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+        }
+        
+        .exercise-question {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .option {
+            padding: 10px 20px;
+            background-color: #f1f3f5;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .option:hover {
+            background-color: #e9ecef;
+        }
+        
+        .option.selected {
+            background-color: rgba(67, 97, 238, 0.2);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .check-button {
+            display: block;
+            margin: 30px auto 0;
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .check-button:hover {
+            background-color: #27ae60;
+        }
+        
+        .result {
+            text-align: center;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .result.success {
+            background-color: rgba(46, 204, 113, 0.2);
+            color: var(--success-color);
+            display: block;
+        }
+        
+        .result.error {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .lesson-title {
+                font-size: 1.8rem;
+            }
+            
+            .lesson-main, .exercise-section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="main.html" class="logo">
+                <i class="fas fa-language"></i>
+                <div class="logo-text">Français<span>Facile</span></div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="main.html" class="active">Accueil</a></li>
+                    <li><a href="grammaire.html">Grammaire</a></li>
+                    <li><a href="#">Vocabulaire</a></li>
+                    <li><a href="subjects.html">Sujets</a></li> 
+             
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Prépositions de lieu (1)</h1>
+            <p>Apprenez à utiliser correctement les prépositions DANS, SUR, À, CHEZ pour exprimer la localisation en français.</p>
+        </div>
+    </section>
+    
+    <!-- Breadcrumb -->
+    <div class="container">
+        <nav class="breadcrumb">
+            <ul>
+                <li><a href="main.html">Accueil</a></li>
+                <li class="separator">/</li>
+                <li><a href="grammaire.html">Grammaire</a></li>
+                <li class="separator">/</li>
+                <li class="current">Prépositions de lieu (1)</li>
+            </ul>
+        </nav>
+    </div>
+    
+    <!-- Lesson Content -->
+    <div class="container">
+        <div class="lesson-content">
+            <div class="lesson-main">
+                <h2 class="lesson-title">Prépositions de lieu : DANS, SUR, À, CHEZ</h2>
+                
+                <p class="lesson-text">Les prépositions de lieu sont essentielles pour indiquer où se trouve une personne, un animal ou une chose. En français, les principales prépositions de lieu sont <span class="preposition-highlight">dans</span>, <span class="preposition-highlight">sur</span>, <span class="preposition-highlight">à</span> et <span class="preposition-highlight">chez</span>. Chacune a des utilisations spécifiques qu'il est important de maîtriser.</p>
+                
+                <h3 class="lesson-subtitle">1. La préposition DANS</h3>
+                <p class="lesson-text">La préposition <span class="preposition-highlight">dans</span> indique qu'on se trouve à l'intérieur d'un espace clos ou délimité.</p>
+                
+                <div class="example-box">
+                    <h4>Exemples d'utilisation :</h4>
+                    <div class="example-item">- Je suis <span class="correct">dans</span> la cuisine. (et non "sur la cuisine")</div>
+                    <div class="example-item">- Le chat est <span class="correct">dans</span> le jardin. (à l'intérieur du jardin)</div>
+                    <div class="example-item">- Elle habite <span class="correct">dans</span> un petit village.</div>
+                    <div class="example-item">- Il y a du sucre <span class="correct">dans</span> le placard.</div>
+                </div>
+                
+                <h3 class="lesson-subtitle">2. La préposition SUR</h3>
+                <p class="lesson-text">La préposition <span class="preposition-highlight">sur</span> indique qu'on se trouve à la surface de quelque chose, ou sur un support horizontal.</p>
+                
+                <div class="example-box">
+                    <h4>Exemples d'utilisation :</h4>
+                    <div class="example-item">- Le livre est <span class="correct">sur</span> la table. (à la surface de la table)</div>
+                    <div class="example-item">- Il y a un tableau <span class="correct">sur</span> le mur.</div>
+                    <div class="example-item">- Nous marchons <span class="correct">sur</span> la plage.</div>
+                    <div class="example-item">- J'ai mis la clé <span class="correct">sur</span> l'étagère.</div>
+                </div>
+                
+                <p class="lesson-text"><strong>Attention :</strong> On dit "dans la rue" (car on est entouré par les immeubles) mais "sur le boulevard" (car on est à la surface).</p>
+                
+                <h3 class="lesson-subtitle">3. La préposition À</h3>
+                <p class="lesson-text">La préposition <span class="preposition-highlight">à</span> est très polyvalente. Pour les lieux, elle s'utilise principalement :</p>
+                
+                <div class="example-box">
+                    <h4>Exemples d'utilisation :</h4>
+                    <div class="example-item">- Je vais <span class="correct">à</span> l'école / <span class="correct">à</span> l'université.</div>
+                    <div class="example-item">- Nous sommes <span class="correct">à</span> la maison.</div>
+                    <div class="example-item">- Il travaille <span class="correct">à</span> Paris.</div>
+                    <div class="example-item">- Elle est <span class="correct">à</span> la bibliothèque.</div>
+                </div>
+                
+                <p class="lesson-text"><strong>Note :</strong> "À" s'utilise souvent avec des lieux institutionnels ou publics. Pour les magasins, on utilise généralement "chez" (voir ci-dessous).</p>
+                
+                <h3 class="lesson-subtitle">4. La préposition CHEZ</h3>
+                <p class="lesson-text">La préposition <span class="preposition-highlight">chez</span> s'utilise pour indiquer qu'on se trouve dans le lieu d'habitation ou de travail de quelqu'un, ou dans un établissement commercial.</p>
+                
+                <div class="example-box">
+                    <h4>Exemples d'utilisation :</h4>
+                    <div class="example-item">- Je vais <span class="correct">chez</span> le médecin. (au cabinet du médecin)</div>
+                    <div class="example-item">- Nous dînons <span class="correct">chez</span> des amis.</div>
+                    <div class="example-item">- Elle est <span class="correct">chez</span> le coiffeur.</div>
+                    <div class="example-item">- Il travaille <span class="correct">chez</span> Renault. (dans l'entreprise Renault)</div>
+                </div>
+                
+                <div class="lesson-nav">
+                    <a href="grammaire.html" class="nav-button">
+                        <i class="fas fa-arrow-left"></i> Retour à la grammaire
+                    </a>
+                    <a href="lieu2.html" class="nav-button">
+                        Leçon suivante <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="lesson-sidebar">
+                <h3 class="sidebar-title">Dans cette leçon</h3>
+                <ul class="sidebar-list">
+                    <li><i class="fas fa-check-circle"></i> Utilisation de DANS</li>
+                    <li><i class="fas fa-check-circle"></i> Utilisation de SUR</li>
+                    <li><i class="fas fa-check-circle"></i> Utilisation de À</li>
+                    <li><i class="fas fa-check-circle"></i> Utilisation de CHEZ</li>
+                    <li><i class="fas fa-check-circle"></i> Différences et nuances</li>
+                </ul>
+                
+                <h3 class="sidebar-title">Résumé</h3>
+                <ul class="sidebar-list">
+                    <li><i class="fas fa-info-circle"></i> <strong>DANS</strong> = à l'intérieur</li>
+                    <li><i class="fas fa-info-circle"></i> <strong>SUR</strong> = à la surface</li>
+                    <li><i class="fas fa-info-circle"></i> <strong>À</strong> = lieu public/institution</li>
+                    <li><i class="fas fa-info-circle"></i> <strong>CHEZ</strong> = chez une personne/entreprise</li>
+                </ul>
+                
+                <h3 class="sidebar-title">Niveau</h3>
+                <p style="background-color: rgba(243, 156, 18, 0.2); color: var(--warning-color); padding: 10px; border-radius: 5px; text-align: center; font-weight: 600;">Intermédiaire (B1)</p>
+                
+                <h3 class="sidebar-title">Prochaine leçon</h3>
+                <a href="lieu2.html" style="display: block; text-align: center; background-color: var(--primary-color); color: white; padding: 12px; border-radius: 5px; text-decoration: none; margin-top: 10px;">
+                    Prépositions de lieu (2)<br>
+                    <small>DESSUS, DESSOUS, DEDANS, DEHORS</small>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Exercise Section -->
+        <div class="exercise-section">
+            <h2 class="exercise-title">Exercice pratique</h2>
+            
+            <div class="exercise-box">
+                <p class="exercise-instruction">Complétez les phrases avec la bonne préposition (dans, sur, à, chez) :</p>
+                
+                <div class="exercise-item">
+                    <p class="exercise-question">1. Je range mes vêtements _____ l'armoire.</p>
+                    <div class="options">
+                        <div class="option" data-question="1" data-answer="dans">dans</div>
+                        <div class="option" data-question="1" data-answer="sur">sur</div>
+                        <div class="option" data-question="1" data-answer="à">à</div>
+                        <div class="option" data-question="1" data-answer="chez">chez</div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <p class="exercise-question">2. Nous allons _____ le cinéma ce soir.</p>
+                    <div class="options">
+                        <div class="option" data-question="2" data-answer="dans">dans</div>
+                        <div class="option" data-question="2" data-answer="sur">sur</div>
+                        <div class="option" data-question="2" data-answer="à">à</div>
+                        <div class="option" data-question="2" data-answer="chez">chez</div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <p class="exercise-question">3. Le chat est assis _____ le canapé.</p>
+                    <div class="options">
+                        <div class="option" data-question="3" data-answer="dans">dans</div>
+                        <div class="option" data-question="3" data-answer="sur">sur</div>
+                        <div class="option" data-question="3" data-answer="à">à</div>
+                        <div class="option" data-question="3" data-answer="chez">chez</div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <p class="exercise-question">4. J'ai rendez-vous _____ le dentiste à 15h.</p>
+                    <div class="options">
+                        <div class="option" data-question="4" data-answer="dans">dans</div>
+                        <div class="option" data-question="4" data-answer="sur">sur</div>
+                        <div class="option" data-question="4" data-answer="à">à</div>
+                        <div class="option" data-question="4" data-answer="chez">chez</div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <p class="exercise-question">5. Les enfants jouent _____ le jardin.</p>
+                    <div class="options">
+                        <div class="option" data-question="5" data-answer="dans">dans</div>
+                        <div class="option" data-question="5" data-answer="sur">sur</div>
+                        <div class="option" data-question="5" data-answer="à">à</div>
+                        <div class="option" data-question="5" data-answer="chez">chez</div>
+                    </div>
+                </div>
+                
+                <button class="check-button" id="checkButton">Vérifier mes réponses</button>
+                
+                <div class="result" id="result"></div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Français Facile</h3>
+                    <p>Plateforme d'apprentissage du français en ligne. Des ressources gratuites pour tous les niveaux.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Catégories</h3>
+                    <ul>
+                        <li><a href="grammaire.html">Grammaire</a></li>
+                        <li><a href="#">Vocabulaire</a></li>
+                        <li><a href="#">Conjugaison</a></li>
+                        <li><a href="#">Prononciation</a></li>
+                        <li><a href="#">Culture française</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="main.html">Accueil</a></li>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                        <li><a href="#">Politique de confidentialité</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Français Facile. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+            
+            // Change icon
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navMenu.classList.contains('show')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('show')) {
+                    navMenu.classList.remove('show');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+        
+        // Exercise functionality
+        const options = document.querySelectorAll('.option');
+        const checkButton = document.getElementById('checkButton');
+        const resultDiv = document.getElementById('result');
+        
+        // Correct answers
+        const correctAnswers = {
+            1: 'dans',
+            2: 'à',
+            3: 'sur',
+            4: 'chez',
+            5: 'dans'
+        };
+        
+        // User answers
+        let userAnswers = {
+            1: null,
+            2: null,
+            3: null,
+            4: null,
+            5: null
+        };
+        
+        // Option selection
+        options.forEach(option => {
+            option.addEventListener('click', function() {
+                const questionNum = this.getAttribute('data-question');
+                const answer = this.getAttribute('data-answer');
+                
+                // Remove selected class from all options for this question
+                document.querySelectorAll(`[data-question="${questionNum}"]`).forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked option
+                this.classList.add('selected');
+                
+                // Store user answer
+                userAnswers[questionNum] = answer;
+            });
+        });
+        
+        // Check answers
+        checkButton.addEventListener('click', function() {
+            let correctCount = 0;
+            const totalQuestions = Object.keys(correctAnswers).length;
+            
+            // Check each answer
+            for (let i = 1; i <= totalQuestions; i++) {
+                if (userAnswers[i] === correctAnswers[i]) {
+                    correctCount++;
+                }
+            }
+            
+            // Display result
+            const percentage = (correctCount / totalQuestions) * 100;
+            
+            if (percentage === 100) {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = `
+                    <h3>Excellent ! 🎉</h3>
+                    <p>Vous avez ${correctCount} réponses correctes sur ${totalQuestions} (${percentage}%).</p>
+                    <p>Vous maîtrisez parfaitement l'utilisation de DANS, SUR, À et CHEZ !</p>
+                `;
+            } else if (percentage >= 60) {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = `
+                    <h3>Très bien ! 👍</h3>
+                    <p>Vous avez ${correctCount} réponses correctes sur ${totalQuestions} (${percentage}%).</p>
+                    <p>Continuez à pratiquer pour perfectionner votre maîtrise de ces prépositions.</p>
+                `;
+            } else {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `
+                    <h3>À améliorer 📚</h3>
+                    <p>Vous avez ${correctCount} réponses correctes sur ${totalQuestions} (${percentage}%).</p>
+                    <p>Revoyez la leçon et refaites l'exercice pour mieux comprendre les nuances.</p>
+                `;
+            }
+            
+            // Show correct answers
+            let correctAnswersHtml = '<p><strong>Réponses correctes :</strong></p><ol>';
+            for (let i = 1; i <= totalQuestions; i++) {
+                correctAnswersHtml += `<li>${correctAnswers[i]}</li>`;
+            }
+            correctAnswersHtml += '</ol>';
+            
+            resultDiv.innerHTML += correctAnswersHtml;
+        });
+        
+        // Add active class to current page in navigation
+        const currentPage = window.location.pathname.split('/').pop();
+        navLinks.forEach(link => {
+            const linkPage = link.getAttribute('href');
+            if (linkPage === currentPage) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

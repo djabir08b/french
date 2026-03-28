@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes E-mails Professionnels - Français Facile</title>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2232/2232688.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --border-radius: 10px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .logo i {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .logo-text span {
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        nav a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .emails-hero {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 70px 0;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 40px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .emails-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .emails-hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+        }
+        
+        /* Tab Bar */
+        .tab-bar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .tab-btn {
+            padding: 12px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .tab-btn.informel {
+            background-color: #d1e7dd;
+            color: #0f5132;
+            border: 2px solid #0f5132;
+        }
+        
+        .tab-btn.formel {
+            background-color: #cfe2ff;
+            color: #084298;
+            border: 2px solid #084298;
+        }
+        
+        .tab-btn.informel.active {
+            background-color: #0f5132;
+            color: white;
+        }
+        
+        .tab-btn.formel.active {
+            background-color: #084298;
+            color: white;
+        }
+        
+        .tab-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Section principale */
+        .emails-section {
+            padding: 20px 0 70px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+        
+        /* Grille 2 colonnes comme les articles */
+        .emails-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+        
+        /* Carte email */
+        .email-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .email-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .email-header {
+            padding: 25px 25px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .email-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .badge-informel {
+            background-color: #d1e7dd;
+            color: #0f5132;
+        }
+        
+        .badge-formel {
+            background-color: #cfe2ff;
+            color: #084298;
+        }
+        
+        .email-object {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+        
+        .email-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .email-meta i {
+            color: var(--primary-color);
+        }
+        
+        .email-body {
+            padding: 25px;
+        }
+        
+        .email-content {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #444;
+            max-height: 300px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .email-content p {
+            margin-bottom: 15px;
+        }
+        
+        .email-content ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .email-content li {
+            margin-bottom: 8px;
+        }
+        
+        .email-footer {
+            padding: 0 25px 25px;
+        }
+        
+        .read-more-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .read-more-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        /* Message quand aucun email */
+        .no-emails {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px;
+            background: white;
+            border-radius: var(--border-radius);
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .emails-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .emails-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            .emails-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .tab-bar {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .tab-btn {
+                width: 200px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .emails-hero {
+                padding: 50px 0;
+            }
+            
+            .email-header, .email-body, .email-footer {
+                padding: 20px;
+            }
+        }
+    </style>
+
+    <!-- ✦ LUMIÈRE UNIFIED THEME ✦ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <style id="lumiere-base">
+
+    /* ═══════════════════════════════════════════
+       LUMIÈRE — Design System 2025
+       White · Airy · Animated · Premium
+    ═══════════════════════════════════════════ */
+
+    :root {
+      /* Core Palette */
+      --p:          #5b4cff;       /* Vivid indigo — primary */
+      --p-light:    #ede9ff;       /* Primary tint bg */
+      --p-mid:      #7c6fff;       /* Hover state */
+      --p-dark:     #3d2de0;       /* Pressed state */
+      --p-glow:     rgba(91,76,255,0.18);
+
+      --bg:         #ffffff;
+      --bg-2:       #f7f8fc;
+      --bg-3:       #f0f2fa;
+      --surface:    #ffffff;
+      --surface-2:  #fafbff;
+
+      --border:     rgba(91,76,255,0.12);
+      --border-2:   rgba(0,0,0,0.07);
+
+      --text:       #0f0e1a;
+      --text-2:     #4b4c6a;
+      --text-3:     #9899b5;
+
+      --green:      #10b981;
+      --green-bg:   #ecfdf5;
+      --amber:      #f59e0b;
+      --amber-bg:   #fffbeb;
+      --red:        #ef4444;
+      --red-bg:     #fef2f2;
+      --blue:       #3b82f6;
+      --blue-bg:    #eff6ff;
+
+      /* Geometry */
+      --r:          12px;
+      --r-lg:       20px;
+      --r-xl:       28px;
+      --shadow-sm:  0 1px 3px rgba(15,14,26,0.06), 0 1px 2px rgba(15,14,26,0.04);
+      --shadow:     0 4px 16px rgba(15,14,26,0.08), 0 2px 6px rgba(15,14,26,0.04);
+      --shadow-lg:  0 12px 40px rgba(15,14,26,0.12), 0 4px 12px rgba(15,14,26,0.06);
+      --shadow-xl:  0 24px 64px rgba(15,14,26,0.14);
+      --shadow-p:   0 8px 32px rgba(91,76,255,0.28);
+
+      --t:          all 0.25s cubic-bezier(0.4,0,0.2,1);
+      --t-spring:   all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+
+      --font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font) !important;
+      background: var(--bg-2) !important;
+      color: var(--text) !important;
+      line-height: 1.65 !important;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-2); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--p); }
+
+    ::selection { background: var(--p-light); color: var(--p-dark); }
+
+    /* ── Typography ── */
+    h1,h2,h3,h4,h5,h6 {
+      font-family: var(--font) !important;
+      color: var(--text) !important;
+      line-height: 1.2 !important;
+      letter-spacing: -0.02em !important;
+    }
+    h1 { font-weight: 800 !important; }
+    h2 { font-weight: 700 !important; }
+    h3 { font-weight: 700 !important; }
+    p { color: var(--text-2) !important; }
+    a { color: var(--p); text-decoration: none; transition: var(--t); }
+    a:hover { color: var(--p-dark); }
+
+    /* ── Container ── */
+    .container {
+      max-width: 1200px !important;
+      margin: 0 auto !important;
+      padding: 0 24px !important;
+    }
+
+    /* ════════════════════════════════
+       HEADER — Frosted Glass, Floating
+    ════════════════════════════════ */
+    header {
+      background: rgba(255,255,255,0.85) !important;
+      backdrop-filter: blur(24px) saturate(200%) !important;
+      -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+      border-bottom: 1px solid var(--border) !important;
+      box-shadow: var(--shadow-sm) !important;
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 9000 !important;
+      transition: var(--t) !important;
+    }
+
+    .nav-container {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      padding: 14px 0 !important;
+    }
+
+    .logo {
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      text-decoration: none !important;
+    }
+    .logo i {
+      font-size: 1.6rem !important;
+      color: var(--p) !important;
+      filter: drop-shadow(0 2px 8px var(--p-glow)) !important;
+    }
+    .logo-text {
+      font-family: var(--font) !important;
+      font-size: 1.4rem !important;
+      font-weight: 800 !important;
+      color: var(--text) !important;
+      letter-spacing: -0.03em !important;
+    }
+    .logo-text span { color: var(--p) !important; }
+
+    nav ul {
+      display: flex !important;
+      list-style: none !important;
+      gap: 4px !important;
+      align-items: center !important;
+    }
+
+    nav a {
+      font-family: var(--font) !important;
+      font-weight: 600 !important;
+      font-size: 0.875rem !important;
+      color: var(--text-2) !important;
+      padding: 7px 14px !important;
+      border-radius: 10px !important;
+      text-decoration: none !important;
+      transition: var(--t) !important;
+      letter-spacing: -0.01em !important;
+      white-space: nowrap !important;
+    }
+    nav a:hover {
+      color: var(--p) !important;
+      background: var(--p-light) !important;
+    }
+    nav a.active {
+      color: var(--p) !important;
+      background: var(--p-light) !important;
+      font-weight: 700 !important;
+      box-shadow: inset 0 0 0 1.5px var(--p-glow) !important;
+    }
+
+    .mobile-menu-btn {
+      display: none !important;
+      background: none !important;
+      border: 1.5px solid var(--border-2) !important;
+      border-radius: 10px !important;
+      padding: 8px 12px !important;
+      color: var(--text) !important;
+      font-size: 1.1rem !important;
+      cursor: pointer !important;
+      transition: var(--t) !important;
+    }
+    .mobile-menu-btn:hover { background: var(--p-light) !important; border-color: var(--p) !important; color: var(--p) !important; }
+
+    @media (max-width: 900px) {
+      .mobile-menu-btn { display: block !important; }
+      nav ul {
+        display: none !important;
+        flex-direction: column !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important; right: 0 !important;
+        background: rgba(255,255,255,0.97) !important;
+        backdrop-filter: blur(20px) !important;
+        border-bottom: 1px solid var(--border) !important;
+        padding: 12px 20px 20px !important;
+        gap: 2px !important;
+        box-shadow: var(--shadow-lg) !important;
+      }
+      nav ul.show { display: flex !important; }
+      nav a { font-size: 1rem !important; padding: 12px 16px !important; }
+    }
+
+    /* ════════════════════════════════
+       HERO / PAGE HEADER
+    ════════════════════════════════ */
+    .hero, .hero-section, .debats-hero, .emails-hero,
+    .subjects-hero, .expression-hero, .page-header,
+    section[class$="-hero"] {
+      background: linear-gradient(135deg, #f0edff 0%, #e8f4ff 60%, #fdf0ff 100%) !important;
+      border-bottom: 1px solid var(--border) !important;
+      padding: 80px 0 72px !important;
+      position: relative !important;
+      overflow: hidden !important;
+      text-align: center !important;
+    }
+    .hero::before, .hero-section::before, .debats-hero::before,
+    .emails-hero::before, .subjects-hero::before, .page-header::before,
+    section[class$="-hero"]::before {
+      content: '' !important;
+      position: absolute !important;
+      top: -120px !important; right: -120px !important;
+      width: 500px !important; height: 500px !important;
+      background: radial-gradient(circle, rgba(91,76,255,0.12) 0%, transparent 70%) !important;
+      pointer-events: none !important;
+    }
+    .hero::after, .hero-section::after {
+      content: '' !important;
+      position: absolute !important;
+      bottom: -80px !important; left: -80px !important;
+      width: 400px !important; height: 400px !important;
+      background: radial-gradient(circle, rgba(124,111,255,0.08) 0%, transparent 70%) !important;
+      pointer-events: none !important;
+    }
+    .hero h1, .hero-section h1, .debats-hero h1,
+    .emails-hero h1, .subjects-hero h1, .page-header h1,
+    section[class$="-hero"] h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem) !important;
+      font-weight: 800 !important;
+      background: linear-gradient(135deg, #1a0f6b 0%, var(--p) 50%, #8b5cf6 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+      margin-bottom: 18px !important;
+    }
+    .hero p, .hero-section p, section[class$="-hero"] p,
+    .debats-hero p, .emails-hero p, .subjects-hero p, .page-header p {
+      color: var(--text-2) !important;
+      font-size: 1.1rem !important;
+      max-width: 600px !important;
+      margin: 0 auto 8px !important;
+      -webkit-text-fill-color: unset !important;
+    }
+    .hero-content { max-width: 800px !important; margin: 0 auto !important; position: relative !important; z-index: 1 !important; }
+
+    /* CTA button in hero */
+    .cta-button, .btn-primary, .primary-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      background: var(--p) !important;
+      color: white !important;
+      padding: 14px 32px !important;
+      border-radius: 50px !important;
+      font-weight: 700 !important;
+      font-size: 1rem !important;
+      font-family: var(--font) !important;
+      text-decoration: none !important;
+      border: none !important;
+      cursor: pointer !important;
+      box-shadow: var(--shadow-p) !important;
+      transition: var(--t-spring) !important;
+      margin-top: 12px !important;
+      -webkit-text-fill-color: white !important;
+    }
+    .cta-button:hover, .btn-primary:hover, .primary-btn:hover {
+      background: var(--p-dark) !important;
+      transform: translateY(-3px) scale(1.02) !important;
+      box-shadow: 0 16px 48px rgba(91,76,255,0.35) !important;
+      color: white !important;
+      -webkit-text-fill-color: white !important;
+    }
+
+    /* ════════════════════════════════
+       SECTIONS
+    ════════════════════════════════ */
+    section {
+      background: transparent !important;
+    }
+    .features, .grammar-categories, .articles-section,
+    .emails-section, .debats-section, .vocabulary-categories,
+    .lesson-section, .expressions-section, .objectives-deadline,
+    .january-goals { padding: 72px 0 !important; }
+
+    /* Alternating background */
+    .features:nth-of-type(odd),
+    .objectives-deadline,
+    .january-goals {
+      background: var(--bg-2) !important;
+    }
+
+    /* Section titles */
+    .section-title { text-align: center !important; margin-bottom: 52px !important; }
+    .section-title h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem) !important;
+      font-weight: 800 !important;
+      color: var(--text) !important;
+      margin-bottom: 12px !important;
+    }
+    .section-title p {
+      color: var(--text-2) !important;
+      font-size: 1.05rem !important;
+      max-width: 580px !important;
+      margin: 0 auto !important;
+    }
+
+    /* Pill accent under section title */
+    .section-title h2::after {
+      content: '' !important;
+      display: block !important;
+      width: 44px !important; height: 4px !important;
+      background: linear-gradient(90deg, var(--p), #8b5cf6) !important;
+      border-radius: 99px !important;
+      margin: 14px auto 0 !important;
+    }
+
+    /* ════════════════════════════════
+       CARDS — Universal
+    ════════════════════════════════ */
+    .card, .feature-card, .lesson-card, .grammar-card,
+    .category-card, .article-card, .email-card, .goal-card,
+    .expression-card, .debate-card, .vocab-card,
+    [class*="-card"]:not([class*="breadcrumb"]):not([class*="lesson-card-header"]) {
+      background: var(--surface) !important;
+      border: 1.5px solid var(--border-2) !important;
+      border-radius: var(--r-lg) !important;
+      box-shadow: var(--shadow) !important;
+      transition: var(--t) !important;
+      overflow: hidden !important;
+    }
+    .card:hover, .feature-card:hover, .lesson-card:hover,
+    .grammar-card:hover, .category-card:hover, .article-card:hover,
+    .email-card:hover, .expression-card:hover, .debate-card:hover,
+    [class*="-card"]:hover {
+      transform: translateY(-5px) !important;
+      box-shadow: var(--shadow-xl) !important;
+      border-color: rgba(91,76,255,0.2) !important;
+    }
+
+    /* Card header stripes */
+    .lesson-card-header, .article-header, .email-header,
+    [class*="card-header"] {
+      background: linear-gradient(135deg, var(--bg-3), var(--p-light)) !important;
+      border-bottom: 1.5px solid var(--border) !important;
+      padding: 20px 24px !important;
+    }
+
+    /* Card body text */
+    [class*="-card"] h3, [class*="-card"] h2 {
+      color: var(--text) !important;
+      font-family: var(--font) !important;
+    }
+    [class*="-card"] p { color: var(--text-2) !important; }
+
+    /* Feature card icons */
+    .feature-icon {
+      background: var(--p-light) !important;
+      width: 72px !important; height: 72px !important;
+      border-radius: 18px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin: 0 auto 20px !important;
+    }
+    .feature-icon i { color: var(--p) !important; font-size: 1.8rem !important; }
+
+    /* ════════════════════════════════
+       BADGES & TAGS
+    ════════════════════════════════ */
+    .badge, [class*="badge"], .tag, .level-badge {
+      font-family: var(--font) !important;
+      font-size: 0.7rem !important;
+      font-weight: 700 !important;
+      padding: 4px 12px !important;
+      border-radius: 99px !important;
+      letter-spacing: 0.05em !important;
+      text-transform: uppercase !important;
+    }
+    .badge-primary   { background: var(--p-light) !important; color: var(--p) !important; }
+    .badge-success   { background: var(--green-bg) !important; color: var(--green) !important; }
+    .badge-warning   { background: var(--amber-bg) !important; color: var(--amber) !important; }
+    .badge-danger    { background: var(--red-bg) !important; color: var(--red) !important; }
+    .badge-info      { background: var(--blue-bg) !important; color: var(--blue) !important; }
+
+    /* ════════════════════════════════
+       BUTTONS
+    ════════════════════════════════ */
+    button:not(.mobile-menu-btn), .btn, [class*="-btn"]:not(.mobile-menu-btn) {
+      font-family: var(--font) !important;
+      font-weight: 600 !important;
+      cursor: pointer !important;
+      transition: var(--t) !important;
+      border-radius: var(--r) !important;
+    }
+    .tab-btn, .filter-btn, [class*="tab-btn"], [class*="filter-btn"] {
+      background: var(--surface) !important;
+      border: 1.5px solid var(--border-2) !important;
+      color: var(--text-2) !important;
+      padding: 8px 20px !important;
+      font-size: 0.875rem !important;
+      border-radius: 50px !important;
+    }
+    .tab-btn:hover, .filter-btn:hover {
+      border-color: var(--p) !important;
+      color: var(--p) !important;
+      background: var(--p-light) !important;
+    }
+    .tab-btn.active, .filter-btn.active {
+      background: var(--p) !important;
+      border-color: var(--p) !important;
+      color: white !important;
+      box-shadow: var(--shadow-p) !important;
+    }
+
+    /* Progress buttons */
+    .progress-btn {
+      background: var(--p) !important;
+      color: white !important;
+      border: none !important;
+      padding: 8px 18px !important;
+    }
+    .progress-btn:hover { background: var(--p-dark) !important; transform: translateY(-1px) !important; }
+    .complete-all-btn { background: var(--green) !important; }
+    .complete-all-btn:hover { background: #059669 !important; }
+
+    /* ════════════════════════════════
+       INPUTS & FORMS
+    ════════════════════════════════ */
+    input, textarea, select {
+      font-family: var(--font) !important;
+      background: var(--bg-2) !important;
+      border: 1.5px solid var(--border-2) !important;
+      border-radius: var(--r) !important;
+      color: var(--text) !important;
+      padding: 10px 16px !important;
+      transition: var(--t) !important;
+      width: 100% !important;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none !important;
+      border-color: var(--p) !important;
+      box-shadow: 0 0 0 3px var(--p-glow) !important;
+      background: var(--surface) !important;
+    }
+    input::placeholder, textarea::placeholder { color: var(--text-3) !important; }
+
+    /* ════════════════════════════════
+       PROGRESS BARS
+    ════════════════════════════════ */
+    .progress-bar, [class*="progress-bar"] {
+      background: var(--bg-3) !important;
+      border-radius: 99px !important;
+      overflow: hidden !important;
+    }
+    .progress-fill, [class*="progress-fill"] {
+      background: linear-gradient(90deg, var(--p), #8b5cf6) !important;
+      border-radius: 99px !important;
+      transition: width 0.6s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+    .progress-complete {
+      background: linear-gradient(90deg, var(--green), #34d399) !important;
+    }
+
+    /* ════════════════════════════════
+       TABLES
+    ════════════════════════════════ */
+    table { border-collapse: collapse !important; width: 100% !important; }
+    th {
+      background: var(--bg-3) !important;
+      color: var(--text-2) !important;
+      font-family: var(--font) !important;
+      font-weight: 700 !important;
+      font-size: 0.78rem !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.07em !important;
+      padding: 14px 16px !important;
+      border-bottom: 2px solid var(--border) !important;
+    }
+    td {
+      padding: 13px 16px !important;
+      border-bottom: 1px solid var(--border-2) !important;
+      color: var(--text-2) !important;
+      font-size: 0.95rem !important;
+    }
+    tr:hover td { background: var(--p-light) !important; }
+
+    /* ════════════════════════════════
+       TIMELINE (main.html objectives)
+    ════════════════════════════════ */
+    .timeline::before {
+      background: linear-gradient(to bottom, var(--p), #8b5cf6) !important;
+      opacity: 0.3 !important;
+    }
+    .timeline-dot, .timeline-icon {
+      background: var(--p) !important;
+      box-shadow: 0 0 0 4px var(--p-light) !important;
+    }
+    .timeline-card {
+      background: var(--surface) !important;
+      border: 1.5px solid var(--border) !important;
+      border-radius: var(--r-lg) !important;
+      box-shadow: var(--shadow) !important;
+    }
+
+    /* ════════════════════════════════
+       CATEGORY COLORS (subjects.html)
+    ════════════════════════════════ */
+    .biology-badge   { background: var(--green-bg) !important; color: var(--green) !important; }
+    .astronomy-badge { background: #f5f3ff !important; color: #7c3aed !important; }
+    .genetics-badge  { background: var(--red-bg) !important; color: var(--red) !important; }
+    .neuroscience-badge { background: var(--blue-bg) !important; color: var(--blue) !important; }
+    .professional-badge { background: var(--amber-bg) !important; color: var(--amber) !important; }
+    .tech-badge { background: #ecfdf5 !important; color: #059669 !important; }
+
+    /* ════════════════════════════════
+       DEBATE ROLES (debat.html + expressions.html)
+    ════════════════════════════════ */
+    :root {
+      --presentateur-bg: #eff6ff !important;
+      --presentateur-color: #1d4ed8 !important;
+      --invite-bg: var(--green-bg) !important;
+      --invite-color: #065f46 !important;
+      --chitchat-bg: var(--amber-bg) !important;
+      --chitchat-color: #92400e !important;
+    }
+    .presentateur-card, [class*="presentateur"] {
+      background: var(--presentateur-bg) !important;
+      border-left: 4px solid #3b82f6 !important;
+    }
+    .invite-card, [class*="invite"] {
+      background: var(--invite-bg) !important;
+      border-left: 4px solid var(--green) !important;
+    }
+    .chitchat-card, [class*="chitchat"] {
+      background: var(--chitchat-bg) !important;
+      border-left: 4px solid var(--amber) !important;
+    }
+
+    /* ════════════════════════════════
+       BREADCRUMB
+    ════════════════════════════════ */
+    .breadcrumb {
+      background: transparent !important;
+      padding: 0 !important;
+      display: flex !important;
+      gap: 8px !important;
+      align-items: center !important;
+      font-size: 0.875rem !important;
+    }
+    .breadcrumb a { color: var(--p) !important; font-weight: 500 !important; }
+    .breadcrumb span { color: var(--text-3) !important; }
+
+    /* ════════════════════════════════
+       FOOTER
+    ════════════════════════════════ */
+    footer {
+      background: var(--text) !important;
+      color: rgba(255,255,255,0.7) !important;
+      padding: 64px 0 32px !important;
+      margin-top: 0 !important;
+    }
+    footer h3 {
+      font-family: var(--font) !important;
+      color: white !important;
+      font-size: 0.95rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.05em !important;
+      text-transform: uppercase !important;
+      margin-bottom: 18px !important;
+    }
+    footer p { color: rgba(255,255,255,0.5) !important; font-size: 0.9rem !important; }
+    footer a { color: rgba(255,255,255,0.5) !important; font-size: 0.9rem !important; transition: var(--t) !important; }
+    footer a:hover { color: white !important; }
+    footer ul { list-style: none !important; }
+    footer ul li { margin-bottom: 10px !important; }
+    footer .footer-content {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+      gap: 40px !important;
+      margin-bottom: 48px !important;
+    }
+    footer .copyright, footer .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08) !important;
+      padding-top: 24px !important;
+      text-align: center !important;
+    }
+    footer .copyright p, footer .footer-bottom p {
+      color: rgba(255,255,255,0.35) !important;
+      font-size: 0.85rem !important;
+    }
+    .social-links { display: flex !important; gap: 10px !important; margin-top: 16px !important; }
+    .social-links a {
+      width: 38px !important; height: 38px !important;
+      border-radius: 10px !important;
+      border: 1px solid rgba(255,255,255,0.12) !important;
+      background: rgba(255,255,255,0.06) !important;
+      display: flex !important; align-items: center !important; justify-content: center !important;
+      color: rgba(255,255,255,0.5) !important;
+      transition: var(--t) !important;
+    }
+    .social-links a:hover {
+      background: var(--p) !important;
+      border-color: var(--p) !important;
+      color: white !important;
+      transform: translateY(-2px) !important;
+    }
+
+    /* ════════════════════════════════
+       UTILITY OVERRIDES
+    ════════════════════════════════ */
+    /* Background cleanups */
+    .bg-white, [style*="background-color: white"],
+    [style*="background: white"], [style*="background:#fff"],
+    [style*="background: #fff"] {
+      background: var(--surface) !important;
+    }
+    .bg-light, [style*="background-color: #f5f7ff"],
+    [style*="background: #f5f7ff"], [style*="background: #f4f7fc"],
+    [style*="background-color: #f4f7fc"],
+    [style*="background: linear-gradient(135deg, #f5f7ff"],
+    section[style*="background"] {
+      background: var(--bg-2) !important;
+    }
+
+    /* Old CSS variable colors */
+    :root {
+      --primary-color: var(--p) !important;
+      --secondary-color: var(--p-dark) !important;
+      --accent-color: #8b5cf6 !important;
+      --light-color: var(--bg-2) !important;
+      --dark-color: var(--text) !important;
+      --success-color: var(--green) !important;
+      --warning-color: var(--amber) !important;
+      --border-radius: var(--r) !important;
+      --box-shadow: var(--shadow) !important;
+    }
+
+    /* Chips / pills */
+    .chip, [class*="chip"], [class*="pill"] {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      background: var(--p-light) !important;
+      color: var(--p) !important;
+      padding: 4px 12px !important;
+      border-radius: 99px !important;
+      font-size: 0.78rem !important;
+      font-weight: 600 !important;
+    }
+
+    /* Code spans / highlighted words */
+    code, [class*="highlight"], .keyword {
+      background: var(--p-light) !important;
+      color: var(--p-dark) !important;
+      padding: 2px 8px !important;
+      border-radius: 6px !important;
+      font-size: 0.88em !important;
+    }
+
+    /* ════════════════════════════════
+       ANIMATIONS
+    ════════════════════════════════ */
+
+    /* Page entry */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes floatBob {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-8px); }
+    }
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.94); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-20px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Apply to sections */
+    header { animation: fadeIn 0.4s ease both; }
+    .hero, .hero-section, .page-header,
+    .debats-hero, .emails-hero, .subjects-hero,
+    section[class$="-hero"] {
+      animation: fadeSlideUp 0.5s ease both;
+    }
+    .hero-content { animation: fadeSlideUp 0.6s 0.1s ease both; }
+
+    /* Cards animate in on scroll via class (added by JS below) */
+    .animate-card {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+    .animate-card.visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    /* Stagger delays for grid children */
+    .animate-card:nth-child(1) { transition-delay: 0.04s !important; }
+    .animate-card:nth-child(2) { transition-delay: 0.10s !important; }
+    .animate-card:nth-child(3) { transition-delay: 0.16s !important; }
+    .animate-card:nth-child(4) { transition-delay: 0.22s !important; }
+    .animate-card:nth-child(5) { transition-delay: 0.28s !important; }
+    .animate-card:nth-child(6) { transition-delay: 0.34s !important; }
+    .animate-card:nth-child(7) { transition-delay: 0.40s !important; }
+    .animate-card:nth-child(8) { transition-delay: 0.46s !important; }
+
+    /* Feature icon bob */
+    .feature-card:hover .feature-icon {
+      animation: floatBob 1.4s ease-in-out infinite !important;
+    }
+
+    /* Header scroll shadow enhancement */
+    header.scrolled {
+      box-shadow: 0 4px 24px rgba(15,14,26,0.12) !important;
+    }
+
+    /* Smooth link underline animation */
+    nav a { position: relative !important; }
+
+    /* Lesson card expand animation */
+    .lesson-card-body, .card-body, .email-body,
+    .debate-content, .expression-content, .article-body {
+      background: var(--surface) !important;
+      color: var(--text-2) !important;
+      padding: 24px !important;
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 768px) {
+      .hero, .page-header, section[class$="-hero"] {
+        padding: 56px 0 48px !important;
+      }
+    }
+
+    </style>
+
+    <!-- Scroll animation + header enhancement JS -->
+    <script>
+    (function(){
+      document.addEventListener('DOMContentLoaded', function(){
+        // Add scroll shadow to header
+        var hdr = document.querySelector('header');
+        if(hdr) {
+          window.addEventListener('scroll', function(){
+            hdr.classList.toggle('scrolled', window.scrollY > 10);
+          }, {passive:true});
+        }
+
+        // Intersection Observer for card animations
+        var cards = document.querySelectorAll(
+          '.feature-card, .lesson-card, .grammar-card, .category-card, ' +
+          '.article-card, .email-card, .goal-card, .expression-card, ' +
+          '.debate-card, [class*="-card"]:not([class*="breadcrumb"])'
+        );
+        cards.forEach(function(c){ c.classList.add('animate-card'); });
+
+        var io = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if(e.isIntersecting) {
+              e.target.classList.add('visible');
+              io.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        cards.forEach(function(c){ io.observe(c); });
+      });
+    })();
+    </script>
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="main.html" class="logo">
+                <i class="fas fa-language"></i>
+                <div class="logo-text">Français<span>Facile</span></div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="main.html">Accueil</a></li>
+                    <li><a href="grammaire.html">Grammaire</a></li>
+                    <li><a href="vocabulaire.html">Vocabulaire</a></li>
+                    <li><a href="subjects.html">Sujets</a></li>
+                    <li><a href="emails.html" class="active">E-mails pro</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="emails-hero">
+        <div class="container hero-content">
+            <h1>Mes E-mails Professionnels</h1>
+            <p>Sélectionnez un style pour voir les e-mails correspondants</p>
+        </div>
+    </section>
+    
+    <!-- Tab Bar -->
+    <div class="container">
+        <div class="tab-bar">
+            <button class="tab-btn informel active" id="tabInformel" onclick="filterEmails('informel')">📝 INFORMEL</button>
+            <button class="tab-btn formel" id="tabFormel" onclick="filterEmails('formel')">📋 FORMEL</button>
+        </div>
+    </div>
+    
+    <!-- Section des e-mails -->
+    <section class="emails-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 id="sectionTitle">E-mails informels</h2>
+            </div>
+            
+            <div class="emails-container" id="emailsContainer">
+                <!-- Les e-mails seront injectés ici par JavaScript -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Français Facile</h3>
+                    <p>Plateforme d'apprentissage du français en ligne. Des ressources gratuites pour tous les niveaux.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Catégories</h3>
+                    <ul>
+                        <li><a href="grammaire.html">Grammaire</a></li>
+                        <li><a href="vocabulaire.html">Vocabulaire</a></li>
+                        <li><a href="subjects.html">Sujets scientifiques</a></li>
+                        <li><a href="emails.html">E-mails professionnels</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="main.html">Accueil</a></li>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 Français Facile. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
+    <script>
+        // Base de données des e-mails (copie exacte de vos textes)
+        const emailsData = [
+            // E-mails INFORMELS (4)
+            {
+                id: 1,
+                type: 'informel',
+                badge: '📝 INFORMEL',
+                object: 'Résumé sprint planning — Sprint 6',
+                content: `<p><strong>Objet :</strong> Résumé sprint planning — Sprint 6</p>
+<p>Bonjour à tous,</p>
+<p>Suite à notre discussion sur le sprint planning, voici ce qui a été discuté.</p>
+<p>L'objectif a été fixé pour finaliser le module de notification, ça dure 2 semaines.</p>
+<p>La répartition des tâches pour les personnes concernées :<br>
+- Moi, je m'occuperai de l'intégration de l'API d'envoi de SMS<br>
+- Karim gère le développement de la logique de relance automatique<br>
+- Sara s'assure que tout est bien testé et que c'est validé pour le déploiement</p>
+<p>On en discutera demain matin à 9h30, j'ai créé une réunion quotidienne — pour les personnes qui n'ont pas encore reçu le lien, faites-moi signe.</p>
+<p>On reste en discussion,<br>Karim</p>`
+            },
+            {
+                id: 3,
+                type: 'informel',
+                badge: '📝 INFORMEL',
+                object: 'Demande de formation Kubernetes',
+                content: `<p><strong>Objet :</strong> Demande de formation Kubernetes</p>
+<p>Bonjour [Prénom],</p>
+<p>Dans le cadre de la migration vers Kubernetes dans 2 mois, je voudrais suivre une formation pour contribuer dès le début.</p>
+<p>J'ai trouvé une formation sur Udemy — 20 heures, 150€. Ça me permettrait de mieux comprendre ce qui va être mis en place et de contribuer à la configuration.</p>
+<p>Je peux organiser mon planning pour ne pas impacter les livrables du mois.</p>
+<p>Tu peux valider ça ? Je reste dispo pour en discuter.</p>
+<p>Cordialement,<br>[Prénom]</p>`
+            },
+            {
+                id: 5,
+                type: 'informel',
+                badge: '📝 INFORMEL',
+                object: 'PR #47 — Revue de code module notification',
+                content: `<p><strong>Objet :</strong> PR #47 — Revue de code module notification</p>
+<p>Salut Karim,</p>
+<p>Je voulais t'informer que la nouvelle fonctionnalité pour le module de notification du dunning system est terminée — voilà le lien de la pull request.</p>
+<p>Je voudrais surtout ton avis sur la logique de relance automatique. J'ai essayé de traiter tous les cas d'erreur, mais j'ai encore quelques doutes sur certains.</p>
+<p>Je propose qu'on fasse un point et qu'on en discute ensemble dès que tu es dispo — dis-moi tes disponibilités !</p>
+<p>Merci d'avance pour ton retour.</p>
+<p>Karim</p>`
+            },
+            {
+                id: 7,
+                type: 'informel',
+                badge: '📝 INFORMEL',
+                object: 'Retour sur vos préoccupations — compatibilité système',
+                content: `<p><strong>Objet :</strong> Retour sur vos préoccupations — compatibilité système</p>
+<p>Salut,</p>
+<p>Merci pour tes retours détaillés — ça nous aide vraiment à cadrer la solution et à s'assurer qu'on va dans la bonne direction. Je comprends tout à fait ton scepticisme, c'est normal à ce stade.</p>
+<p>Je voulais juste clarifier un point important sur notre façon de travailler : les équipes d'Inetum et leurs partenaires à Djibouti sont encore en train de comprendre l'état actuel de chaque partie du système. Ça vaut pour nous, pour notre façon de travailler, et même pour le contexte de Djibouti.</p>
+<p>Sur l'avancement, on a rédigé un document HLD qui donne une vue globale de comment notre système va répondre à vos besoins. C'est une première approche, pas une solution figée — c'est justement pour ça qu'on a prévu des ateliers.</p>
+<p>L'idée c'est d'organiser des sessions de travail entre les équipes d'Inetum et de Djibouti pour valider les points clés et comprendre chaque spécification. Comme ça on pourra finaliser une solution 100% compatible avec votre infrastructure.</p>
+<p>N'hésite pas si tu veux qu'on approfondisse certains points !</p>
+<p>Karim</p>`
+            },
+            
+            // E-mails FORMELS (4)
+            {
+                id: 2,
+                type: 'formel',
+                badge: '📋 FORMEL',
+                object: 'Compte rendu — Réunion Sprint Planning Sprint 6',
+                content: `<p><strong>Objet :</strong> Compte rendu — Réunion Sprint Planning Sprint 6</p>
+<p>Bonjour à tous,</p>
+<p>Suite à notre réunion de sprint planning, veuillez trouver ci-dessous un résumé de ce qui a été discuté.</p>
+<p>L'objectif du sprint 6 a été fixé : finaliser le module de notification dans un délai de 2 semaines.</p>
+<p>Répartition des tâches :<br>
+- Pour ma part, je m'occuperai de l'intégration de l'API d'envoi de SMS.<br>
+- Karim prendra en charge le développement de la logique de relance automatique.<br>
+- Sara s'assurera que tout est bien testé et validé avant le déploiement.</p>
+<p>Nous nous retrouvons demain matin à 9h30 pour le daily meeting. J'ai créé l'invitation — si vous n'avez pas encore reçu le lien, n'hésitez pas à me le faire savoir.</p>
+<p>Je reste disponible pour toute question.</p>
+<p>Cordialement,<br>Karim</p>`
+            },
+            {
+                id: 4,
+                type: 'formel',
+                badge: '📋 FORMEL',
+                object: 'Demande de formation — Kubernetes',
+                content: `<p><strong>Objet :</strong> Demande de formation — Kubernetes</p>
+<p>Bonjour [Prénom du manager],</p>
+<p>Dans le cadre de la migration vers Kubernetes prévue dans 2 mois, et afin de contribuer dès le début du projet, je souhaiterais suivre une formation.</p>
+<p>J'ai identifié une formation sur Udemy d'une durée de 20 heures pour un coût de 150€. Cette montée en compétence me permettrait de mieux comprendre ce qui va être mis en place et de contribuer à la configuration dès le départ.</p>
+<p>Je peux organiser mon planning afin de ne pas impacter les livrables définis pour ce mois.</p>
+<p>Pourriez-vous valider cette demande ? Je reste disponible pour toute clarification.</p>
+<p>Cordialement,<br>[Prénom]</p>`
+            },
+            {
+                id: 6,
+                type: 'formel',
+                badge: '📋 FORMEL',
+                object: 'Demande de revue de code — PR #47 module notification dunning',
+                content: `<p><strong>Objet :</strong> Demande de revue de code — PR #47 module notification dunning</p>
+<p>Bonjour Karim,</p>
+<p>Je vous informe que la nouvelle fonctionnalité pour le module de notification du dunning system est désormais terminée. Veuillez trouver ci-dessous le lien de la pull request.</p>
+<p>Je souhaiterais particulièrement avoir votre avis sur la logique de relance automatique. J'ai essayé de traiter tous les cas d'erreur, mais j'ai encore quelques doutes sur certains points.</p>
+<p>Je propose que nous organisions un point afin d'en discuter ensemble dès que vous serez disponible. Pourriez-vous m'indiquer vos disponibilités ?</p>
+<p>Merci d'avance pour votre retour.</p>
+<p>Cordialement,<br>Karim</p>`
+            },
+            {
+                id: 8,
+                type: 'formel',
+                badge: '📋 FORMEL',
+                object: 'Réponse à vos préoccupations — compatibilité système',
+                content: `<p><strong>Objet :</strong> Réponse à vos préoccupations — compatibilité système</p>
+<p>Bonjour,</p>
+<p>Je vous remercie pour vos observations détaillées qui nous aident à assurer la qualité de notre travail et à concevoir une solution parfaite. Je comprends vos préoccupations et j'accepte tout à fait un certain scepticisme de votre part dans ce contexte.</p>
+<p>Tout d'abord, je souhaite insister sur un point important concernant la méthodologie suivie : les équipes d'Inetum et leurs partenaires à Djibouti sont actuellement en train de comprendre l'état actuel de chaque partie du système. Cela s'applique à notre façon de travailler et au contexte spécifique de Djibouti.</p>
+<p>Concernant l'état d'avancement, nous avons rédigé un document HLD (High-Level Design) qui offre une vision globale de la manière dont notre système répondra à vos besoins. À ce stade, nous proposons une première approche, qui reste bien sûr ouverte à la discussion — c'est précisément l'objectif des ateliers à venir.</p>
+<p>Notre vision est d'organiser des ateliers de travail entre les équipes d'Inetum et de Djibouti afin de valider les points clés et de comprendre chaque spécification. Cela nous permettra de finaliser une solution 100% compatible avec votre infrastructure.</p>
+<p>Je reste à votre disposition pour tout complément d'information.</p>
+<p>Cordialement,<br>Karim</p>`
+            }
+        ];
+
+        // État des e-mails ouverts (pour "Lire la suite / Lire moins")
+        const openStates = {};
+
+        // Fonction pour afficher les e-mails d'un type donné
+        function filterEmails(type) {
+            // Mettre à jour les onglets actifs
+            document.getElementById('tabInformel').classList.remove('active');
+            document.getElementById('tabFormel').classList.remove('active');
+            
+            if (type === 'informel') {
+                document.getElementById('tabInformel').classList.add('active');
+                document.getElementById('sectionTitle').textContent = 'E-mails informels';
+            } else {
+                document.getElementById('tabFormel').classList.add('active');
+                document.getElementById('sectionTitle').textContent = 'E-mails formels';
+            }
+            
+            // Filtrer les e-mails
+            const filteredEmails = emailsData.filter(email => email.type === type);
+            
+            // Générer le HTML
+            const container = document.getElementById('emailsContainer');
+            
+            if (filteredEmails.length === 0) {
+                container.innerHTML = '<div class="no-emails">Aucun e-mail disponible</div>';
+                return;
+            }
+            
+            let html = '';
+            filteredEmails.forEach(email => {
+                const badgeClass = type === 'informel' ? 'badge-informel' : 'badge-formel';
+                const contentId = `email-content-${email.id}`;
+                
+                html += `
+                    <article class="email-card" data-type="${email.type}">
+                        <div class="email-header">
+                            <span class="email-badge ${badgeClass}">${email.badge}</span>
+                            <h2 class="email-object">${email.object}</h2>
+                            <div class="email-meta">
+                                <span><i class="far fa-calendar"></i> [Date]</span>
+                            </div>
+                        </div>
+                        
+                        <div class="email-body">
+                            <div class="email-content" id="${contentId}">
+                                ${email.content}
+                            </div>
+                        </div>
+                        
+                        <div class="email-footer">
+                            <button class="read-more-btn" onclick="toggleEmail(${email.id})" id="btn-${email.id}">Lire la suite</button>
+                        </div>
+                    </article>
+                `;
+            });
+            
+            container.innerHTML = html;
+            
+            // Initialiser tous les e-mails en mode tronqué
+            filteredEmails.forEach(email => {
+                const content = document.getElementById(`email-content-${email.id}`);
+                if (content) {
+                    content.style.maxHeight = '300px';
+                    content.style.overflow = 'hidden';
+                }
+                // Réinitialiser l'état
+                openStates[email.id] = false;
+            });
+        }
+
+        // Fonction pour basculer l'affichage d'un e-mail
+        function toggleEmail(id) {
+            const content = document.getElementById(`email-content-${id}`);
+            const btn = document.getElementById(`btn-${id}`);
+            
+            if (!content || !btn) return;
+            
+            if (openStates[id]) {
+                // Fermer
+                content.style.maxHeight = '300px';
+                content.style.overflow = 'hidden';
+                btn.textContent = 'Lire la suite';
+                openStates[id] = false;
+            } else {
+                // Ouvrir
+                content.style.maxHeight = 'none';
+                content.style.overflow = 'visible';
+                btn.textContent = 'Lire moins';
+                openStates[id] = true;
+            }
+        }
+
+        // Initialisation : afficher les e-mails informels par défaut
+        document.addEventListener('DOMContentLoaded', function() {
+            filterEmails('informel');
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navMenu.classList.contains('show')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('show')) {
+                    navMenu.classList.remove('show');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>

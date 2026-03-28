@@ -1,0 +1,2112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Débats Simulés - Français Facile</title>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2232/2232688.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --border-radius: 10px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            
+            --presentateur-bg: #cfe2ff;
+            --presentateur-color: #084298;
+            --presentateur-border: #084298;
+            
+            --invite-bg: #d1e7dd;
+            --invite-color: #0f5132;
+            --invite-border: #0f5132;
+
+            --chitchat-bg: #fff3cd;
+            --chitchat-color: #856404;
+            --chitchat-border: #856404;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .logo i {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .logo-text span {
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        nav a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .debats-hero {
+            background: linear-gradient(135deg, #e65c4f, #c0392b);
+            color: white;
+            padding: 70px 0;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 40px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .debats-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .debats-hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+        }
+        
+        /* Vue Liste des débats (cartes) */
+        .debats-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .debat-card-preview {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border-left: 5px solid var(--primary-color);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .debat-card-preview.debat-simule {
+            border-left-color: var(--primary-color);
+        }
+        
+        .debat-card-preview.chitchat {
+            border-left-color: var(--chitchat-border);
+        }
+        
+        .debat-card-preview:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .preview-header {
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        }
+        
+        .preview-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .debat-simule .preview-badge {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .chitchat .preview-badge {
+            background-color: var(--chitchat-bg);
+            color: var(--chitchat-color);
+            border: 1px solid var(--chitchat-border);
+        }
+        
+        .preview-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+        
+        .preview-meta {
+            display: flex;
+            gap: 15px;
+            color: #6c757d;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+        
+        .preview-meta i {
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+        
+        .preview-participants {
+            display: flex;
+            gap: 15px;
+            padding: 15px 20px;
+            background-color: #f1f3f5;
+            border-top: 1px solid #dee2e6;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .preview-participant {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .preview-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .debat-simule .preview-avatar.presentateur {
+            background-color: var(--presentateur-bg);
+            color: var(--presentateur-color);
+            border: 2px solid var(--presentateur-border);
+        }
+        
+        .debat-simule .preview-avatar.invite {
+            background-color: var(--invite-bg);
+            color: var(--invite-color);
+            border: 2px solid var(--invite-border);
+        }
+        
+        .chitchat .preview-avatar {
+            background-color: var(--chitchat-bg);
+            color: var(--chitchat-color);
+            border: 2px solid var(--chitchat-border);
+        }
+        
+        .preview-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .preview-excerpt {
+            padding: 20px;
+            flex-grow: 1;
+        }
+        
+        .preview-excerpt p {
+            color: #495057;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .preview-footer {
+            padding: 15px 20px;
+            border-top: 1px solid #f1f1f1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .preview-stats {
+            display: flex;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        
+        .preview-stats i {
+            margin-right: 5px;
+        }
+        
+        /* Vue détail du débat */
+        .debat-detail-view {
+            display: none;
+            margin-top: 30px;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        .debat-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 40px;
+        }
+        
+        .debat-header {
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .debadge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .debadge.debat-simule {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .debadge.chitchat {
+            background-color: var(--chitchat-bg);
+            color: var(--chitchat-color);
+        }
+        
+        .debat-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+        
+        .debat-meta {
+            display: flex;
+            gap: 20px;
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+        
+        .debat-meta i {
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+        
+        .debat-participants {
+            display: flex;
+            gap: 20px;
+            padding: 15px 20px;
+            background-color: #f1f3f5;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .participant {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .participant-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .participant.presentateur .participant-avatar {
+            background-color: var(--presentateur-bg);
+            color: var(--presentateur-color);
+            border: 2px solid var(--presentateur-border);
+        }
+        
+        .participant.invite .participant-avatar {
+            background-color: var(--invite-bg);
+            color: var(--invite-color);
+            border: 2px solid var(--invite-border);
+        }
+        
+        .participant.chitchat .participant-avatar {
+            background-color: var(--chitchat-bg);
+            color: var(--chitchat-color);
+            border: 2px solid var(--chitchat-border);
+        }
+        
+        .participant-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .participant-name {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        
+        .participant-role {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .participant.presentateur .participant-name {
+            color: var(--presentateur-color);
+        }
+        
+        .participant.invite .participant-name {
+            color: var(--invite-color);
+        }
+        
+        .participant.chitchat .participant-name {
+            color: var(--chitchat-color);
+        }
+        
+        /* Zone de chat */
+        .chat-container {
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .message {
+            display: flex;
+            margin-bottom: 20px;
+            max-width: 90%;
+        }
+        
+        .message.presentateur, .message.sonia {
+            align-self: flex-start;
+            margin-right: auto;
+        }
+        
+        .message.invite, .message.karim {
+            align-self: flex-end;
+            margin-left: auto;
+            flex-direction: row-reverse;
+        }
+        
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .message.presentateur .message-avatar, .message.sonia .message-avatar {
+            background-color: var(--presentateur-bg);
+            color: var(--presentateur-color);
+            border: 2px solid var(--presentateur-border);
+            margin-right: 12px;
+        }
+        
+        .message.invite .message-avatar, .message.karim .message-avatar {
+            background-color: var(--invite-bg);
+            color: var(--invite-color);
+            border: 2px solid var(--invite-border);
+            margin-left: 12px;
+        }
+        
+        .message.mehdi .message-avatar {
+            background-color: var(--chitchat-bg);
+            color: var(--chitchat-color);
+            border: 2px solid var(--chitchat-border);
+            margin-right: 12px;
+        }
+        
+        .message-content {
+            background-color: white;
+            padding: 12px 18px;
+            border-radius: 18px;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .message.presentateur .message-content, .message.sonia .message-content {
+            background-color: var(--presentateur-bg);
+            border-bottom-left-radius: 5px;
+        }
+        
+        .message.invite .message-content, .message.karim .message-content {
+            background-color: var(--invite-bg);
+            border-bottom-right-radius: 5px;
+        }
+        
+        .message.mehdi .message-content {
+            background-color: var(--chitchat-bg);
+            border-bottom-left-radius: 5px;
+        }
+        
+        .message-sender {
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+        
+        .message.presentateur .message-sender, .message.sonia .message-sender {
+            color: var(--presentateur-color);
+        }
+        
+        .message.invite .message-sender, .message.karim .message-sender {
+            color: var(--invite-color);
+        }
+        
+        .message.mehdi .message-sender {
+            color: var(--chitchat-color);
+        }
+        
+        .message-text {
+            font-size: 1rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        
+        .message-text p {
+            margin-bottom: 8px;
+        }
+        
+        .message-text p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .message-time {
+            font-size: 0.7rem;
+            color: #6c757d;
+            margin-top: 5px;
+            text-align: right;
+            opacity: 0.8;
+        }
+        
+        /* Stats du débat */
+        .debat-stats {
+            display: flex;
+            gap: 25px;
+            padding: 15px 20px;
+            background-color: white;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .stat-item i {
+            color: var(--primary-color);
+        }
+        
+        .debat-footer {
+            padding: 15px 20px 20px;
+            background-color: white;
+            border-top: 1px solid #f1f1f1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .copy-btn {
+            background: none;
+            border: 1px solid #dee2e6;
+            color: #6c757d;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .copy-btn:hover {
+            background-color: #e9ecef;
+            color: var(--dark-color);
+        }
+        
+        /* Message aucun résultat */
+        .no-debats {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px;
+            background: white;
+            border-radius: var(--border-radius);
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .debats-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .debats-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            .debats-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .debats-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .message {
+                max-width: 100%;
+            }
+            
+            .debat-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .debat-stats {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .debats-hero {
+                padding: 50px 0;
+            }
+            
+            .debat-title {
+                font-size: 1.4rem;
+            }
+            
+            .debat-participants {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+
+    <!-- ✦ LUMIÈRE UNIFIED THEME ✦ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <style id="lumiere-base">
+
+    /* ═══════════════════════════════════════════
+       LUMIÈRE — Design System 2025
+       White · Airy · Animated · Premium
+    ═══════════════════════════════════════════ */
+
+    :root {
+      /* Core Palette */
+      --p:          #5b4cff;       /* Vivid indigo — primary */
+      --p-light:    #ede9ff;       /* Primary tint bg */
+      --p-mid:      #7c6fff;       /* Hover state */
+      --p-dark:     #3d2de0;       /* Pressed state */
+      --p-glow:     rgba(91,76,255,0.18);
+
+      --bg:         #ffffff;
+      --bg-2:       #f7f8fc;
+      --bg-3:       #f0f2fa;
+      --surface:    #ffffff;
+      --surface-2:  #fafbff;
+
+      --border:     rgba(91,76,255,0.12);
+      --border-2:   rgba(0,0,0,0.07);
+
+      --text:       #0f0e1a;
+      --text-2:     #4b4c6a;
+      --text-3:     #9899b5;
+
+      --green:      #10b981;
+      --green-bg:   #ecfdf5;
+      --amber:      #f59e0b;
+      --amber-bg:   #fffbeb;
+      --red:        #ef4444;
+      --red-bg:     #fef2f2;
+      --blue:       #3b82f6;
+      --blue-bg:    #eff6ff;
+
+      /* Geometry */
+      --r:          12px;
+      --r-lg:       20px;
+      --r-xl:       28px;
+      --shadow-sm:  0 1px 3px rgba(15,14,26,0.06), 0 1px 2px rgba(15,14,26,0.04);
+      --shadow:     0 4px 16px rgba(15,14,26,0.08), 0 2px 6px rgba(15,14,26,0.04);
+      --shadow-lg:  0 12px 40px rgba(15,14,26,0.12), 0 4px 12px rgba(15,14,26,0.06);
+      --shadow-xl:  0 24px 64px rgba(15,14,26,0.14);
+      --shadow-p:   0 8px 32px rgba(91,76,255,0.28);
+
+      --t:          all 0.25s cubic-bezier(0.4,0,0.2,1);
+      --t-spring:   all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+
+      --font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font) !important;
+      background: var(--bg-2) !important;
+      color: var(--text) !important;
+      line-height: 1.65 !important;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-2); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--p); }
+
+    ::selection { background: var(--p-light); color: var(--p-dark); }
+
+    /* ── Typography ── */
+    h1,h2,h3,h4,h5,h6 {
+      font-family: var(--font) !important;
+      color: var(--text) !important;
+      line-height: 1.2 !important;
+      letter-spacing: -0.02em !important;
+    }
+    h1 { font-weight: 800 !important; }
+    h2 { font-weight: 700 !important; }
+    h3 { font-weight: 700 !important; }
+    p { color: var(--text-2) !important; }
+    a { color: var(--p); text-decoration: none; transition: var(--t); }
+    a:hover { color: var(--p-dark); }
+
+    /* ── Container ── */
+    .container {
+      max-width: 1200px !important;
+      margin: 0 auto !important;
+      padding: 0 24px !important;
+    }
+
+    /* ════════════════════════════════
+       HEADER — Frosted Glass, Floating
+    ════════════════════════════════ */
+    header {
+      background: rgba(255,255,255,0.85) !important;
+      backdrop-filter: blur(24px) saturate(200%) !important;
+      -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+      border-bottom: 1px solid var(--border) !important;
+      box-shadow: var(--shadow-sm) !important;
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 9000 !important;
+      transition: var(--t) !important;
+    }
+
+    .nav-container {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      padding: 14px 0 !important;
+    }
+
+    .logo {
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      text-decoration: none !important;
+    }
+    .logo i {
+      font-size: 1.6rem !important;
+      color: var(--p) !important;
+      filter: drop-shadow(0 2px 8px var(--p-glow)) !important;
+    }
+    .logo-text {
+      font-family: var(--font) !important;
+      font-size: 1.4rem !important;
+      font-weight: 800 !important;
+      color: var(--text) !important;
+      letter-spacing: -0.03em !important;
+    }
+    .logo-text span { color: var(--p) !important; }
+
+    nav ul {
+      display: flex !important;
+      list-style: none !important;
+      gap: 4px !important;
+      align-items: center !important;
+    }
+
+    nav a {
+      font-family: var(--font) !important;
+      font-weight: 600 !important;
+      font-size: 0.875rem !important;
+      color: var(--text-2) !important;
+      padding: 7px 14px !important;
+      border-radius: 10px !important;
+      text-decoration: none !important;
+      transition: var(--t) !important;
+      letter-spacing: -0.01em !important;
+      white-space: nowrap !important;
+    }
+    nav a:hover {
+      color: var(--p) !important;
+      background: var(--p-light) !important;
+    }
+    nav a.active {
+      color: var(--p) !important;
+      background: var(--p-light) !important;
+      font-weight: 700 !important;
+      box-shadow: inset 0 0 0 1.5px var(--p-glow) !important;
+    }
+
+    .mobile-menu-btn {
+      display: none !important;
+      background: none !important;
+      border: 1.5px solid var(--border-2) !important;
+      border-radius: 10px !important;
+      padding: 8px 12px !important;
+      color: var(--text) !important;
+      font-size: 1.1rem !important;
+      cursor: pointer !important;
+      transition: var(--t) !important;
+    }
+    .mobile-menu-btn:hover { background: var(--p-light) !important; border-color: var(--p) !important; color: var(--p) !important; }
+
+    @media (max-width: 900px) {
+      .mobile-menu-btn { display: block !important; }
+      nav ul {
+        display: none !important;
+        flex-direction: column !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important; right: 0 !important;
+        background: rgba(255,255,255,0.97) !important;
+        backdrop-filter: blur(20px) !important;
+        border-bottom: 1px solid var(--border) !important;
+        padding: 12px 20px 20px !important;
+        gap: 2px !important;
+        box-shadow: var(--shadow-lg) !important;
+      }
+      nav ul.show { display: flex !important; }
+      nav a { font-size: 1rem !important; padding: 12px 16px !important; }
+    }
+
+    /* ════════════════════════════════
+       HERO / PAGE HEADER
+    ════════════════════════════════ */
+    .hero, .hero-section, .debats-hero, .emails-hero,
+    .subjects-hero, .expression-hero, .page-header,
+    section[class$="-hero"] {
+      background: linear-gradient(135deg, #f0edff 0%, #e8f4ff 60%, #fdf0ff 100%) !important;
+      border-bottom: 1px solid var(--border) !important;
+      padding: 80px 0 72px !important;
+      position: relative !important;
+      overflow: hidden !important;
+      text-align: center !important;
+    }
+    .hero::before, .hero-section::before, .debats-hero::before,
+    .emails-hero::before, .subjects-hero::before, .page-header::before,
+    section[class$="-hero"]::before {
+      content: '' !important;
+      position: absolute !important;
+      top: -120px !important; right: -120px !important;
+      width: 500px !important; height: 500px !important;
+      background: radial-gradient(circle, rgba(91,76,255,0.12) 0%, transparent 70%) !important;
+      pointer-events: none !important;
+    }
+    .hero::after, .hero-section::after {
+      content: '' !important;
+      position: absolute !important;
+      bottom: -80px !important; left: -80px !important;
+      width: 400px !important; height: 400px !important;
+      background: radial-gradient(circle, rgba(124,111,255,0.08) 0%, transparent 70%) !important;
+      pointer-events: none !important;
+    }
+    .hero h1, .hero-section h1, .debats-hero h1,
+    .emails-hero h1, .subjects-hero h1, .page-header h1,
+    section[class$="-hero"] h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem) !important;
+      font-weight: 800 !important;
+      background: linear-gradient(135deg, #1a0f6b 0%, var(--p) 50%, #8b5cf6 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+      margin-bottom: 18px !important;
+    }
+    .hero p, .hero-section p, section[class$="-hero"] p,
+    .debats-hero p, .emails-hero p, .subjects-hero p, .page-header p {
+      color: var(--text-2) !important;
+      font-size: 1.1rem !important;
+      max-width: 600px !important;
+      margin: 0 auto 8px !important;
+      -webkit-text-fill-color: unset !important;
+    }
+    .hero-content { max-width: 800px !important; margin: 0 auto !important; position: relative !important; z-index: 1 !important; }
+
+    /* CTA button in hero */
+    .cta-button, .btn-primary, .primary-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      background: var(--p) !important;
+      color: white !important;
+      padding: 14px 32px !important;
+      border-radius: 50px !important;
+      font-weight: 700 !important;
+      font-size: 1rem !important;
+      font-family: var(--font) !important;
+      text-decoration: none !important;
+      border: none !important;
+      cursor: pointer !important;
+      box-shadow: var(--shadow-p) !important;
+      transition: var(--t-spring) !important;
+      margin-top: 12px !important;
+      -webkit-text-fill-color: white !important;
+    }
+    .cta-button:hover, .btn-primary:hover, .primary-btn:hover {
+      background: var(--p-dark) !important;
+      transform: translateY(-3px) scale(1.02) !important;
+      box-shadow: 0 16px 48px rgba(91,76,255,0.35) !important;
+      color: white !important;
+      -webkit-text-fill-color: white !important;
+    }
+
+    /* ════════════════════════════════
+       SECTIONS
+    ════════════════════════════════ */
+    section {
+      background: transparent !important;
+    }
+    .features, .grammar-categories, .articles-section,
+    .emails-section, .debats-section, .vocabulary-categories,
+    .lesson-section, .expressions-section, .objectives-deadline,
+    .january-goals { padding: 72px 0 !important; }
+
+    /* Alternating background */
+    .features:nth-of-type(odd),
+    .objectives-deadline,
+    .january-goals {
+      background: var(--bg-2) !important;
+    }
+
+    /* Section titles */
+    .section-title { text-align: center !important; margin-bottom: 52px !important; }
+    .section-title h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem) !important;
+      font-weight: 800 !important;
+      color: var(--text) !important;
+      margin-bottom: 12px !important;
+    }
+    .section-title p {
+      color: var(--text-2) !important;
+      font-size: 1.05rem !important;
+      max-width: 580px !important;
+      margin: 0 auto !important;
+    }
+
+    /* Pill accent under section title */
+    .section-title h2::after {
+      content: '' !important;
+      display: block !important;
+      width: 44px !important; height: 4px !important;
+      background: linear-gradient(90deg, var(--p), #8b5cf6) !important;
+      border-radius: 99px !important;
+      margin: 14px auto 0 !important;
+    }
+
+    /* ════════════════════════════════
+       CARDS — Universal
+    ════════════════════════════════ */
+    .card, .feature-card, .lesson-card, .grammar-card,
+    .category-card, .article-card, .email-card, .goal-card,
+    .expression-card, .debate-card, .vocab-card,
+    [class*="-card"]:not([class*="breadcrumb"]):not([class*="lesson-card-header"]) {
+      background: var(--surface) !important;
+      border: 1.5px solid var(--border-2) !important;
+      border-radius: var(--r-lg) !important;
+      box-shadow: var(--shadow) !important;
+      transition: var(--t) !important;
+      overflow: hidden !important;
+    }
+    .card:hover, .feature-card:hover, .lesson-card:hover,
+    .grammar-card:hover, .category-card:hover, .article-card:hover,
+    .email-card:hover, .expression-card:hover, .debate-card:hover,
+    [class*="-card"]:hover {
+      transform: translateY(-5px) !important;
+      box-shadow: var(--shadow-xl) !important;
+      border-color: rgba(91,76,255,0.2) !important;
+    }
+
+    /* Card header stripes */
+    .lesson-card-header, .article-header, .email-header,
+    [class*="card-header"] {
+      background: linear-gradient(135deg, var(--bg-3), var(--p-light)) !important;
+      border-bottom: 1.5px solid var(--border) !important;
+      padding: 20px 24px !important;
+    }
+
+    /* Card body text */
+    [class*="-card"] h3, [class*="-card"] h2 {
+      color: var(--text) !important;
+      font-family: var(--font) !important;
+    }
+    [class*="-card"] p { color: var(--text-2) !important; }
+
+    /* Feature card icons */
+    .feature-icon {
+      background: var(--p-light) !important;
+      width: 72px !important; height: 72px !important;
+      border-radius: 18px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin: 0 auto 20px !important;
+    }
+    .feature-icon i { color: var(--p) !important; font-size: 1.8rem !important; }
+
+    /* ════════════════════════════════
+       BADGES & TAGS
+    ════════════════════════════════ */
+    .badge, [class*="badge"], .tag, .level-badge {
+      font-family: var(--font) !important;
+      font-size: 0.7rem !important;
+      font-weight: 700 !important;
+      padding: 4px 12px !important;
+      border-radius: 99px !important;
+      letter-spacing: 0.05em !important;
+      text-transform: uppercase !important;
+    }
+    .badge-primary   { background: var(--p-light) !important; color: var(--p) !important; }
+    .badge-success   { background: var(--green-bg) !important; color: var(--green) !important; }
+    .badge-warning   { background: var(--amber-bg) !important; color: var(--amber) !important; }
+    .badge-danger    { background: var(--red-bg) !important; color: var(--red) !important; }
+    .badge-info      { background: var(--blue-bg) !important; color: var(--blue) !important; }
+
+    /* ════════════════════════════════
+       BUTTONS
+    ════════════════════════════════ */
+    button:not(.mobile-menu-btn), .btn, [class*="-btn"]:not(.mobile-menu-btn) {
+      font-family: var(--font) !important;
+      font-weight: 600 !important;
+      cursor: pointer !important;
+      transition: var(--t) !important;
+      border-radius: var(--r) !important;
+    }
+    .tab-btn, .filter-btn, [class*="tab-btn"], [class*="filter-btn"] {
+      background: var(--surface) !important;
+      border: 1.5px solid var(--border-2) !important;
+      color: var(--text-2) !important;
+      padding: 8px 20px !important;
+      font-size: 0.875rem !important;
+      border-radius: 50px !important;
+    }
+    .tab-btn:hover, .filter-btn:hover {
+      border-color: var(--p) !important;
+      color: var(--p) !important;
+      background: var(--p-light) !important;
+    }
+    .tab-btn.active, .filter-btn.active {
+      background: var(--p) !important;
+      border-color: var(--p) !important;
+      color: white !important;
+      box-shadow: var(--shadow-p) !important;
+    }
+
+    /* Progress buttons */
+    .progress-btn {
+      background: var(--p) !important;
+      color: white !important;
+      border: none !important;
+      padding: 8px 18px !important;
+    }
+    .progress-btn:hover { background: var(--p-dark) !important; transform: translateY(-1px) !important; }
+    .complete-all-btn { background: var(--green) !important; }
+    .complete-all-btn:hover { background: #059669 !important; }
+
+    /* ════════════════════════════════
+       INPUTS & FORMS
+    ════════════════════════════════ */
+    input, textarea, select {
+      font-family: var(--font) !important;
+      background: var(--bg-2) !important;
+      border: 1.5px solid var(--border-2) !important;
+      border-radius: var(--r) !important;
+      color: var(--text) !important;
+      padding: 10px 16px !important;
+      transition: var(--t) !important;
+      width: 100% !important;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none !important;
+      border-color: var(--p) !important;
+      box-shadow: 0 0 0 3px var(--p-glow) !important;
+      background: var(--surface) !important;
+    }
+    input::placeholder, textarea::placeholder { color: var(--text-3) !important; }
+
+    /* ════════════════════════════════
+       PROGRESS BARS
+    ════════════════════════════════ */
+    .progress-bar, [class*="progress-bar"] {
+      background: var(--bg-3) !important;
+      border-radius: 99px !important;
+      overflow: hidden !important;
+    }
+    .progress-fill, [class*="progress-fill"] {
+      background: linear-gradient(90deg, var(--p), #8b5cf6) !important;
+      border-radius: 99px !important;
+      transition: width 0.6s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+    .progress-complete {
+      background: linear-gradient(90deg, var(--green), #34d399) !important;
+    }
+
+    /* ════════════════════════════════
+       TABLES
+    ════════════════════════════════ */
+    table { border-collapse: collapse !important; width: 100% !important; }
+    th {
+      background: var(--bg-3) !important;
+      color: var(--text-2) !important;
+      font-family: var(--font) !important;
+      font-weight: 700 !important;
+      font-size: 0.78rem !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.07em !important;
+      padding: 14px 16px !important;
+      border-bottom: 2px solid var(--border) !important;
+    }
+    td {
+      padding: 13px 16px !important;
+      border-bottom: 1px solid var(--border-2) !important;
+      color: var(--text-2) !important;
+      font-size: 0.95rem !important;
+    }
+    tr:hover td { background: var(--p-light) !important; }
+
+    /* ════════════════════════════════
+       TIMELINE (main.html objectives)
+    ════════════════════════════════ */
+    .timeline::before {
+      background: linear-gradient(to bottom, var(--p), #8b5cf6) !important;
+      opacity: 0.3 !important;
+    }
+    .timeline-dot, .timeline-icon {
+      background: var(--p) !important;
+      box-shadow: 0 0 0 4px var(--p-light) !important;
+    }
+    .timeline-card {
+      background: var(--surface) !important;
+      border: 1.5px solid var(--border) !important;
+      border-radius: var(--r-lg) !important;
+      box-shadow: var(--shadow) !important;
+    }
+
+    /* ════════════════════════════════
+       CATEGORY COLORS (subjects.html)
+    ════════════════════════════════ */
+    .biology-badge   { background: var(--green-bg) !important; color: var(--green) !important; }
+    .astronomy-badge { background: #f5f3ff !important; color: #7c3aed !important; }
+    .genetics-badge  { background: var(--red-bg) !important; color: var(--red) !important; }
+    .neuroscience-badge { background: var(--blue-bg) !important; color: var(--blue) !important; }
+    .professional-badge { background: var(--amber-bg) !important; color: var(--amber) !important; }
+    .tech-badge { background: #ecfdf5 !important; color: #059669 !important; }
+
+    /* ════════════════════════════════
+       DEBATE ROLES (debat.html + expressions.html)
+    ════════════════════════════════ */
+    :root {
+      --presentateur-bg: #eff6ff !important;
+      --presentateur-color: #1d4ed8 !important;
+      --invite-bg: var(--green-bg) !important;
+      --invite-color: #065f46 !important;
+      --chitchat-bg: var(--amber-bg) !important;
+      --chitchat-color: #92400e !important;
+    }
+    .presentateur-card, [class*="presentateur"] {
+      background: var(--presentateur-bg) !important;
+      border-left: 4px solid #3b82f6 !important;
+    }
+    .invite-card, [class*="invite"] {
+      background: var(--invite-bg) !important;
+      border-left: 4px solid var(--green) !important;
+    }
+    .chitchat-card, [class*="chitchat"] {
+      background: var(--chitchat-bg) !important;
+      border-left: 4px solid var(--amber) !important;
+    }
+
+    /* ════════════════════════════════
+       BREADCRUMB
+    ════════════════════════════════ */
+    .breadcrumb {
+      background: transparent !important;
+      padding: 0 !important;
+      display: flex !important;
+      gap: 8px !important;
+      align-items: center !important;
+      font-size: 0.875rem !important;
+    }
+    .breadcrumb a { color: var(--p) !important; font-weight: 500 !important; }
+    .breadcrumb span { color: var(--text-3) !important; }
+
+    /* ════════════════════════════════
+       FOOTER
+    ════════════════════════════════ */
+    footer {
+      background: var(--text) !important;
+      color: rgba(255,255,255,0.7) !important;
+      padding: 64px 0 32px !important;
+      margin-top: 0 !important;
+    }
+    footer h3 {
+      font-family: var(--font) !important;
+      color: white !important;
+      font-size: 0.95rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.05em !important;
+      text-transform: uppercase !important;
+      margin-bottom: 18px !important;
+    }
+    footer p { color: rgba(255,255,255,0.5) !important; font-size: 0.9rem !important; }
+    footer a { color: rgba(255,255,255,0.5) !important; font-size: 0.9rem !important; transition: var(--t) !important; }
+    footer a:hover { color: white !important; }
+    footer ul { list-style: none !important; }
+    footer ul li { margin-bottom: 10px !important; }
+    footer .footer-content {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+      gap: 40px !important;
+      margin-bottom: 48px !important;
+    }
+    footer .copyright, footer .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08) !important;
+      padding-top: 24px !important;
+      text-align: center !important;
+    }
+    footer .copyright p, footer .footer-bottom p {
+      color: rgba(255,255,255,0.35) !important;
+      font-size: 0.85rem !important;
+    }
+    .social-links { display: flex !important; gap: 10px !important; margin-top: 16px !important; }
+    .social-links a {
+      width: 38px !important; height: 38px !important;
+      border-radius: 10px !important;
+      border: 1px solid rgba(255,255,255,0.12) !important;
+      background: rgba(255,255,255,0.06) !important;
+      display: flex !important; align-items: center !important; justify-content: center !important;
+      color: rgba(255,255,255,0.5) !important;
+      transition: var(--t) !important;
+    }
+    .social-links a:hover {
+      background: var(--p) !important;
+      border-color: var(--p) !important;
+      color: white !important;
+      transform: translateY(-2px) !important;
+    }
+
+    /* ════════════════════════════════
+       UTILITY OVERRIDES
+    ════════════════════════════════ */
+    /* Background cleanups */
+    .bg-white, [style*="background-color: white"],
+    [style*="background: white"], [style*="background:#fff"],
+    [style*="background: #fff"] {
+      background: var(--surface) !important;
+    }
+    .bg-light, [style*="background-color: #f5f7ff"],
+    [style*="background: #f5f7ff"], [style*="background: #f4f7fc"],
+    [style*="background-color: #f4f7fc"],
+    [style*="background: linear-gradient(135deg, #f5f7ff"],
+    section[style*="background"] {
+      background: var(--bg-2) !important;
+    }
+
+    /* Old CSS variable colors */
+    :root {
+      --primary-color: var(--p) !important;
+      --secondary-color: var(--p-dark) !important;
+      --accent-color: #8b5cf6 !important;
+      --light-color: var(--bg-2) !important;
+      --dark-color: var(--text) !important;
+      --success-color: var(--green) !important;
+      --warning-color: var(--amber) !important;
+      --border-radius: var(--r) !important;
+      --box-shadow: var(--shadow) !important;
+    }
+
+    /* Chips / pills */
+    .chip, [class*="chip"], [class*="pill"] {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      background: var(--p-light) !important;
+      color: var(--p) !important;
+      padding: 4px 12px !important;
+      border-radius: 99px !important;
+      font-size: 0.78rem !important;
+      font-weight: 600 !important;
+    }
+
+    /* Code spans / highlighted words */
+    code, [class*="highlight"], .keyword {
+      background: var(--p-light) !important;
+      color: var(--p-dark) !important;
+      padding: 2px 8px !important;
+      border-radius: 6px !important;
+      font-size: 0.88em !important;
+    }
+
+    /* ════════════════════════════════
+       ANIMATIONS
+    ════════════════════════════════ */
+
+    /* Page entry */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes floatBob {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-8px); }
+    }
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.94); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-20px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Apply to sections */
+    header { animation: fadeIn 0.4s ease both; }
+    .hero, .hero-section, .page-header,
+    .debats-hero, .emails-hero, .subjects-hero,
+    section[class$="-hero"] {
+      animation: fadeSlideUp 0.5s ease both;
+    }
+    .hero-content { animation: fadeSlideUp 0.6s 0.1s ease both; }
+
+    /* Cards animate in on scroll via class (added by JS below) */
+    .animate-card {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+    .animate-card.visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    /* Stagger delays for grid children */
+    .animate-card:nth-child(1) { transition-delay: 0.04s !important; }
+    .animate-card:nth-child(2) { transition-delay: 0.10s !important; }
+    .animate-card:nth-child(3) { transition-delay: 0.16s !important; }
+    .animate-card:nth-child(4) { transition-delay: 0.22s !important; }
+    .animate-card:nth-child(5) { transition-delay: 0.28s !important; }
+    .animate-card:nth-child(6) { transition-delay: 0.34s !important; }
+    .animate-card:nth-child(7) { transition-delay: 0.40s !important; }
+    .animate-card:nth-child(8) { transition-delay: 0.46s !important; }
+
+    /* Feature icon bob */
+    .feature-card:hover .feature-icon {
+      animation: floatBob 1.4s ease-in-out infinite !important;
+    }
+
+    /* Header scroll shadow enhancement */
+    header.scrolled {
+      box-shadow: 0 4px 24px rgba(15,14,26,0.12) !important;
+    }
+
+    /* Smooth link underline animation */
+    nav a { position: relative !important; }
+
+    /* Lesson card expand animation */
+    .lesson-card-body, .card-body, .email-body,
+    .debate-content, .expression-content, .article-body {
+      background: var(--surface) !important;
+      color: var(--text-2) !important;
+      padding: 24px !important;
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 768px) {
+      .hero, .page-header, section[class$="-hero"] {
+        padding: 56px 0 48px !important;
+      }
+    }
+
+    </style>
+
+    <!-- Scroll animation + header enhancement JS -->
+    <script>
+    (function(){
+      document.addEventListener('DOMContentLoaded', function(){
+        // Add scroll shadow to header
+        var hdr = document.querySelector('header');
+        if(hdr) {
+          window.addEventListener('scroll', function(){
+            hdr.classList.toggle('scrolled', window.scrollY > 10);
+          }, {passive:true});
+        }
+
+        // Intersection Observer for card animations
+        var cards = document.querySelectorAll(
+          '.feature-card, .lesson-card, .grammar-card, .category-card, ' +
+          '.article-card, .email-card, .goal-card, .expression-card, ' +
+          '.debate-card, [class*="-card"]:not([class*="breadcrumb"])'
+        );
+        cards.forEach(function(c){ c.classList.add('animate-card'); });
+
+        var io = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if(e.isIntersecting) {
+              e.target.classList.add('visible');
+              io.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        cards.forEach(function(c){ io.observe(c); });
+      });
+    })();
+    </script>
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="main.html" class="logo">
+                <i class="fas fa-language"></i>
+                <div class="logo-text">Français<span>Facile</span></div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="main.html">Accueil</a></li>
+                    <li><a href="grammaire.html">Grammaire</a></li>
+                    <li><a href="vocabulaire.html">Vocabulaire</a></li>
+                    <li><a href="subjects.html">Sujets</a></li>
+                    <li><a href="emails.html">E-mails pro</a></li>
+                    <li><a href="expressions.html">Expressions</a></li>
+                    <li><a href="debats.html" class="active">Débats</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="debats-hero">
+        <div class="container hero-content">
+            <h1>🎙️ Mes Débats Simulés</h1>
+            <p>Des conversations réalistes pour pratiquer le français et comprendre les échanges d'idées</p>
+        </div>
+    </section>
+    
+    <!-- Section des débats -->
+    <section class="debats-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tous les débats</h2>
+                <p class="date-badge" id="debatCount">2 débats</p>
+            </div>
+            
+            <!-- Vue liste (cartes) -->
+            <div id="debatsListView" class="debats-list">
+                <!-- Les cartes seront injectées ici par JavaScript -->
+            </div>
+            
+            <!-- Vue détail (un seul débat) -->
+            <div id="debatDetailView" class="debat-detail-view">
+                <button class="back-button" onclick="showDebatsList()">
+                    <i class="fas fa-arrow-left"></i> Retour à la liste des débats
+                </button>
+                <div id="debatDetailContainer">
+                    <!-- Le débat détaillé sera injecté ici -->
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Français Facile</h3>
+                    <p>Plateforme d'apprentissage du français en ligne. Des ressources gratuites pour tous les niveaux.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Catégories</h3>
+                    <ul>
+                        <li><a href="grammaire.html">Grammaire</a></li>
+                        <li><a href="vocabulaire.html">Vocabulaire</a></li>
+                        <li><a href="subjects.html">Sujets scientifiques</a></li>
+                        <li><a href="emails.html">E-mails professionnels</a></li>
+                        <li><a href="expressions.html">Expressions quotidiennes</a></li>
+                        <li><a href="debats.html">Débats simulés</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="main.html">Accueil</a></li>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 Français Facile. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
+    <script>
+        // Base de données des débats - EXACTEMENT vos textes
+        const debatsData = [
+            {
+                id: 1,
+                type: "debat-simule",
+                date: "22-02-2026",
+                titre: "🎙️ La Mémoire Humaine — Peut-on vraiment tout retenir ?",
+                contexte: "Débat télévisé",
+                participants: {
+                    presentateur: { nom: "Sonia", role: "Présentatrice" },
+                    invite: { nom: "Karim", role: "Invité" }
+                },
+                messages: [
+                    { speaker: "sonia", text: "Karim, bonsoir. Ce soir on aborde un sujet qui touche tout le monde — la mémoire. On entend souvent des gens dire \"j'ai une mauvaise mémoire\" comme si c'était une fatalité. Mais est-ce que la science confirme ça ? Est-ce qu'on naît avec une bonne ou une mauvaise mémoire, ou est-ce qu'on peut vraiment l'améliorer ?" },
+                    
+                    { speaker: "karim", text: "Tout d'abord, je voudrais vous remercier de m'avoir invité à cette émission. C'est ma première fois où je suis invité à débattre d'une thématique scientifique. Comme tout le monde, ce sujet semble être une information banale pour beaucoup de gens — on en entend parler quand on discute avec un ami, un collègue, en famille. Mais je n'avais pas idée qu'il y avait une vraie réponse scientifique à la question : pourquoi a-t-on une mauvaise mémoire ?\n\nMettons les choses au clair une fois pour toutes : quand on parle de mauvaise mémoire, il faut la différencier de l'Alzheimer. La capacité à retenir, il ne s'agit pas d'un problème inné chez nous — il s'agit de facteurs variés qui impactent le fonctionnement de notre mémoire. La pratique aide à la renforcer, c'est ce qu'on doit faire, et c'est ici qu'on va commencer. Quelles sont les pratiques à adopter pour améliorer notre capacité à mémoriser ? Existe-t-il des méthodologies à suivre pour développer une mémoire extraordinaire ? D'après les chercheurs et les études scientifiques, on a découvert un pattern sur la façon dont le cerveau fonctionne et sa liaison avec la capacité à retenir. La règle, en gros : si je pratique davantage, à ma manière, que je m'y suis habitué, que je me sens à l'aise — je vais devenir beaucoup mieux. C'est exactement ce que je fais toujours, moi qui me considère aussi comme quelqu'un ayant une mauvaise mémoire. On laisse l'introduction à ce point-là, et je passe la parole." },
+                    
+                    { speaker: "sonia", text: "Merci Karim… je crois. Bon, c'était une belle introduction — très enthousiaste. Mais permettez-moi d'être directe : vous venez de passer deux minutes à nous dire que la mémoire ça s'améliore avec la pratique. C'est ça la grande découverte scientifique du soir ? Parce que franchement — \"pratique et tu vas t'améliorer\" — ma grand-mère disait exactement la même chose, sans avoir lu une seule étude scientifique de sa vie. Alors Karim, dites-moi : en quoi ce que vous appelez un \"pattern scientifique\" est différent d'un simple bon sens qu'on connaît tous depuis toujours ?" },
+                    
+                    { speaker: "karim", text: "Alors, laissez-moi vous dire une chose. Si votre grand-mère savait ce que les scientifiques valident en se basant sur des recherches sérieuses — je voudrais saluer votre grand-mère, et il serait même préférable de l'inviter ici pour en parler avec elle plutôt que de continuer avec vous. Ça, c'est le premier point.\n\nLe deuxième : quand vous dites \"c'est simple, c'est ce qu'on doit faire\" — vous montrez votre manque de compréhension approfondie des choses. Il faut que vous fassiez une distinction entre la pratique conseillée par les scientifiques et ce que vous appelez \"bon sens\" — parce que l'une est approuvée par des arguments, des statistiques et des études. L'autre, c'est juste une impression. Et vous ne reconnaissez pas la valeur des pratiques validées par la recherche.\n\nPour qu'on soit clairs : quand on parle de pattern, il ne s'agit pas d'une intuition. C'est une découverte construite à partir d'une étude sur un certain nombre d'éléments — ce qu'on appelle un échantillon. On formule une règle, et quand on l'applique à d'autres échantillons, on peut prévoir le résultat. C'est exactement ce que les scientifiques nous ont donné. Ce n'est pas votre grand-mère qui a fait ça — avec tout le respect que je lui dois." },
+                    
+                    { speaker: "sonia", text: "Bien… vous avez de la répartie, je vous accorde ça. Mais attendez — vous me dites que la science a tout prouvé, que les patterns sont fiables, que les études sont solides. Soit. Mais alors expliquez-moi pourquoi, malgré toutes ces recherches extraordinaires, la majorité des gens ont encore une mauvaise mémoire ? Si la science a la réponse depuis des années — pourquoi elle n'a pas changé grand-chose dans la vie réelle des gens ? Peut-être que votre science, elle reste dans les laboratoires et ne descend jamais dans la rue ?" },
+                    
+                    { speaker: "karim", text: "Je voulais une discussion rationnelle, et je pense qu'on peut y revenir. La science est fiable et correcte — qu'on l'utilise ou pas. Et c'est exactement là où je ne comprends pas votre raisonnement. Vous me demandez pourquoi des gens se plaignent encore d'avoir une mauvaise mémoire, alors que la science a déjà des réponses. Je ne trouve aucune liaison entre ces deux idées. Ce n'est pas parce qu'une solution existe qu'elle est automatiquement appliquée par tout le monde.\n\nPour qu'on soit clairs : si vous souffrez d'un problème de santé et que vous ne vous rendez pas à la pharmacie — c'est vous le problème, pas la médecine. Le rôle de la science n'est pas de forcer les gens à la reconnaître. Les recherches validées n'ont pas besoin de quelqu'un pour les valoriser — elles prennent leur valeur à partir des arguments présentés, discutés et validés par la communauté scientifique. Ce qu'il dit, ce n'est pas ce que tu dis quand on confond l'existence d'une solution avec son adoption par le grand public. Ce sont deux choses complètement différentes." },
+                    
+                    { speaker: "sonia", text: "D'accord, je vous entends. C'est une distinction importante que vous faites. Mais alors, justement — qu'est-ce que la science dit concrètement sur les pratiques qui améliorent la mémoire ? Parce que vous avez mentionné un pattern, vous avez parlé d'études, d'échantillons. Donnez-nous des exemples précis. Qu'est-ce que les chercheurs ont réellement découvert et validé sur le fonctionnement de la mémoire humaine ?" },
+                    
+                    { speaker: "karim", text: "Bonne question, et c'est là où ça devient vraiment intéressant. D'après les chercheurs, la mémoire fonctionne selon un principe simple : on retient mieux ce qu'on répète à intervalles espacés. C'est ce qu'on appelle la répétition espacée — au lieu de tout réviser en une seule fois, on revoit l'information après 1 jour, puis 3 jours, puis une semaine. Les études montrent que cette méthode améliore la rétention jusqu'à 80% par rapport à une révision classique. Ce n'est pas compliqué, non ? Mais c'est validé sur des milliers de participants dans des contextes différents.\n\nLe deuxième point que les scientifiques ont découvert, c'est le rôle du sommeil. Pendant qu'on dort, le cerveau consolide les informations de la journée — il les transfère de la mémoire à court terme vers la mémoire à long terme. 12 heures peuvent suffire pour qu'une information soit bien ancrée, si on dort correctement après l'avoir apprise.\n\nEt enfin, il y a le principe de l'association — on retient mieux une information quand on la lie à quelque chose qu'on connaît déjà. C'est ce que font les athlètes de la mémoire dans les championnats mondiaux. Ils n'ont pas une mémoire extraordinaire de naissance — ils ont une méthode." },
+                    
+                    { speaker: "sonia", text: "C'est concret, je vous l'accorde. Mais dites-moi — est-ce que tout le monde peut vraiment appliquer ça ? Parce que vous parlez de méthodes, de discipline, de régularité. Dans la vraie vie, les gens sont fatigués, ils ont du travail, des enfants, des problèmes. Est-ce que ces pratiques sont réellement accessibles à monsieur tout le monde, ou est-ce qu'elles restent réservées à ceux qui ont du temps et de la motivation ?" },
+                    
+                    { speaker: "karim", text: "Je comprends la question, et c'est une vraie préoccupation. Mais laissez-moi vous dire quelque chose — je me considère moi-même comme quelqu'un qui a une mauvaise mémoire. Je suis assez fatigué la plupart du temps après le travail, je n'ai pas toujours le temps. Et pourtant, je prends des notes afin de ne rien oublier. Je prépare mes révisions afin de ne pas tout faire en une seule fois. Ce que je fais, à savoir appliquer ces méthodes dans ma vie quotidienne, ne prend pas des heures — ça prend 10 minutes par jour. La science ne vous demande pas de changer toute votre vie. Elle vous demande de changer une habitude à la fois. Si je pratique davantage, de manière régulière et méthodique, je vais devenir beaucoup mieux — c'est ce que les données confirment. On croit que c'est compliqué, alors on ne commence jamais." },
+                    
+                    { speaker: "sonia", text: "Karim, un mot pour clore ce débat. On a commencé avec une question simple — peut-on améliorer sa mémoire ? Votre message final pour nos auditeurs ?" },
+                    
+                    { speaker: "karim", text: "Bien sûr. Mettons les choses au clair une dernière fois : vous n'avez pas une mauvaise mémoire — vous avez de mauvaises habitudes. Et ça, ça se change. Il faut que vous sachiez la vérité : le cerveau est plastique, il évolue, il s'adapte. On a énormément évolué dans notre compréhension de la mémoire ces vingt dernières années. Les outils existent, les preuves existent. Il serait nécessaire maintenant de passer à l'action — pas demain, ce soir. Commencez par une chose simple : avant de vous coucher, relisez ce que vous avez appris aujourd'hui. C'est tout. Et je vous tiendrai au courant des résultats — parce que la science, elle, ne ment pas." },
+                    
+                    { speaker: "sonia", text: "Merci Karim. Un débat rationnel, ancré dans les preuves, et surtout — utile pour tout le monde." }
+                ]
+            },
+            {
+                id: 2,
+                type: "chitchat",
+                date: "23-02-2026",
+                titre: "Chit-chat : \"Les trous noirs\" — Karim & Mehdi à la pause café",
+                contexte: "Conversation informelle",
+                participants: {
+                    karim: { nom: "Karim", role: "Collègue passionné" },
+                    mehdi: { nom: "Mehdi", role: "Collègue curieux" }
+                },
+                messages: [
+                    { speaker: "mehdi", text: "Karim, t'as vu la photo qui circule sur les réseaux ? Celle du trou noir. C'est quoi exactement ce truc ? Parce que franchement, je comprends rien à ce que les gens expliquent." },
+                    
+                    { speaker: "karim", text: "Ah oui, j'ai vu ! Écoute, moi aussi au début j'avais pas idée de ce que c'était. Mais en fait c'est pas si compliqué. Tu vois, les scientifiques, ils suivent le mouvement des planètes, des étoiles — et un jour ils ont remarqué un truc bizarre. Un truc qu'ils comprenaient pas. Plusieurs objets qui tournent, et quand tu regroupe les images ensemble, tu vois avec l'œil nu que le mouvement forme un cercle. Mais au centre — il y a rien. Aucune lumière. C'est ça le trou noir." },
+                    
+                    { speaker: "mehdi", text: "Attends, donc c'est juste un cercle dans l'espace ? C'est quoi ça sert comme découverte ?" },
+                    
+                    { speaker: "karim", text: "Non non, ça n'a rien à voir avec juste un cercle. Ce qui est fascinant, c'est ce qu'il y a autour. La lumière que tu vois sur la photo, elle vient pas du trou noir lui-même — elle vient des étoiles et du gaz qui tournent autour à une vitesse folle. À cause de cette vitesse et de la gravité énorme, le gaz devient tellement chaud qu'il émet de la lumière. Et le trou noir, lui, c'est juste une ombre au centre. Une absence de lumière." },
+                    
+                    { speaker: "mehdi", text: "Donc la photo publiée en 2019, c'était ça ? On a photographié une ombre ?" },
+                    
+                    { speaker: "karim", text: "Exactement. Et c'est ça qui est incroyable. On a pas photographié le trou noir directement — parce que c'est impossible, il émet aucune lumière. On a photographié ce qui l'entoure. L'anneau lumineux autour de l'ombre. C'est ça que tu vois sur la photo. Je me considère pas comme un expert, je suis assez nouveau dans ce domaine, mais ce que j'ai compris c'est ça : le trou noir, c'est une ombre créée par l'absence de lumière. Ni l'un ni l'autre — ni visible, ni photographiable directement. Mais ses effets, eux, on peut les voir." },
+                    
+                    { speaker: "mehdi", text: "Franchement c'est la première fois que quelqu'un m'explique ça de manière simple. Mais dis moi — pourquoi on appelle ça un trou noir ? C'est pas vraiment un trou non ?" },
+                    
+                    { speaker: "karim", text: "(sourire) Bonne question. Comment dire… c'est un nom qu'on lui a donné pour décrire ce qu'on observe — un endroit sombre, comme un trou dans l'espace, où rien ne sort, même pas la lumière. Si tu t'approches trop, la gravité t'aspire et tu ressors plus. C'est ça l'idée du \"trou\". Mais c'est lié à quelque chose de plus profond — la gravité est tellement forte que même la lumière, qui est la chose la plus rapide dans l'univers, elle n'arrive pas à s'échapper. C'est ça qui rend le phénomène incompréhensible pour notre cerveau humain." },
+                    
+                    { speaker: "mehdi", text: "Ça me fait un peu peur franchement…" },
+                    
+                    { speaker: "karim", text: "(rires) Moi aussi la première fois ! Mais en fait, si tel est le cas — si les trous noirs nous font peur — c'est parce qu'on a énormément évolué dans notre compréhension de l'univers, mais on reste encore très petits face à ce qu'on ne sait pas. Et c'est ça qui est beau dans la science. On en vient toujours aux mêmes conclusions après ces discussions : plus on découvre, plus on réalise qu'il reste à découvrir." },
+                    
+                    { speaker: "mehdi", text: "Bon, tu m'as convaincu. Je vais lire un peu là-dessus ce soir." },
+                    
+                    { speaker: "karim", text: "Si tu pratiques davantage ce genre de lectures, tu vas devenir beaucoup mieux pour comprendre ces sujets. Commence par la photo de 2019 — cherche comment ils l'ont prise. Tu vas pas regretter." }
+                ]
+            }
+        ];
+
+        // Fonction pour afficher la liste des débats
+        function showDebatsList() {
+            document.getElementById('debatsListView').style.display = 'grid';
+            document.getElementById('debatDetailView').style.display = 'none';
+        }
+
+        // Fonction pour afficher un débat spécifique
+        function showDebatDetail(debatId) {
+            const debat = debatsData.find(d => d.id === debatId);
+            if (!debat) return;
+            
+            document.getElementById('debatsListView').style.display = 'none';
+            document.getElementById('debatDetailView').style.display = 'block';
+            
+            const detailContainer = document.getElementById('debatDetailContainer');
+            detailContainer.innerHTML = renderDebatDetail(debat);
+        }
+
+        // Fonction pour formater les messages en HTML (style chat)
+        function formatMessages(messages, type) {
+            let html = '';
+            
+            messages.forEach((message, index) => {
+                let speakerClass = '';
+                let speakerName = '';
+                let avatar = '';
+                
+                if (type === 'debat-simule') {
+                    speakerClass = message.speaker;
+                    speakerName = message.speaker === 'sonia' ? 'Sonia' : 'Karim';
+                    avatar = message.speaker === 'sonia' ? 'S' : 'K';
+                } else {
+                    speakerClass = message.speaker;
+                    speakerName = message.speaker === 'karim' ? 'Karim' : 'Mehdi';
+                    avatar = message.speaker === 'karim' ? 'K' : 'M';
+                }
+                
+                // Formater le texte avec des paragraphes
+                const formattedText = message.text.split('\n\n').map(paragraph => 
+                    `<p>${paragraph.replace(/\n/g, '<br>')}</p>`
+                ).join('');
+                
+                html += `
+                    <div class="message ${speakerClass}">
+                        <div class="message-avatar">${avatar}</div>
+                        <div class="message-content">
+                            <div class="message-sender">${speakerName}</div>
+                            <div class="message-text">${formattedText}</div>
+                            <div class="message-time">${Math.floor(Math.random() * 10) + 1}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            return html;
+        }
+
+        // Fonction pour générer le HTML d'un débat détaillé
+        function renderDebatDetail(debat) {
+            const messagesHtml = formatMessages(debat.messages, debat.type);
+            const messageCount = debat.messages.length;
+            
+            // Compter les messages par personne
+            let speaker1Count = 0, speaker2Count = 0;
+            let speaker1Name = '', speaker2Name = '';
+            
+            if (debat.type === 'debat-simule') {
+                speaker1Count = debat.messages.filter(m => m.speaker === 'sonia').length;
+                speaker2Count = debat.messages.filter(m => m.speaker === 'karim').length;
+                speaker1Name = 'Sonia';
+                speaker2Name = 'Karim';
+            } else {
+                speaker1Count = debat.messages.filter(m => m.speaker === 'mehdi').length;
+                speaker2Count = debat.messages.filter(m => m.speaker === 'karim').length;
+                speaker1Name = 'Mehdi';
+                speaker2Name = 'Karim';
+            }
+            
+            // Générer les participants pour l'affichage
+            let participantsHtml = '';
+            if (debat.type === 'debat-simule') {
+                participantsHtml = `
+                    <div class="participant presentateur">
+                        <div class="participant-avatar">S</div>
+                        <div class="participant-info">
+                            <span class="participant-name">Sonia</span>
+                            <span class="participant-role">Présentatrice</span>
+                        </div>
+                    </div>
+                    <div class="participant invite">
+                        <div class="participant-avatar">K</div>
+                        <div class="participant-info">
+                            <span class="participant-name">Karim</span>
+                            <span class="participant-role">Invité</span>
+                        </div>
+                    </div>
+                `;
+            } else {
+                participantsHtml = `
+                    <div class="participant chitchat">
+                        <div class="participant-avatar">M</div>
+                        <div class="participant-info">
+                            <span class="participant-name">Mehdi</span>
+                            <span class="participant-role">Collègue curieux</span>
+                        </div>
+                    </div>
+                    <div class="participant chitchat">
+                        <div class="participant-avatar">K</div>
+                        <div class="participant-info">
+                            <span class="participant-name">Karim</span>
+                            <span class="participant-role">Collègue passionné</span>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            return `
+                <div class="debat-card">
+                    <div class="debat-header">
+                        <span class="debadge ${debat.type}">${debat.type === 'debat-simule' ? '🎙️ DÉBAT TÉLÉVISÉ' : '☕ CHIT-CHAT'}</span>
+                        <div class="debat-title">${debat.titre}</div>
+                        <div class="debat-meta">
+                            <span><i class="far fa-calendar-alt"></i> ${debat.date}</span>
+                            <span><i class="far fa-clock"></i> ${debat.contexte}</span>
+                            <span><i class="far fa-comment-dots"></i> ${messageCount} messages</span>
+                        </div>
+                    </div>
+                    
+                    <div class="debat-participants">
+                        ${participantsHtml}
+                    </div>
+                    
+                    <div class="chat-container">
+                        ${messagesHtml}
+                    </div>
+                    
+                    <div class="debat-stats">
+                        <div class="stat-item"><i class="fas fa-comment"></i> Total: ${messageCount} messages</div>
+                        <div class="stat-item"><i class="fas fa-user"></i> ${speaker1Name}: ${speaker1Count}</div>
+                        <div class="stat-item"><i class="fas fa-user-graduate"></i> ${speaker2Name}: ${speaker2Count}</div>
+                    </div>
+                    
+                    <div class="debat-footer">
+                        <button class="copy-btn" onclick="copyDebatToClipboard(${debat.id})">
+                            <i class="far fa-copy"></i> Copier le débat
+                        </button>
+                        <span style="color: #6c757d; font-size: 0.9rem;">
+                            <i class="fas fa-${debat.type === 'debat-simule' ? 'video' : 'coffee'}"></i> 
+                            ${debat.type === 'debat-simule' ? 'Style débat formel' : 'Conversation naturelle'}
+                        </span>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Fonction pour générer la liste des cartes (aperçus)
+        function renderDebatsList() {
+            const container = document.getElementById('debatsListView');
+            
+            if (debatsData.length === 0) {
+                container.innerHTML = '<div class="no-debats">Aucun débat disponible</div>';
+                document.getElementById('debatCount').textContent = '0 débat';
+                return;
+            }
+            
+            let html = '';
+            
+            debatsData.forEach(debat => {
+                const messageCount = debat.messages.length;
+                const previewText = debat.messages[0]?.text.substring(0, 100) + '...';
+                
+                // Extraire les participants pour l'aperçu
+                let participantsPreview = '';
+                if (debat.type === 'debat-simule') {
+                    participantsPreview = `
+                        <div class="preview-participant">
+                            <div class="preview-avatar presentateur">S</div>
+                            <span class="preview-name">Sonia</span>
+                        </div>
+                        <div class="preview-participant">
+                            <div class="preview-avatar invite">K</div>
+                            <span class="preview-name">Karim</span>
+                        </div>
+                    `;
+                } else {
+                    participantsPreview = `
+                        <div class="preview-participant">
+                            <div class="preview-avatar">M</div>
+                            <span class="preview-name">Mehdi</span>
+                        </div>
+                        <div class="preview-participant">
+                            <div class="preview-avatar">K</div>
+                            <span class="preview-name">Karim</span>
+                        </div>
+                    `;
+                }
+                
+                html += `
+                    <div class="debat-card-preview ${debat.type}" onclick="showDebatDetail(${debat.id})">
+                        <div class="preview-header">
+                            <span class="preview-badge">${debat.type === 'debat-simule' ? '🎙️ DÉBAT' : '☕ CHIT-CHAT'}</span>
+                            <div class="preview-title">${debat.titre}</div>
+                            <div class="preview-meta">
+                                <span><i class="far fa-calendar-alt"></i> ${debat.date}</span>
+                                <span><i class="far fa-comment"></i> ${messageCount}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="preview-participants">
+                            ${participantsPreview}
+                        </div>
+                        
+                        <div class="preview-excerpt">
+                            <p>"${previewText}"</p>
+                        </div>
+                        
+                        <div class="preview-footer">
+                            <div class="preview-stats">
+                                <span><i class="fas fa-${debat.type === 'debat-simule' ? 'video' : 'coffee'}"></i> ${debat.type === 'debat-simule' ? 'Débat' : 'Pause café'}</span>
+                            </div>
+                            <span style="color: var(--primary-color); font-size: 0.9rem;">
+                                Lire la suite <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+            document.getElementById('debatCount').textContent = `${debatsData.length} débat${debatsData.length > 1 ? 's' : ''}`;
+        }
+
+        // Fonction pour copier le débat dans le presse-papiers
+        function copyDebatToClipboard(debatId) {
+            const debat = debatsData.find(d => d.id === debatId);
+            if (!debat) return;
+            
+            let text = `${debat.titre}\nDate: ${debat.date} - ${debat.contexte}\n\n`;
+            
+            debat.messages.forEach(message => {
+                let speaker = '';
+                if (debat.type === 'debat-simule') {
+                    speaker = message.speaker === 'sonia' ? 'Sonia' : 'Karim';
+                } else {
+                    speaker = message.speaker === 'karim' ? 'Karim' : 'Mehdi';
+                }
+                text += `${speaker}: ${message.text}\n\n`;
+            });
+            
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Débat copié dans le presse-papiers !');
+            }).catch(err => {
+                console.error('Erreur de copie : ', err);
+                alert('Erreur lors de la copie');
+            });
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            renderDebatsList();
+            showDebatsList(); // Afficher la liste par défaut
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('show');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (navMenu.classList.contains('show')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+        
+        // Close mobile menu when clicking a link
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('show')) {
+                    navMenu.classList.remove('show');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    </script>
+</body>
+</html>

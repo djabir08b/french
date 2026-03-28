@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prépositions de lieu (3) - DEVANT, DERRIÈRE, EN HAUT, EN BAS - Français Facile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --border-radius: 10px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .logo i {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .logo-text span {
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        nav a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 20px 0;
+            background-color: white;
+            margin-bottom: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .breadcrumb ul {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+        }
+        
+        .breadcrumb li {
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumb a {
+            text-decoration: none;
+            color: var(--dark-color);
+            transition: color 0.3s ease;
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--primary-color);
+        }
+        
+        .breadcrumb .separator {
+            margin: 0 10px;
+            color: #aaa;
+        }
+        
+        .breadcrumb .current {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        /* Lesson Content */
+        .lesson-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        @media (max-width: 992px) {
+            .lesson-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .lesson-main {
+            background-color: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .lesson-sidebar {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            height: fit-content;
+        }
+        
+        .lesson-title {
+            font-size: 2.2rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .lesson-subtitle {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin: 30px 0 20px;
+        }
+        
+        .lesson-text {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+        
+        .example-box {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            border-left: 5px solid var(--primary-color);
+            margin: 25px 0;
+        }
+        
+        .example-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .example-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .example-item:last-child {
+            border-bottom: none;
+        }
+        
+        .correct {
+            color: var(--success-color);
+            font-weight: 600;
+        }
+        
+        .incorrect {
+            color: #e74c3c;
+            text-decoration: line-through;
+        }
+        
+        .preposition-highlight {
+            background-color: rgba(67, 97, 238, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .sidebar-title {
+            font-size: 1.4rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .sidebar-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .sidebar-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .sidebar-list i {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        .lesson-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .nav-button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        /* Exercise Section */
+        .exercise-section {
+            background-color: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 60px;
+        }
+        
+        .exercise-title {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .exercise-box {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+        }
+        
+        .exercise-instruction {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .exercise-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+        }
+        
+        .exercise-question {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .option {
+            padding: 10px 20px;
+            background-color: #f1f3f5;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .option:hover {
+            background-color: #e9ecef;
+        }
+        
+        .option.selected {
+            background-color: rgba(67, 97, 238, 0.2);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .check-button {
+            display: block;
+            margin: 30px auto 0;
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .check-button:hover {
+            background-color: #27ae60;
+        }
+        
+        .result {
+            text-align: center;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .result.success {
+            background-color: rgba(46, 204, 113, 0.2);
+            color: var(--success-color);
+            display: block;
+        }
+        
+        .result.error {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+            display: block;
+        }
+        
+        /* Table Styles */
+        .rules-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .rules-table th {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+        }
+        
+        .rules-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .rules-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .rules-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .rules-table tr:hover {
+            background-color: #f1f5ff;
+        }
+        
+        .rule-example {
+            font-style: italic;
+            color: #666;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .important-note {
+            background-color: rgba(244, 229, 186, 0.3);
+            border-left: 4px solid var(--warning-color);
+            padding: 20px;
+            border-radius: 5px;
+            margin: 25px 0;
+        }
+        
+        .important-note h4 {
+            color: var(--warning-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Story Styles */
+        .story-box {
+            background-color: #f0f8ff;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            border-left: 5px solid var(--accent-color);
+            margin: 25px 0;
+            font-style: italic;
+        }
+        
+        .story-title {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        
+        .story-highlight {
+            background-color: rgba(76, 201, 240, 0.2);
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        
+        .version-box {
+            background-color: #fff9f0;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin: 20px 0;
+            border: 1px solid #ffecc7;
+        }
+        
+        .version-title {
+            color: var(--warning-color);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .lesson-title {
+                font-size: 1.8rem;
+            }
+            
+            .lesson-main, .exercise-section {
+                padding: 25px;
+            }
+            
+            .rules-table {
+                font-size: 0.9rem;
+            }
+            
+            .rules-table th, 
+            .rules-table td {
+                padding: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .rules-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="main.html" class="logo">
+                <i class="fas fa-language"></i>
+                <div class="logo-text">Français<span>Facile</span></div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="main.html" class="active">Accueil</a></li>
+                    <li><a href="grammaire.html">Grammaire</a></li>
+                    <li><a href="#">Vocabulaire</a></li>
+                    <li><a href="subjects.html">Sujets</a></li> 
+             
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Prépositions de lieu (3)</h1>
+            <p>Apprenez à utiliser correctement les prépositions DEVANT, DERRIÈRE, EN HAUT, EN BAS et leurs expressions associées.</p>
+        </div>
+    </section>
+    
+    <!-- Breadcrumb -->
+    <div class="container">
+        <nav class="breadcrumb">
+            <ul>
+                <li><a href="main.html">Accueil</a></li>
+                <li class="separator">/</li>
+                <li><a href="grammaire.html">Grammaire</a></li>
+                <li class="separator">/</li>
+                
+                <li class="current">Prépositions de lieu (3)</li>
+            </ul>
+        </nav>
+    </div>
+    
+    <!-- Lesson Content -->
+    <div class="container">
+        <div class="lesson-content">
+            <div class="lesson-main">
+                <h2 class="lesson-title">Prépositions de lieu : DEVANT, DERRIÈRE, EN HAUT, EN BAS</h2>
+                
+                <p class="lesson-text">Les prépositions et expressions de lieu <span class="preposition-highlight">devant</span>, <span class="preposition-highlight">derrière</span>, <span class="preposition-highlight">en haut</span> et <span class="preposition-highlight">en bas</span> permettent d'exprimer des relations spatiales relatives à une référence, que ce soit pour la position horizontale (devant/derrière) ou verticale (haut/bas).</p>
+                
+                <h3 class="lesson-subtitle">1. DEVANT vs DERRIÈRE</h3>
+                <p class="lesson-text">Ces prépositions expriment une relation horizontale par rapport à une référence.</p>
+                
+                <div class="example-box">
+                    <h4>Exemples d'utilisation :</h4>
+                    <div class="example-item">- L'arbre est <span class="correct">devant</span> la maison.</div>
+                    <div class="example-item">- Le jardin est <span class="correct">derrière</span> la maison.</div>
+                    <div class="example-item">- Attendez-moi <span class="correct">devant</span> la gare.</div>
+                    <div class="example-item">- Cache-toi <span class="correct">derrière</span> cet arbre.</div>
+                </div>
+                
+                <h3 class="lesson-subtitle">2. EN HAUT vs EN BAS</h3>
+                <p class="lesson-text">Ces expressions indiquent une position verticale relative.</p>
+                
+                <div class="example-box">
+                    <h4>Exemples d'utilisation :</h4>
+                    <div class="example-item">- Les livres sont <span class="correct">en haut de</span> l'étagère.</div>
+                    <div class="example-item">- Les chaussures sont <span class="correct">en bas de</span> l'armoire.</div>
+                    <div class="example-item">- Je vis <span class="correct">au</span> 5e étage, <span class="correct">en haut de</span> l'immeuble.</div>
+                    <div class="example-item">- Le garage est <span class="correct">en bas</span>, <span class="correct">au</span> sous-sol.</div>
+                </div>
+                
+                <h3 class="lesson-subtitle">3. EN AVANT vs EN ARRIÈRE</h3>
+                <p class="lesson-text">Ces expressions adverbiales indiquent une direction de mouvement.</p>
+                
+                <div class="example-box">
+                    <h4>Exemples d'utilisation :</h4>
+                    <div class="example-item">- Faites un pas <span class="correct">en avant</span>.</div>
+                    <div class="example-item">- Reculez d'un pas <span class="correct">en arrière</span>.</div>
+                    <div class="example-item">- La voiture avance <span class="correct">en avant</span> lentement.</div>
+                    <div class="example-item">- Il a regardé <span class="correct">en arrière</span> pour voir s'il était suivi.</div>
+                </div>
+                
+                <!-- Exercice 1 -->
+                <h3 class="lesson-subtitle" id="ex1">Exercice 1 : Donnez les contraires</h3>
+                
+                <table class="rules-table">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Phrase originale</th>
+                            <th>Réponse correcte</th>
+                            <th>Explication</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Le parking est devant la poste.</td>
+                            <td><strong>Le parking est derrière la poste.</strong></td>
+                            <td>DEVANT ↔ DERRIÈRE</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Déplacez-vous : faites un pas en avant !</td>
+                            <td><strong>Déplacez-vous : faites un pas en arrière !</strong></td>
+                            <td>EN AVANT ↔ EN ARRIÈRE</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Les enfants sont assis à l'avant de la voiture.</td>
+                            <td><strong>Les enfants sont assis à l'arrière de la voiture.</strong></td>
+                            <td>À L'AVANT ↔ À L'ARRIÈRE</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Je travaille en face de la fenêtre.</td>
+                            <td><strong>Je travaille dos à la fenêtre.</strong></td>
+                            <td>EN FACE DE ↔ DOS À</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Pour prendre l'autoroute, tournez à droite.</td>
+                            <td><strong>Pour prendre l'autoroute, tournez à gauche.</strong></td>
+                            <td>À DROITE ↔ À GAUCHE</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>J'ai rangé la valise en haut de l'armoire.</td>
+                            <td><strong>J'ai rangé la valise en bas de l'armoire.</strong></td>
+                            <td>EN HAUT ↔ EN BAS</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Marchez derrière moi !</td>
+                            <td><strong>Marchez devant moi !</strong></td>
+                            <td>DERRIÈRE ↔ DEVANT</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <!-- Exercice 2 -->
+                <h3 class="lesson-subtitle" id="ex2">Exercice 2 : Complétez selon le modèle</h3>
+                
+                <table class="rules-table">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Question</th>
+                            <th>Réponse correcte</th>
+                            <th>Règle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Un homme bien élevé doit toujours se tenir derrière une femme quand elle monte l'escalier et ___ elle lorsqu'elle descend</td>
+                            <td><strong>devant</strong></td>
+                            <td>DEVANT + pronom/nom</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Faire un créneau : on fait de petits mouvements ___ et de petits mouvements ___</td>
+                            <td><strong>en avant / en arrière</strong></td>
+                            <td>EN AVANT / EN ARRIÈRE</td>
+                        </tr>
+                        <tr>
+                            <td>3a</td>
+                            <td>Les passagers voyagent près de la cabine de pilotage ___ l'avion</td>
+                            <td><strong>à l'avant de</strong></td>
+                            <td>À L'AVANT DE + nom</td>
+                        </tr>
+                        <tr>
+                            <td>3b</td>
+                            <td>___ un rideau qui les sépare</td>
+                            <td><strong>derrière</strong></td>
+                            <td>DERRIÈRE + nom</td>
+                        </tr>
+                        <tr>
+                            <td>3c</td>
+                            <td>C'est ___ l'avion, près des réacteurs, que l'on sent le plus les vibrations</td>
+                            <td><strong>à l'arrière de</strong></td>
+                            <td>À L'ARRIÈRE DE + nom</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Le sourire des enfants de sept ans est touchant, car il leur manque les dents ___</td>
+                            <td><strong>de devant</strong></td>
+                            <td>DE DEVANT (locution)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <!-- Règles récapitulatives -->
+                <div class="important-note">
+                    <h4><i class="fas fa-graduation-cap"></i> RÈGLES GRAMMATICALES RÉCAPITULATIVES</h4>
+                    <p><strong>1. Prépositions (+ nom/pronom)</strong> : DEVANT quelqu'un/quelque chose, DERRIÈRE quelqu'un/quelque chose</p>
+                    <p><strong>2. Locutions adverbiales (direction)</strong> : EN AVANT, EN ARRIÈRE</p>
+                    <p><strong>3. Locutions prépositionnelles (partie d'un tout)</strong> : À L'AVANT DE, À L'ARRIÈRE DE, AU FOND DE</p>
+                    <p><strong>4. Locutions adjectivales</strong> : DE DEVANT, DE DERRIÈRE</p>
+                </div>
+                
+                <!-- Exercice 3 -->
+                <h3 class="lesson-subtitle" id="ex3">Exercice 3 : Complétez avec les prépositions manquantes</h3>
+                
+                <table class="rules-table">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Question</th>
+                            <th>Réponse correcte</th>
+                            <th>Règle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Rendez-vous devant le ciné un peu ___ 8 h.</td>
+                            <td><strong>avant</strong></td>
+                            <td>AVANT + heure (temporel)</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>En Angleterre, on conduit ___ gauche.</td>
+                            <td><strong>à</strong></td>
+                            <td>À + gauche/droite</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Passons ___ l'autre côté de la rue.</td>
+                            <td><strong>de</strong></td>
+                            <td>DE l'autre côté</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Attention, ton écharpe est tombée ___ terre.</td>
+                            <td><strong>par</strong></td>
+                            <td>PAR terre (expression fixe)</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Des poissons rares vivent ___ fond de l'océan.</td>
+                            <td><strong>au</strong></td>
+                            <td>AU fond de = À + LE fond</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>N'oubliez pas de signer ___ dos du chèque.</td>
+                            <td><strong>au</strong></td>
+                            <td>AU dos = À + LE dos</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Il faut être solidaire face ___ l'adversité.</td>
+                            <td><strong>à</strong></td>
+                            <td>FACE À + nom</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Nos bureaux se trouvent ___ 5e étage.</td>
+                            <td><strong>au</strong></td>
+                            <td>AU + numéro d'étage</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>L'enfant s'est caché ___ un arbre.</td>
+                            <td><strong>derrière</strong></td>
+                            <td>DERRIÈRE + nom</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Es-tu déjà monté(e) ___ haut de cette tour ?</td>
+                            <td><strong>en</strong></td>
+                            <td>EN haut de (expression fixe)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <!-- Exercice 4 - Histoire -->
+                <h3 class="lesson-subtitle" id="ex4">Exercice 4 : Un petit tour (histoire à compléter)</h3>
+                
+                <div class="story-box">
+                    <div class="story-title">« Tu viens faire un petit tour en moto ? »</div>
+                    <p>« Tu viens faire un petit tour en moto ? », m'a dit Jim, et j'ai grimpé <span class="story-highlight">derrière</span> lui. J'ai mis mes bras autour de sa taille et je me suis serrée contre lui. À la sortie de la ville, on s'est retrouvés <span class="story-highlight">derrière</span> un bus scolaire qui faisait du trente à l'heure. Les enfants s'ennuyaient et ceux qui étaient assis <span class="story-highlight">à l'arrière du</span> bus ont commencé à nous faire des grimaces. On s'est amusés un moment à les imiter, mais bientôt Jim en a eu assez. Il était impossible de les dépasser et, comme une longue queue s'était formée <span class="story-highlight">derrière</span> nous, on ne pouvait pas non plus retourner <span class="story-highlight">en arrière</span>. Jim a pris la première bifurcation <span class="story-highlight">à</span> droite et on s'est retrouvés <span class="story-highlight">en face d'un</span> étrange château à l'abandon qui se dressait <span class="story-highlight">au milieu d'une</span> forêt d'arbres gigantesques. Irrésistiblement attirés, nous avons caché la moto et nous nous sommes faufilés <span class="story-highlight">par-derrière</span> : une porte déglingée était restée ouverte. Le cœur battant nous avons monté l'escalier en colimaçon qui menait <span class="story-highlight">au sommet de</span> la tour et nous avons débouché hors d'haleine sur une petite terrasse. Soudain, Jim a poussé un cri...</p>
+                </div>
+                
+                <!-- Suite de l'histoire -->
+                <h3 class="lesson-subtitle" id="ex5">Suite de l'histoire (3 versions)</h3>
+                
+                <div class="version-box">
+                    <div class="version-title">📖 VERSION SIMPLE (A2-B1)</div>
+                    <p>Soudain, Jim a poussé un cri. Il a vu quelque chose <strong>en face de</strong> lui, <strong>au sommet de</strong> la tour. C'était une vieille dame qui se tenait <strong>derrière</strong> une fenêtre cassée. Elle nous regardait fixement.</p>
+                    <p>J'ai pris la main de Jim et nous avons commencé à descendre l'escalier rapidement. <strong>Derrière</strong> nous, nous entendions des bruits étranges. Nous avons couru <strong>à travers</strong> le château et nous sommes sortis <strong>par-derrière</strong>.</p>
+                    <p><strong>Devant</strong> nous, la moto était toujours là, cachée <strong>derrière</strong> les arbres. Nous sommes montés dessus et nous sommes partis très vite, sans regarder <strong>en arrière</strong>. <strong>À la sortie de</strong> la forêt, nous avons enfin respiré. Cette aventure nous a fait peur, mais c'était excitant !</p>
+                </div>
+                
+                <div class="lesson-nav">
+                    <a href="lieu2.html" class="nav-button">
+                        <i class="fas fa-arrow-left"></i> Leçon précédente
+                    </a>
+                    <a href="grammaire.html" class="nav-button">
+                        Retour à la grammaire <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="lesson-sidebar">
+                <h3 class="sidebar-title">Dans cette leçon</h3>
+                <ul class="sidebar-list">
+                    <li><i class="fas fa-check-circle"></i> DEVANT / DERRIÈRE</li>
+                    <li><i class="fas fa-check-circle"></i> EN HAUT / EN BAS</li>
+                    <li><i class="fas fa-check-circle"></i> EN AVANT / EN ARRIÈRE</li>
+                    <li><i class="fas fa-check-circle"></i> À L'AVANT DE / À L'ARRIÈRE DE</li>
+                    <li><i class="fas fa-check-circle"></i> Expressions fixes spatiales</li>
+                    <li><i class="fas fa-check-circle"></i> Locutions prépositionnelles</li>
+                    <li><i class="fas fa-check-circle"></i> Histoire : Un petit tour</li>
+                </ul>
+                
+                <h3 class="sidebar-title">Résumé clé</h3>
+                <ul class="sidebar-list">
+                    <li><i class="fas fa-info-circle"></i> <strong>DEVANT</strong> = position antérieure</li>
+                    <li><i class="fas fa-info-circle"></i> <strong>DERRIÈRE</strong> = position postérieure</li>
+                    <li><i class="fas fa-info-circle"></i> <strong>EN HAUT DE</strong> = partie supérieure</li>
+                    <li><i class="fas fa-info-circle"></i> <strong>EN BAS DE</strong> = partie inférieure</li>
+                    <li><i class="fas fa-info-circle"></i> <strong>EN AVANT</strong> = direction vers l'avant</li>
+                    <li><i class="fas fa-info-circle"></i> <strong>EN ARRIÈRE</strong> = direction vers l'arrière</li>
+                </ul>
+                
+                <h3 class="sidebar-title">Expressions fixes</h3>
+                <ul class="sidebar-list">
+                    <li><i class="fas fa-arrow-right"></i> <strong>À gauche / À droite</strong></li>
+                    <li><i class="fas fa-arrow-right"></i> <strong>PAR terre</strong> (tomber)</li>
+                    <li><i class="fas fa-arrow-right"></i> <strong>AU fond de</strong></li>
+                    <li><i class="fas fa-arrow-right"></i> <strong>FACE À</strong></li>
+                    <li><i class="fas fa-arrow-right"></i> <strong>DE l'autre côté</strong></li>
+                </ul>
+                
+                <h3 class="sidebar-title">Niveau</h3>
+                <p style="background-color: rgba(67, 97, 238, 0.2); color: var(--primary-color); padding: 10px; border-radius: 5px; text-align: center; font-weight: 600;">Intermédiaire (B1-B2)</p>
+                
+                <h3 class="sidebar-title">Liens rapides</h3>
+                <ul class="sidebar-list">
+                    <li><a href="#ex1" style="text-decoration: none; color: var(--dark-color);"><i class="fas fa-arrow-right"></i> Exercice 1</a></li>
+                    <li><a href="#ex2" style="text-decoration: none; color: var(--dark-color);"><i class="fas fa-arrow-right"></i> Exercice 2</a></li>
+                    <li><a href="#ex3" style="text-decoration: none; color: var(--dark-color);"><i class="fas fa-arrow-right"></i> Exercice 3</a></li>
+                    <li><a href="#ex4" style="text-decoration: none; color: var(--dark-color);"><i class="fas fa-arrow-right"></i> Exercice 4</a></li>
+                    <li><a href="#ex5" style="text-decoration: none; color: var(--dark-color);"><i class="fas fa-arrow-right"></i> Suite histoire</a></li>
+                </ul>
+                
+                <h3 class="sidebar-title">Leçons précédentes</h3>
+                <a href="lieu1.html" style="display: block; text-align: center; background-color: #f0f0f0; color: var(--dark-color); padding: 8px; border-radius: 5px; text-decoration: none; margin-top: 5px; margin-bottom: 10px;">
+                    Prépositions de lieu (1)<br>
+                    <small>DANS, SUR, À, CHEZ</small>
+                </a>
+                <a href="lieu2.html" style="display: block; text-align: center; background-color: #f0f0f0; color: var(--dark-color); padding: 8px; border-radius: 5px; text-decoration: none;">
+                    Prépositions de lieu (2)<br>
+                    <small>DESSUS, DESSOUS, DEDANS, DEHORS</small>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Exercise Section -->
+        <div class="exercise-section">
+            <h2 class="exercise-title">Exercice pratique : Complétez avec DEVANT, DERRIÈRE, EN HAUT, EN BAS</h2>
+            
+            <div class="exercise-box">
+                <p class="exercise-instruction">Choisissez la bonne préposition pour compléter les phrases :</p>
+                
+                <div class="exercise-item">
+                    <p class="exercise-question">1. Attendez-moi _____ l'entrée principale du cinéma.</p>
+                    <div class="options">
+                        <div class="option" data-question="1" data-answer="devant">devant</div>
+                        <div class="option" data-question="1" data-answer="derrière">derrière</div>
+                        <div class="option" data-question="1" data-answer="en haut de">en haut de</div>
+                        <div class="option" data-question="1" data-answer="en bas de">en bas de</div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <p class="exercise-question">2. La bibliothèque est située _____ l'escalier, au 3e étage.</p>
+                    <div class="options">
+                        <div class="option" data-question="2" data-answer="devant">devant</div>
+                        <div class="option" data-question="2" data-answer="derrière">derrière</div>
+                        <div class="option" data-question="2" data-answer="en haut de">en haut de</div>
+                        <div class="option" data-question="2" data-answer="en bas de">en bas de</div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <p class="exercise-question">3. Cache-toi _____ cet arbre pour la surprise.</p>
+                    <div class="options">
+                        <div class="option" data-question="3" data-answer="devant">devant</div>
+                        <div class="option" data-question="3" data-answer="derrière">derrière</div>
+                        <div class="option" data-question="3" data-answer="en haut de">en haut de</div>
+                        <div class="option" data-question="3" data-answer="en bas de">en bas de</div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <p class="exercise-question">4. Les valises sont rangées _____ l'armoire, dans le grenier.</p>
+                    <div class="options">
+                        <div class="option" data-question="4" data-answer="devant">devant</div>
+                        <div class="option" data-question="4" data-answer="derrière">derrière</div>
+                        <div class="option" data-question="4" data-answer="en haut de">en haut de</div>
+                        <div class="option" data-question="4" data-answer="en bas de">en bas de</div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <p class="exercise-question">5. Pour garer la voiture, faites plusieurs manœuvres _____ et _____.</p>
+                    <div class="options">
+                        <div class="option" data-question="5" data-answer="devant / derrière">devant / derrière</div>
+                        <div class="option" data-question="5" data-answer="en haut / en bas">en haut / en bas</div>
+                        <div class="option" data-question="5" data-answer="en avant / en arrière">en avant / en arrière</div>
+                        <div class="option" data-question="5" data-answer="à l'avant / à l'arrière">à l'avant / à l'arrière</div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <p class="exercise-question">6. Le jardin se trouve juste _____ la maison.</p>
+                    <div class="options">
+                        <div class="option" data-question="6" data-answer="devant">devant</div>
+                        <div class="option" data-question="6" data-answer="derrière">derrière</div>
+                        <div class="option" data-question="6" data-answer="en haut de">en haut de</div>
+                        <div class="option" data-question="6" data-answer="en bas de">en bas de</div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <p class="exercise-question">7. Les enfants préfèrent s'asseoir _____ l'autobus pour mieux voir.</p>
+                    <div class="options">
+                        <div class="option" data-question="7" data-answer="devant">devant</div>
+                        <div class="option" data-question="7" data-answer="derrière">derrière</div>
+                        <div class="option" data-question="7" data-answer="à l'avant de">à l'avant de</div>
+                        <div class="option" data-question="7" data-answer="à l'arrière de">à l'arrière de</div>
+                    </div>
+                </div>
+                
+                <button class="check-button" id="checkButton">Vérifier mes réponses</button>
+                
+                <div class="result" id="result"></div>
+            </div>
+        </div>
+        
+        <!-- Section pour l'exercice 5 (écrit) -->
+        <div class="exercise-section">
+            <h2 class="exercise-title">Exercice 5 : Écrit - Décrivez votre trajet quotidien</h2>
+            
+            <div class="exercise-box">
+                <p class="exercise-instruction">Choisissez votre niveau et rédigez un texte décrivant votre trajet quotidien pour aller au travail ou à l'école :</p>
+                
+                <div class="version-box">
+                    <div class="version-title">🚶 VERSION SIMPLE (A2-B1)</div>
+                    <p><strong>Conseils :</strong> Utilisez des phrases courtes. Employez les prépositions DEVANT, DERRIÈRE, EN HAUT, EN BAS, À GAUCHE, À DROITE.</p>
+                    <p><strong>Structure suggérée :</strong> Départ → Chemin → Arrivée → Durée</p>
+                </div>
+                
+                <div class="version-box">
+                    <div class="version-title">🚇 VERSION DÉTAILLÉE (B1-B2)</div>
+                    <p><strong>Conseils :</strong> Variez les expressions. Utilisez EN AVANT, EN ARRIÈRE, À L'AVANT DE, À L'ARRIÈRE DE, AU FOND DE.</p>
+                    <p><strong>Structure suggérée :</strong> Départ → Moyen de transport → Parcours → Lieux traversés → Arrivée → Impressions</p>
+                </div>
+                
+                <div class="version-box">
+                    <div class="version-title">🚴 VERSION APPROFONDIE (B2-C1)</div>
+                    <p><strong>Conseils :</strong> Utilisez un vocabulaire riche. Employez des expressions complexes comme FACE À, AU DÉTOUR DE, LE LONG DE, À TRAVERS.</p>
+                    <p><strong>Structure suggérée :</strong> Introduction → Description détaillée du parcours → Éléments observés → Difficultés/avantages → Conclusion/réflexion</p>
+                </div>
+                
+                <div style="margin-top: 30px; padding: 20px; background-color: #f8f9fa; border-radius: var(--border-radius);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 15px;">Exemple de début (version B1) :</h4>
+                    <p style="font-style: italic; padding: 15px; background-color: white; border-radius: 5px; border-left: 3px solid var(--accent-color);">
+                        Tous les matins, je quitte mon appartement situé <strong>au</strong> quatrième étage et je descends l'escalier <strong>jusqu'en bas de</strong> l'immeuble. <strong>En sortant</strong>, je tourne <strong>à gauche</strong> puis <strong>à droite au</strong> bout de la rue pour rejoindre la station de métro...
+                    </p>
+                </div>
+                
+                <div style="margin-top: 30px; text-align: center;">
+                    <button id="writingButton" style="background-color: var(--accent-color); color: white; border: none; padding: 15px 30px; border-radius: 5px; font-size: 1.1rem; cursor: pointer; transition: background-color 0.3s ease;">
+                        <i class="fas fa-pen"></i> Commencer l'écriture
+                    </button>
+                    <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">Note : Cet exercice est une pratique d'écriture. Écrivez votre texte dans un cahier ou un document séparé.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Français Facile</h3>
+                    <p>Plateforme d'apprentissage du français en ligne. Des ressources gratuites pour tous les niveaux.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Catégories</h3>
+                    <ul>
+                        <li><a href="grammaire.html">Grammaire</a></li>
+                        <li><a href="#">Vocabulaire</a></li>
+                        <li><a href="#">Conjugaison</a></li>
+                        <li><a href="#">Prononciation</a></li>
+                        <li><a href="#">Culture française</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="main.html">Accueil</a></li>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                        <li><a href="#">Politique de confidentialité</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Français Facile. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+            
+            // Change icon
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navMenu.classList.contains('show')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('show')) {
+                    navMenu.classList.remove('show');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+        
+        // Exercise functionality
+        const options = document.querySelectorAll('.option');
+        const checkButton = document.getElementById('checkButton');
+        const resultDiv = document.getElementById('result');
+        const writingButton = document.getElementById('writingButton');
+        
+        // Correct answers
+        const correctAnswers = {
+            1: 'devant',
+            2: 'en haut de',
+            3: 'derrière',
+            4: 'en haut de',
+            5: 'en avant / en arrière',
+            6: 'derrière',
+            7: 'à l'avant de'
+        };
+        
+        // User answers
+        let userAnswers = {
+            1: null,
+            2: null,
+            3: null,
+            4: null,
+            5: null,
+            6: null,
+            7: null
+        };
+        
+        // Option selection
+        options.forEach(option => {
+            option.addEventListener('click', function() {
+                const questionNum = this.getAttribute('data-question');
+                const answer = this.getAttribute('data-answer');
+                
+                // Remove selected class from all options for this question
+                document.querySelectorAll(`[data-question="${questionNum}"]`).forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked option
+                this.classList.add('selected');
+                
+                // Store user answer
+                userAnswers[questionNum] = answer;
+            });
+        });
+        
+        // Check answers
+        checkButton.addEventListener('click', function() {
+            let correctCount = 0;
+            const totalQuestions = Object.keys(correctAnswers).length;
+            
+            // Check each answer
+            for (let i = 1; i <= totalQuestions; i++) {
+                if (userAnswers[i] === correctAnswers[i]) {
+                    correctCount++;
+                }
+            }
+            
+            // Display result
+            const percentage = (correctCount / totalQuestions) * 100;
+            
+            if (percentage === 100) {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = `
+                    <h3>Excellent ! 🎉</h3>
+                    <p>Vous avez ${correctCount} réponses correctes sur ${totalQuestions} (${percentage}%).</p>
+                    <p>Vous maîtrisez parfaitement les prépositions DEVANT, DERRIÈRE, EN HAUT, EN BAS !</p>
+                `;
+            } else if (percentage >= 70) {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = `
+                    <h3>Très bien ! 👍</h3>
+                    <p>Vous avez ${correctCount} réponses correctes sur ${totalQuestions} (${percentage}%).</p>
+                    <p>Vous comprenez bien l'utilisation de ces prépositions spatiales.</p>
+                `;
+            } else {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `
+                    <h3>À revoir 📚</h3>
+                    <p>Vous avez ${correctCount} réponses correctes sur ${totalQuestions} (${percentage}%).</p>
+                    <p>Révisez les différences entre DEVANT/DERRIÈRE et EN HAUT/EN BAS.</p>
+                `;
+            }
+            
+            // Show correct answers
+            let correctAnswersHtml = '<p><strong>Réponses correctes :</strong></p><ol>';
+            for (let i = 1; i <= totalQuestions; i++) {
+                correctAnswersHtml += `<li><strong>${correctAnswers[i]}</strong> (vous avez choisi : ${userAnswers[i] || 'rien'})</li>`;
+            }
+            correctAnswersHtml += '</ol>';
+            
+            resultDiv.innerHTML += correctAnswersHtml;
+        });
+        
+        // Writing button functionality
+        writingButton.addEventListener('click', function() {
+            alert("Exercice d'écriture :\n\nRédigez un texte décrivant votre trajet quotidien en utilisant le plus possible les prépositions spatiales apprises dans cette leçon.\n\nVous pouvez écrire dans un cahier, un document Word, ou tout autre support d'écriture.\n\nConseil : Relisez les exemples dans les différentes versions pour vous inspirer !");
+        });
+        
+        // Add active class to current page in navigation
+        const currentPage = window.location.pathname.split('/').pop();
+        navLinks.forEach(link => {
+            const linkPage = link.getAttribute('href');
+            if (linkPage === currentPage) {
+                link.classList.add('active');
+            }
+        });
+        
+        // Highlight story text on hover
+        const storyHighlights = document.querySelectorAll('.story-highlight');
+        storyHighlights.forEach(highlight => {
+            highlight.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = 'rgba(76, 201, 240, 0.4)';
+            });
+            highlight.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = 'rgba(76, 201, 240, 0.2)';
+            });
+        });
+    </script>
+</body>
+</html>
