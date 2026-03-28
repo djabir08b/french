@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles Scientifiques - Français Facile</title>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2232/2232688.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --border-radius: 10px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            
+            --biology-color: #2ecc71;
+            --astronomy-color: #9b59b6;
+            --genetics-color: #e74c3c;
+            --neuroscience-color: #3498db;
+            --professional-color: #f39c12;
+            --tech-color: #1abc9c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .logo i {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .logo-text span {
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        nav a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .subjects-hero {
+            background: linear-gradient(135deg, #2d6a4f, #1b4332);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 60px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .subjects-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .subjects-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        /* Vue Liste des articles (cartes) */
+        .articles-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .article-card-preview {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border-left: 5px solid transparent;
+        }
+        
+        .article-card-preview.biology {
+            border-left-color: var(--biology-color);
+        }
+        
+        .article-card-preview.astronomy {
+            border-left-color: var(--astronomy-color);
+        }
+        
+        .article-card-preview.genetics {
+            border-left-color: var(--genetics-color);
+        }
+        
+        .article-card-preview.neuroscience {
+            border-left-color: var(--neuroscience-color);
+        }
+        
+        .article-card-preview.professional {
+            border-left-color: var(--professional-color);
+        }
+        
+        .article-card-preview.tech {
+            border-left-color: var(--tech-color);
+        }
+        
+        .article-card-preview:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .preview-header {
+            padding: 25px 25px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .preview-category {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .biology .preview-category {
+            background-color: rgba(46, 204, 113, 0.1);
+            color: var(--biology-color);
+        }
+        
+        .astronomy .preview-category {
+            background-color: rgba(155, 89, 182, 0.1);
+            color: var(--astronomy-color);
+        }
+        
+        .genetics .preview-category {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--genetics-color);
+        }
+        
+        .neuroscience .preview-category {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--neuroscience-color);
+        }
+        
+        .professional .preview-category {
+            background-color: rgba(243, 156, 18, 0.1);
+            color: var(--professional-color);
+        }
+        
+        .tech .preview-category {
+            background-color: rgba(26, 188, 156, 0.1);
+            color: var(--tech-color);
+        }
+        
+        .preview-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            font-weight: 700;
+        }
+        
+        .preview-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .preview-meta i {
+            color: var(--primary-color);
+        }
+        
+        .preview-excerpt {
+            padding: 20px 25px;
+            flex-grow: 1;
+        }
+        
+        .preview-excerpt p {
+            color: #495057;
+            font-style: italic;
+            line-height: 1.6;
+        }
+        
+        .preview-footer {
+            padding: 20px 25px;
+            border-top: 1px solid #f1f1f1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .read-indicator {
+            color: var(--primary-color);
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .read-indicator i {
+            transition: transform 0.3s ease;
+        }
+        
+        .article-card-preview:hover .read-indicator i {
+            transform: translateX(5px);
+        }
+        
+        /* Vue détail de l'article */
+        .article-detail-view {
+            display: none;
+            margin-top: 30px;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        .article-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .article-header {
+            padding: 30px 30px 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .article-category {
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .biology .article-category {
+            background-color: rgba(46, 204, 113, 0.1);
+            color: var(--biology-color);
+        }
+        
+        .astronomy .article-category {
+            background-color: rgba(155, 89, 182, 0.1);
+            color: var(--astronomy-color);
+        }
+        
+        .genetics .article-category {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--genetics-color);
+        }
+        
+        .neuroscience .article-category {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--neuroscience-color);
+        }
+        
+        .professional .article-category {
+            background-color: rgba(243, 156, 18, 0.1);
+            color: var(--professional-color);
+        }
+        
+        .tech .article-category {
+            background-color: rgba(26, 188, 156, 0.1);
+            color: var(--tech-color);
+        }
+        
+        .article-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            line-height: 1.3;
+        }
+        
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .article-meta i {
+            color: var(--primary-color);
+            margin-right: 5px;
+        }
+        
+        .article-body {
+            padding: 30px;
+        }
+        
+        .article-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #2b2b2b;
+        }
+        
+        .article-content p {
+            margin-bottom: 25px;
+        }
+        
+        .article-content h3 {
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+            color: var(--dark-color);
+        }
+        
+        .article-content ul {
+            padding-left: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .article-content li {
+            margin-bottom: 10px;
+        }
+        
+        .article-content strong {
+            color: var(--primary-color);
+        }
+        
+        .article-footer {
+            padding: 0 30px 30px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .copy-btn {
+            background: none;
+            border: 1px solid #dee2e6;
+            color: #6c757d;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .copy-btn:hover {
+            background-color: #e9ecef;
+            color: var(--dark-color);
+        }
+        
+        /* Message aucun résultat */
+        .no-articles {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px;
+            background: white;
+            border-radius: var(--border-radius);
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .subjects-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .articles-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            .subjects-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subjects-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .article-title {
+                font-size: 1.6rem;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .subjects-hero {
+                padding: 60px 0;
+            }
+            
+            .subjects-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .article-header, .article-body, .article-footer {
+                padding: 20px;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="main.html" class="logo">
+                <i class="fas fa-language"></i>
+                <div class="logo-text">Français<span>Facile</span></div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="main.html">Accueil</a></li>
+                    <li><a href="grammaire.html">Grammaire</a></li>
+                    <li><a href="vocabulaire.html">Vocabulaire</a></li>
+                    <li><a href="subjects.html" class="active">Sujets</a></li>
+                    <li><a href="emails.html">E-mails pro</a></li>
+                    <li><a href="expressions.html">Expressions</a></li>
+                    <li><a href="debats.html">Débats</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="subjects-hero">
+        <div class="container hero-content">
+            <h1>Sujets & Articles Scientifiques</h1>
+            <p>Découvrez des articles sur divers sujets scientifiques, rédigés pour éclairer et informer. Des explications claires sur des concepts complexes.</p>
+        </div>
+    </section>
+    
+    <!-- Articles Section -->
+    <section class="articles-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mes Articles</h2>
+                <p>Explorations scientifiques et réflexions personnelles</p>
+                <p class="date-badge" id="articleCount">8 articles</p>
+            </div>
+            
+            <!-- Vue liste (cartes) -->
+            <div id="articlesListView" class="articles-list">
+                <!-- Les cartes seront injectées ici par JavaScript -->
+            </div>
+            
+            <!-- Vue détail (un seul article) -->
+            <div id="articleDetailView" class="article-detail-view">
+                <button class="back-button" onclick="showArticlesList()">
+                    <i class="fas fa-arrow-left"></i> Retour à la liste des articles
+                </button>
+                <div id="articleDetailContainer">
+                    <!-- L'article détaillé sera injecté ici -->
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Français Facile</h3>
+                    <p>Plateforme d'apprentissage du français en ligne. Des ressources gratuites pour tous les niveaux.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Catégories</h3>
+                    <ul>
+                        <li><a href="grammaire.html">Grammaire</a></li>
+                        <li><a href="vocabulaire.html">Vocabulaire</a></li>
+                        <li><a href="subjects.html">Sujets scientifiques</a></li>
+                        <li><a href="emails.html">E-mails professionnels</a></li>
+                        <li><a href="expressions.html">Expressions quotidiennes</a></li>
+                        <li><a href="debats.html">Débats simulés</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="main.html">Accueil</a></li>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 Français Facile. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
+    <script>
+        // Base de données des articles
+        const articlesData = [
+            {
+                id: 1,
+                category: "Biologie",
+                categoryClass: "biology",
+                title: "Théorie de l'évolution",
+                date: "Janvier 2026",
+                readTime: "5 min",
+                content: `
+                    <p><strong>La théorie de l'évolution n'a pas été inventée par Charles Darwin.</strong> Elle est plus ancienne que ça. Cependant, Darwin a permis de la diffuser et de la faire connaître largement, et c'est un fait qu'il faut reconnaître.</p>
+                    
+                    <p>D'un autre côté, quand on parle de l'évolution, on parle d'un phénomène naturel qui existe depuis très longtemps. C'est quelque chose de vérifiable et étudiable. Ce n'est pas une légende ni une simple hypothèse. C'est une théorie scientifique, fondée sur des recherches et des preuves.</p>
+                    
+                    <p>La théorie nous dit simplement que dans la nature, il y a des variations génétiques entre les individus d'une même espèce. Ces différences font que certains individus ont plus de chances de survivre et de se reproduire.</p>
+                    
+                    <p>Par exemple, la couleur de la peau peut aider à survivre. Les personnes avec la peau noire étaient mieux protégées contre certaines conditions climatiques difficiles.</p>
+                    
+                    <p>En plus, grâce aux mutations, qui apparaissent pour différentes raisons, de nouvelles espèces peuvent apparaître. Ce phénomène s'appelle la spéciation. Par exemple, certains animaux ont des pigments particuliers, comme l'ours polaire, le tigre blanc, etc.</p>
+                    
+                    <p>Pour conclure, les Arabes ou d'autres peuples ne rejettent pas la théorie juste parce qu'ils ne la comprennent pas. Il est important de chercher à comprendre la vérité scientifique avant de la critiquer.</p>
+                    
+                    <p><strong>La théorie ne dit pas que l'homme descend du singe.</strong> En réalité, elle montre que tous les êtres vivants ont des ancêtres communs.</p>
+                    
+                    <ul>
+                        <li>Les humains et les chimpanzés ont un ancêtre commun, et notre génome est presque identique.</li>
+                        <li>Cette idée s'applique à tous les autres organismes vivants.</li>
+                    </ul>
+                    
+                    <p>Ainsi, la théorie de l'évolution explique comment la vie change et se diversifie sur Terre grâce à la variation génétique, la sélection naturelle et la spéciation.</p>
+                `,
+                excerpt: "La théorie de l'évolution n'a pas été inventée par Charles Darwin. Elle est plus ancienne que ça. Cependant, Darwin a permis de la diffuser et de la faire connaître largement..."
+            },
+            {
+                id: 2,
+                category: "Astronomie",
+                categoryClass: "astronomy",
+                title: "Les mystères des trous noirs",
+                date: "Décembre 2025",
+                readTime: "4 min",
+                content: `
+                    <p>Parmi les preuves scientifiques, on a la possibilité de suivre le mouvement des objets, cela inclut les planètes, les étoiles, etc. D'ailleurs, c'est comme ça qu'on a identifié un truc incompréhensible, un truc bizarre, et on n'avait pas compris ce que c'était.</p>
+                    
+                    <p>C'est comme ça qu'on a identifié un événement mystérieux. Et pourquoi on l'appelle trou noir ? Parce qu'on a suivi le mouvement de plusieurs planètes et on a remarqué que, en reliant plusieurs images, cela forme un cercle.</p>
+                    
+                    <p>Quand tu regroupes plusieurs images ensemble, tu vois avec l'œil nu que le mouvement est sous forme d'un cercle. Mais on ne comprend pas encore pourquoi. Jusqu'à maintenant, je présente un exemple qui valide la réalité de ce phénomène cosmique.</p>
+                    
+                    <p><strong>Comment on a pris cette photo publiée en 2019 ?</strong> C'est à travers la lumière émise par le gaz à cause de la vitesse rapide de ce mouvement. Et le trou noir, c'est une ombre.</p>
+                    
+                    <h3>Conclusion</h3>
+                    
+                    <p>Le trou noir est une ombre créée par l'absence de lumière au centre. La lumière que l'on voit autour vient des étoiles et du gaz qui tournent très vite autour du trou noir.</p>
+                    
+                    <p>À cause de cette vitesse et de la forte gravité, le gaz devient très chaud et émet de la lumière, formant un anneau lumineux autour de l'ombre du trou noir.</p>
+                `,
+                excerpt: "Parmi les preuves scientifiques, on a la possibilité de suivre le mouvement des objets, cela inclut les planètes, les étoiles, etc. D'ailleurs, c'est comme ça qu'on a identifié un truc incompréhensible..."
+            },
+            {
+                id: 3,
+                category: "Génétique & Psychologie",
+                categoryClass: "genetics",
+                title: "L'intelligence est-elle héréditaire génétiquement ?",
+                date: "Novembre 2025",
+                readTime: "3 min",
+                content: `
+                    <p><strong>Intelligence :</strong> la capacité à comprendre des choses, apprendre, s'adapter et résoudre des problèmes.</p>
+                    
+                    <p><strong>Manière de penser :</strong> comment on utilise l'intelligence (être créatif, logique, analytique, etc.).</p>
+                    
+                    <p>L'intelligence s'hérite partiellement des parents. Chaque gène a un impact minuscule, mais l'effet cumulatif des gènes contribue à un certain niveau de QI.</p>
+                    
+                    <p>Les gènes influencent un peu l'intelligence, mais ne la déterminent pas entièrement. L'environnement joue également un rôle crucial : l'éducation, la nutrition, les expériences de vie, et les opportunités d'apprentissage ont tous un impact significatif sur le développement cognitif.</p>
+                    
+                    <p>Des études sur des jumeaux identiques (qui partagent 100% de leurs gènes) élevés séparément ont montré qu'ils ont des QI plus similaires que des frères et sœurs non jumeaux élevés ensemble. Cela soutient l'idée d'une forte composante génétique.</p>
+                    
+                    <p>Cependant, même avec une prédisposition génétique, sans un environnement stimulant et éducatif, le potentiel intellectuel ne peut pas être pleinement réalisé. À l'inverse, un environnement enrichissant peut améliorer considérablement les capacités cognitives, même en l'absence de prédisposition génétique forte.</p>
+                    
+                    <h3>En résumé :</h3>
+                    
+                    <p>Intelligence ≈ 50% génétique + 50% environnementale. C'est l'interaction complexe entre nos gènes et notre environnement qui façonne finalement nos capacités cognitives.</p>
+                `,
+                excerpt: "Intelligence : la capacité à comprendre des choses, apprendre, s'adapter et résoudre des problèmes. Manière de penser : comment on utilise l'intelligence..."
+            },
+            {
+                id: 4,
+                category: "Génétique & Psychologie",
+                categoryClass: "genetics",
+                title: "L'orientation sexuelle : un mélange complexe de facteurs",
+                date: "Février 2026",
+                readTime: "4 min",
+                content: `
+                    <p><strong>L'orientation sexuelle n'est pas déterminée par un seul facteur unique.</strong> Les scientifiques ont identifié certains marqueurs génétiques plus fréquents chez les personnes homosexuelles, ce qui signifie qu'ils sont associés à l'orientation sexuelle.</p>
+                    
+                    <p>L'orientation sexuelle est le résultat d'un <strong>mélange de facteurs biologiques, génétiques, hormonaux et environnementaux</strong> qui interagissent entre eux. Elle n'est ni totalement innée, ni totalement acquise par le milieu social.</p>
+                    
+                    <p>Les gènes peuvent augmenter légèrement la probabilité d'être attiré par un sexe plutôt qu'un autre, mais ne déterminent pas l'orientation de manière absolue.</p>
+                    
+                    <h3>Les facteurs biologiques internes</h3>
+                    
+                    <p><strong>A. Influences génétiques (héritage ADN)</strong><br>
+                    Les gènes influencent le développement du cerveau et la façon dont il réagit aux hormones.</p>
+                    
+                    <p><strong>B. Hormones prénatales (avant la naissance)</strong><br>
+                    Durant le développement fœtal, il existe une période où les hormones sexuelles (comme la testostérone et les œstrogènes) influencent le développement du cerveau.</p>
+                    
+                    <p><strong>C. Autres influences biologiques internes</strong><br>
+                    Il existe une association statistique observée dans des échantillons humains : plus un garçon a de frères plus âgés, plus il a de chances d'être homosexuel. Cela pourrait être dû à la réponse immunitaire de la mère aux protéines spécifiques du chromosome Y, qui influencerait le développement du cerveau.</p>
+                    
+                    <h3>Facteurs environnementaux</h3>
+                    
+                    <p>L'environnement, notamment les conditions biologiques internes du fœtus, influence l'orientation :</p>
+                    
+                    <ul>
+                        <li>L'exposition hormonale dans l'utérus</li>
+                        <li>Les réponses immunitaires maternelles</li>
+                        <li>La façon dont ces facteurs interagissent avec l'ADN pour organiser le cerveau</li>
+                    </ul>
+                    
+                    <h3>Résumé étape par étape (scientifique)</h3>
+                    
+                    <p><strong>Génétique :</strong> plusieurs gènes augmentent légèrement la probabilité d'une orientation sexuelle particulière, mais aucun seul gène ne détermine tout.</p>
+                    
+                    <p><strong>Hormones prénatales :</strong> les niveaux d'hormones sexuelles dans l'utérus influencent comment le cerveau se structure au début de la vie.</p>
+                    
+                    <p><strong>Interactions biologiques internes :</strong> des effets comme l'ordre de naissance des frères ou l'organisation de certaines zones cérébrales montrent des associations avec l'orientation.</p>
+                    
+                    <p><strong>Épigénétique :</strong> l'environnement prénatal peut modifier l'expression des gènes, influençant le développement cérébral lié à l'attirance.</p>
+                `,
+                excerpt: "L'orientation sexuelle n'est pas déterminée par un seul facteur unique. Les scientifiques ont identifié certains marqueurs génétiques plus fréquents chez les personnes homosexuelles..."
+            },
+            {
+                id: 5,
+                category: "Biologie & Neurosciences",
+                categoryClass: "neuroscience",
+                title: "Sexe biologique et orientation sexuelle : comprendre la différence",
+                date: "Mars 2026",
+                readTime: "3 min",
+                content: `
+                    <p><strong>D'après la science, on peut être d'accord sur la question du genre biologique :</strong> il existe deux sexes biologiques, le masculin et le féminin.</p>
+                    
+                    <p>Sur le plan biologique, le sexe est défini par les chromosomes :</p>
+                    
+                    <ul>
+                        <li><strong>XX</strong> pour le sexe féminin</li>
+                        <li><strong>XY</strong> pour le sexe masculin</li>
+                    </ul>
+                    
+                    <p>Ce sexe biologique est lié aux organes reproducteurs (الأعضاء التناسلية). Jusqu'ici, on parle uniquement du corps.</p>
+                    
+                    <h3>Orientation sexuelle : une distinction importante</h3>
+                    
+                    <p>D'un autre côté, quand on parle de l'orientation sexuelle, c'est différent du genre. L'orientation sexuelle ne concerne pas le sexe biologique, mais l'attirance d'une personne.</p>
+                    
+                    <p>L'orientation sexuelle est liée au développement du cerveau, qui commence pendant la grossesse (الحمل). Selon les études scientifiques, <strong>l'orientation sexuelle n'est pas un choix.</strong></p>
+                    
+                    <h3>Un mélange complexe de facteurs</h3>
+                    
+                    <p>Généralement, l'orientation sexuelle ne dépend pas d'un seul facteur. C'est un mélange de plusieurs facteurs qui interagissent entre eux, notamment :</p>
+                    
+                    <ul>
+                        <li>des facteurs biologiques</li>
+                        <li>des facteurs génétiques</li>
+                        <li>des facteurs hormonaux</li>
+                    </ul>
+                    
+                    <p>Sur le plan biologique, les gènes influencent le développement du cerveau et la manière dont il réagit aux hormones. Sur le plan hormonal, des hormones comme la testostérone et les œstrogènes influencent aussi le développement du cerveau.</p>
+                    
+                    <h3>Conclusion scientifique</h3>
+                    
+                    <p>Ainsi, l'attirance envers un sexe ou un autre n'est pas une décision personnelle, mais le résultat d'un processus biologique complexe, étudié par la science.</p>
+                    
+                    <p>Il est important de distinguer clairement :</p>
+                    
+                    <ul>
+                        <li><strong>Le sexe biologique</strong> : déterminé par les chromosomes et les organes reproducteurs</li>
+                        <li><strong>L'orientation sexuelle</strong> : déterminée par le développement cérébral et des facteurs biologiques complexes</li>
+                    </ul>
+                `,
+                excerpt: "D'après la science, on peut être d'accord sur la question du genre biologique : il existe deux sexes biologiques, le masculin et le féminin..."
+            },
+            {
+                id: 6,
+                category: "Développement Professionnel",
+                categoryClass: "professional",
+                title: "Le français dans le monde professionnel : stratégies d'apprentissage",
+                date: "Avril 2026",
+                readTime: "6 min",
+                content: `
+                    <p>Mon travail nécessite que tu parles correctement le français, car nous avons un contact direct avec les managers et les directeurs de différents pays, notamment la France, le Canada et certains pays d'Afrique. Pour être à l'aise dans ton travail, il faut parler français, surtout que mes objectifs sont de devenir chef de projet, manager, voire CEO pourquoi pas. Il faut donc maîtriser la langue française et être fluent. Mais quelles sont les activités et les bonnes pratiques à suivre pour progresser ? Principalement, nous nous basons sur la lecture et l'écriture sur un sujet précis.</p>
+                    
+                    <p>Si je veux parler d'un sujet, il faut que je lise des articles, que je voie ce que les autres écrivent sur ce sujet, quelles sources fiables ils utilisent, que je synthétise les idées principales, puis que j'essaie de ressortir un résumé qui me donne une compréhension complète, afin de pouvoir ensuite écrire sur ce sujet à ma manière, de façon claire et structurée. Ce que je veux dire, c'est qu'on ne peut pas pratiquer surtout si tu parles sans avoir d'idées solides : les idées viennent uniquement par la lecture.</p>
+                    
+                    <p>Donc, ne minimise pas l'importance de la lecture, même si tu prends du temps et que tu vois que tu lis mais que tu ne parles pas encore de la manière souhaitée. Dans la première étape, il faut stocker les idées dans ton cerveau, dans ta mémoire consciente.</p>
+                    
+                    <p>Deuxièmement, l'écoute : tu dois écouter le maximum possible, même si ça te fatigue, même si tu as l'impression de comprendre mais que quand tu veux parler, tu n'arrives pas à exprimer correctement ce que tu as entendu ou compris. L'écoute sert à familiariser ton cerveau et ta mémoire avec la langue, afin que lorsque quelqu'un parle avec toi, ton cerveau se dise : « Pas de stress, tu es déjà habitué à cette langue », et tu peux te concentrer sur ce que la personne dit, car tu as déjà acquis la confiance que tu vas comprendre.</p>
+                    
+                    <p>La grammaire est la partie la plus difficile si tu veux la comprendre et l'apprendre, car c'est un ensemble de règles qu'il faut mémoriser et savoir quand les appliquer. C'est pour ça que tous les conseils pour apprendre une langue disent : ne te concentre pas trop sur la grammaire quand tu pratiques. L'essentiel est de parler, la grammaire est un processus qui s'affine avec le temps. Ce sont des scénarios qui te permettent de savoir où tu as fait une erreur. Au début, il faut juste commencer à parler ; la grammaire viendra petit à petit.</p>
+                    
+                    <p>La conjugaison vient après la grammaire. C'est plus simple : mémorise les verbes et les patterns de conjugaison. Essaie de pratiquer les différents temps dans tes activités quotidiennes pour que ça reste en mémoire.</p>
+                    
+                    <p>Le vocabulaire dépend à 100 % de la mémorisation, pas seulement de la compréhension. Il n'y a pas de méthode miracle pour retenir tout ce que tu apprends, surtout dans les discussions, que ce soit avec toi-même ou avec quelqu'un d'autre. Donc, quoi que tu fasses pour pratiquer le vocabulaire, ça t'aidera toujours. Tu peux de temps en temps faire un petit récapitulatif de ce que tu as noté, ou créer des cartes (flashcards) pour la mémorisation.</p>
+                    
+                    <p>La lecture et l'écriture sur des sujets complexes t'aident à organiser tes idées et à pratiquer le vocabulaire et la grammaire. C'est une pratique orale indirecte : tu parles avec toi-même en interne, ce qui t'aide à rester calme et concentré, même si tu fais des erreurs ou si tu ne sais pas exactement ce que les autres pourraient dire.</p>
+                    
+                    <h3>Résumé / règle générale :</h3>
+                    
+                    <p>Lire beaucoup → écouter beaucoup → écrire beaucoup<br>
+                    Entre chaque phase, pratique à voix haute pour renforcer ta mémoire et ton expression.</p>
+                `,
+                excerpt: "Mon travail nécessite que tu parles correctement le français, car nous avons un contact direct avec les managers et les directeurs de différents pays, notamment la France, le Canada et certains pays d'Afrique..."
+            },
+            {
+                id: 7,
+                category: "Technologie & Futur du travail",
+                categoryClass: "tech",
+                title: "L'IA ne nous remplace pas, elle change notre posture",
+                date: "Mai 2026",
+                readTime: "3 min",
+                content: `
+                    <p>Le changement qui existe après l'apparition de l'IA, ce n'est pas un remplacement. Ce n'est pas une suppression, ni une disparition de notre rôle. C'est justement un passage clair d'un mode de travail à un autre : on ne se contente plus d'écrire du code ligne par ligne, on orchestre l'IA. On ne perd pas notre place, on change de posture. On passe de l'exécution technique pure à la direction, à l'orientation, à la coordination des outils intelligents pour produire un résultat plus vite et plus efficacement.</p>
+                    
+                    <p>Nous sommes les clients ; sans nous, il n'y a plus d'argent pour eux. Sans utilisateurs, sans professionnels qui intègrent ces outils dans leur quotidien, il n'y a pas de modèle économique viable. Donc ces outils sont faits pour nous. Ils sont conçus pour augmenter notre capacité, pour accélérer la livraison, pour réduire le temps perdu. L'objectif n'est pas de passer des heures à chercher comment faire ceci ou cela, ni de bloquer sur des détails techniques secondaires. L'objectif est d'aller plus vite vers le résultat, avec plus de clarté et moins de friction.</p>
+                    
+                    <p>La décision est déjà prête, la connaissance aussi. Les informations existent, les solutions sont accessibles, les options sont connues. Tout ce qui te reste à faire, c'est de la valider ou non. C'est un choix, pas une contrainte.</p>
+                `,
+                excerpt: "Le changement qui existe après l'apparition de l'IA, ce n'est pas un remplacement. Ce n'est pas une suppression, ni une disparition de notre rôle. C'est justement un passage clair d'un mode de travail à un autre..."
+            },
+            {
+                id: 8,
+                category: "Neurosciences",
+                categoryClass: "neuroscience",
+                title: "Le cerveau et la mémoire : comment mieux apprendre ?",
+                date: "Juin 2026",
+                readTime: "4 min",
+                content: `
+                    <p>Le cerveau pèse 1,4 kg et représente 2% du poids du corps, mais consomme 20% de son énergie. Il contient 86 milliards de neurones connectés par des centaines de billions de synapses. C'est cette connectivité qui lui donne sa puissance.</p>
+                    
+                    <h3>Le cerveau n'est pas figé</h3>
+                    
+                    <p>C'est une des découvertes les plus importantes des neurosciences : le cerveau change constamment selon nos expériences. Ce phénomène s'appelle la plasticité cérébrale. Donald Hebb l'a formulé simplement en 1949 : "Les neurones qui s'activent ensemble se connectent ensemble." Plus tu répètes quelque chose, plus les connexions se renforcent.</p>
+                    
+                    <h3>Comment une information devient un souvenir</h3>
+                    
+                    <p>L'apprentissage passe par trois étapes : l'encodage, la consolidation, puis le stockage à long terme. L'hippocampe est essentiel dans ce processus. On le sait grâce au patient H.M. en 1957 : après avoir perdu son hippocampe, il ne pouvait plus former de nouveaux souvenirs.</p>
+                    
+                    <p>Un souvenir n'est pas stocké dans un seul endroit. C'est plusieurs régions du cerveau qui travaillent ensemble : images, sons, émotions... tout est lié.</p>
+                    
+                    <h3>Le sommeil, c'est quand le cerveau consolide</h3>
+                    
+                    <p>Pendant le sommeil profond, l'hippocampe rejoue les expériences de la journée et les transfère vers le cortex. Sacrifier le sommeil pour réviser plus longtemps est contre-productif. Ce n'est pas une question de discipline, c'est de la biologie.</p>
+                    
+                    <h3>Ce qui fonctionne vraiment</h3>
+                    
+                    <ul>
+                        <li><strong>Répétition espacée :</strong> distribuer l'apprentissage sur plusieurs sessions, pas une seule intensive</li>
+                        <li><strong>Récupération active :</strong> se tester soi-même plutôt que relire passivement — 50% de rétention en plus selon les études</li>
+                        <li><strong>Créer des connexions :</strong> relier la nouvelle information à ce qu'on sait déjà</li>
+                        <li><strong>L'émotion :</strong> associer curiosité ou surprise à ce qu'on apprend ancre mieux le souvenir</li>
+                        <li><strong>L'exercice :</strong> même 20 minutes de marche améliorent la mémoire</li>
+                    </ul>
+                    
+                    <h3>Pour conclure</h3>
+                    
+                    <p>Le cerveau change physiquement à chaque apprentissage. Comprendre comment il fonctionne, c'est un levier concret pour travailler plus intelligemment, pas plus longtemps.</p>
+                `,
+                excerpt: "Le cerveau pèse 1,4 kg et représente 2% du poids du corps, mais consomme 20% de son énergie. Il contient 86 milliards de neurones connectés par des centaines de billions de synapses..."
+            }
+        ];
+
+        // Fonction pour afficher la liste des articles
+        function showArticlesList() {
+            document.getElementById('articlesListView').style.display = 'grid';
+            document.getElementById('articleDetailView').style.display = 'none';
+        }
+
+        // Fonction pour afficher un article spécifique
+        function showArticleDetail(articleId) {
+            const article = articlesData.find(a => a.id === articleId);
+            if (!article) return;
+            
+            document.getElementById('articlesListView').style.display = 'none';
+            document.getElementById('articleDetailView').style.display = 'block';
+            
+            const detailContainer = document.getElementById('articleDetailContainer');
+            detailContainer.innerHTML = renderArticleDetail(article);
+        }
+
+        // Fonction pour générer le HTML d'un article détaillé
+        function renderArticleDetail(article) {
+            return `
+                <div class="article-card ${article.categoryClass}">
+                    <div class="article-header">
+                        <span class="article-category">${article.category}</span>
+                        <h2 class="article-title">${article.title}</h2>
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar"></i> ${article.date}</span>
+                            <span><i class="far fa-clock"></i> Lecture: ${article.readTime}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="article-body">
+                        <div class="article-content">
+                            ${article.content}
+                        </div>
+                    </div>
+                    
+                    <div class="article-footer">
+                        <button class="copy-btn" onclick="copyArticleToClipboard(${article.id})">
+                            <i class="far fa-copy"></i> Copier l'article
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Fonction pour générer la liste des cartes (aperçus)
+        function renderArticlesList() {
+            const container = document.getElementById('articlesListView');
+            
+            if (articlesData.length === 0) {
+                container.innerHTML = '<div class="no-articles">Aucun article disponible</div>';
+                document.getElementById('articleCount').textContent = '0 article';
+                return;
+            }
+            
+            let html = '';
+            
+            articlesData.forEach(article => {
+                html += `
+                    <div class="article-card-preview ${article.categoryClass}" onclick="showArticleDetail(${article.id})">
+                        <div class="preview-header">
+                            <span class="preview-category">${article.category}</span>
+                            <h2 class="preview-title">${article.title}</h2>
+                            <div class="preview-meta">
+                                <span><i class="far fa-calendar"></i> ${article.date}</span>
+                                <span><i class="far fa-clock"></i> ${article.readTime}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="preview-excerpt">
+                            <p>"${article.excerpt}"</p>
+                        </div>
+                        
+                        <div class="preview-footer">
+                            <span class="read-indicator">
+                                Lire l'article <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+            document.getElementById('articleCount').textContent = `${articlesData.length} article${articlesData.length > 1 ? 's' : ''}`;
+        }
+
+        // Fonction pour copier l'article dans le presse-papiers
+        function copyArticleToClipboard(articleId) {
+            const article = articlesData.find(a => a.id === articleId);
+            if (!article) return;
+            
+            // Nettoyer le contenu HTML
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = article.content;
+            const textContent = tempDiv.textContent || tempDiv.innerText || '';
+            
+            const text = `${article.title}\nCatégorie: ${article.category} - ${article.date}\n\n${textContent}`;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Article copié dans le presse-papiers !');
+            }).catch(err => {
+                console.error('Erreur de copie : ', err);
+                alert('Erreur lors de la copie');
+            });
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            renderArticlesList();
+            showArticlesList(); // Afficher la liste par défaut
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('show');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (navMenu.classList.contains('show')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+        
+        // Close mobile menu when clicking a link
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('show')) {
+                    navMenu.classList.remove('show');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    </script>
+</body>
+</html>

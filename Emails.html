@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes E-mails Professionnels - Français Facile</title>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2232/2232688.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --border-radius: 10px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .logo i {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .logo-text span {
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        nav a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .emails-hero {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 70px 0;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 40px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .emails-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .emails-hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+        }
+        
+        /* Tab Bar */
+        .tab-bar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .tab-btn {
+            padding: 12px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .tab-btn.informel {
+            background-color: #d1e7dd;
+            color: #0f5132;
+            border: 2px solid #0f5132;
+        }
+        
+        .tab-btn.formel {
+            background-color: #cfe2ff;
+            color: #084298;
+            border: 2px solid #084298;
+        }
+        
+        .tab-btn.informel.active {
+            background-color: #0f5132;
+            color: white;
+        }
+        
+        .tab-btn.formel.active {
+            background-color: #084298;
+            color: white;
+        }
+        
+        .tab-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Section principale */
+        .emails-section {
+            padding: 20px 0 70px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+        
+        /* Grille 2 colonnes comme les articles */
+        .emails-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+        
+        /* Carte email */
+        .email-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .email-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .email-header {
+            padding: 25px 25px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .email-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .badge-informel {
+            background-color: #d1e7dd;
+            color: #0f5132;
+        }
+        
+        .badge-formel {
+            background-color: #cfe2ff;
+            color: #084298;
+        }
+        
+        .email-object {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+        
+        .email-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .email-meta i {
+            color: var(--primary-color);
+        }
+        
+        .email-body {
+            padding: 25px;
+        }
+        
+        .email-content {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #444;
+            max-height: 300px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .email-content p {
+            margin-bottom: 15px;
+        }
+        
+        .email-content ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .email-content li {
+            margin-bottom: 8px;
+        }
+        
+        .email-footer {
+            padding: 0 25px 25px;
+        }
+        
+        .read-more-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .read-more-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        /* Message quand aucun email */
+        .no-emails {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px;
+            background: white;
+            border-radius: var(--border-radius);
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .emails-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .emails-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            .emails-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .tab-bar {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .tab-btn {
+                width: 200px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .emails-hero {
+                padding: 50px 0;
+            }
+            
+            .email-header, .email-body, .email-footer {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="main.html" class="logo">
+                <i class="fas fa-language"></i>
+                <div class="logo-text">Français<span>Facile</span></div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="main.html">Accueil</a></li>
+                    <li><a href="grammaire.html">Grammaire</a></li>
+                    <li><a href="vocabulaire.html">Vocabulaire</a></li>
+                    <li><a href="subjects.html">Sujets</a></li>
+                    <li><a href="emails.html" class="active">E-mails pro</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="emails-hero">
+        <div class="container hero-content">
+            <h1>Mes E-mails Professionnels</h1>
+            <p>Sélectionnez un style pour voir les e-mails correspondants</p>
+        </div>
+    </section>
+    
+    <!-- Tab Bar -->
+    <div class="container">
+        <div class="tab-bar">
+            <button class="tab-btn informel active" id="tabInformel" onclick="filterEmails('informel')">📝 INFORMEL</button>
+            <button class="tab-btn formel" id="tabFormel" onclick="filterEmails('formel')">📋 FORMEL</button>
+        </div>
+    </div>
+    
+    <!-- Section des e-mails -->
+    <section class="emails-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 id="sectionTitle">E-mails informels</h2>
+            </div>
+            
+            <div class="emails-container" id="emailsContainer">
+                <!-- Les e-mails seront injectés ici par JavaScript -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Français Facile</h3>
+                    <p>Plateforme d'apprentissage du français en ligne. Des ressources gratuites pour tous les niveaux.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Catégories</h3>
+                    <ul>
+                        <li><a href="grammaire.html">Grammaire</a></li>
+                        <li><a href="vocabulaire.html">Vocabulaire</a></li>
+                        <li><a href="subjects.html">Sujets scientifiques</a></li>
+                        <li><a href="emails.html">E-mails professionnels</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="main.html">Accueil</a></li>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 Français Facile. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
+    <script>
+        // Base de données des e-mails (copie exacte de vos textes)
+        const emailsData = [
+            // E-mails INFORMELS (4)
+            {
+                id: 1,
+                type: 'informel',
+                badge: '📝 INFORMEL',
+                object: 'Résumé sprint planning — Sprint 6',
+                content: `<p><strong>Objet :</strong> Résumé sprint planning — Sprint 6</p>
+<p>Bonjour à tous,</p>
+<p>Suite à notre discussion sur le sprint planning, voici ce qui a été discuté.</p>
+<p>L'objectif a été fixé pour finaliser le module de notification, ça dure 2 semaines.</p>
+<p>La répartition des tâches pour les personnes concernées :<br>
+- Moi, je m'occuperai de l'intégration de l'API d'envoi de SMS<br>
+- Karim gère le développement de la logique de relance automatique<br>
+- Sara s'assure que tout est bien testé et que c'est validé pour le déploiement</p>
+<p>On en discutera demain matin à 9h30, j'ai créé une réunion quotidienne — pour les personnes qui n'ont pas encore reçu le lien, faites-moi signe.</p>
+<p>On reste en discussion,<br>Karim</p>`
+            },
+            {
+                id: 3,
+                type: 'informel',
+                badge: '📝 INFORMEL',
+                object: 'Demande de formation Kubernetes',
+                content: `<p><strong>Objet :</strong> Demande de formation Kubernetes</p>
+<p>Bonjour [Prénom],</p>
+<p>Dans le cadre de la migration vers Kubernetes dans 2 mois, je voudrais suivre une formation pour contribuer dès le début.</p>
+<p>J'ai trouvé une formation sur Udemy — 20 heures, 150€. Ça me permettrait de mieux comprendre ce qui va être mis en place et de contribuer à la configuration.</p>
+<p>Je peux organiser mon planning pour ne pas impacter les livrables du mois.</p>
+<p>Tu peux valider ça ? Je reste dispo pour en discuter.</p>
+<p>Cordialement,<br>[Prénom]</p>`
+            },
+            {
+                id: 5,
+                type: 'informel',
+                badge: '📝 INFORMEL',
+                object: 'PR #47 — Revue de code module notification',
+                content: `<p><strong>Objet :</strong> PR #47 — Revue de code module notification</p>
+<p>Salut Karim,</p>
+<p>Je voulais t'informer que la nouvelle fonctionnalité pour le module de notification du dunning system est terminée — voilà le lien de la pull request.</p>
+<p>Je voudrais surtout ton avis sur la logique de relance automatique. J'ai essayé de traiter tous les cas d'erreur, mais j'ai encore quelques doutes sur certains.</p>
+<p>Je propose qu'on fasse un point et qu'on en discute ensemble dès que tu es dispo — dis-moi tes disponibilités !</p>
+<p>Merci d'avance pour ton retour.</p>
+<p>Karim</p>`
+            },
+            {
+                id: 7,
+                type: 'informel',
+                badge: '📝 INFORMEL',
+                object: 'Retour sur vos préoccupations — compatibilité système',
+                content: `<p><strong>Objet :</strong> Retour sur vos préoccupations — compatibilité système</p>
+<p>Salut,</p>
+<p>Merci pour tes retours détaillés — ça nous aide vraiment à cadrer la solution et à s'assurer qu'on va dans la bonne direction. Je comprends tout à fait ton scepticisme, c'est normal à ce stade.</p>
+<p>Je voulais juste clarifier un point important sur notre façon de travailler : les équipes d'Inetum et leurs partenaires à Djibouti sont encore en train de comprendre l'état actuel de chaque partie du système. Ça vaut pour nous, pour notre façon de travailler, et même pour le contexte de Djibouti.</p>
+<p>Sur l'avancement, on a rédigé un document HLD qui donne une vue globale de comment notre système va répondre à vos besoins. C'est une première approche, pas une solution figée — c'est justement pour ça qu'on a prévu des ateliers.</p>
+<p>L'idée c'est d'organiser des sessions de travail entre les équipes d'Inetum et de Djibouti pour valider les points clés et comprendre chaque spécification. Comme ça on pourra finaliser une solution 100% compatible avec votre infrastructure.</p>
+<p>N'hésite pas si tu veux qu'on approfondisse certains points !</p>
+<p>Karim</p>`
+            },
+            
+            // E-mails FORMELS (4)
+            {
+                id: 2,
+                type: 'formel',
+                badge: '📋 FORMEL',
+                object: 'Compte rendu — Réunion Sprint Planning Sprint 6',
+                content: `<p><strong>Objet :</strong> Compte rendu — Réunion Sprint Planning Sprint 6</p>
+<p>Bonjour à tous,</p>
+<p>Suite à notre réunion de sprint planning, veuillez trouver ci-dessous un résumé de ce qui a été discuté.</p>
+<p>L'objectif du sprint 6 a été fixé : finaliser le module de notification dans un délai de 2 semaines.</p>
+<p>Répartition des tâches :<br>
+- Pour ma part, je m'occuperai de l'intégration de l'API d'envoi de SMS.<br>
+- Karim prendra en charge le développement de la logique de relance automatique.<br>
+- Sara s'assurera que tout est bien testé et validé avant le déploiement.</p>
+<p>Nous nous retrouvons demain matin à 9h30 pour le daily meeting. J'ai créé l'invitation — si vous n'avez pas encore reçu le lien, n'hésitez pas à me le faire savoir.</p>
+<p>Je reste disponible pour toute question.</p>
+<p>Cordialement,<br>Karim</p>`
+            },
+            {
+                id: 4,
+                type: 'formel',
+                badge: '📋 FORMEL',
+                object: 'Demande de formation — Kubernetes',
+                content: `<p><strong>Objet :</strong> Demande de formation — Kubernetes</p>
+<p>Bonjour [Prénom du manager],</p>
+<p>Dans le cadre de la migration vers Kubernetes prévue dans 2 mois, et afin de contribuer dès le début du projet, je souhaiterais suivre une formation.</p>
+<p>J'ai identifié une formation sur Udemy d'une durée de 20 heures pour un coût de 150€. Cette montée en compétence me permettrait de mieux comprendre ce qui va être mis en place et de contribuer à la configuration dès le départ.</p>
+<p>Je peux organiser mon planning afin de ne pas impacter les livrables définis pour ce mois.</p>
+<p>Pourriez-vous valider cette demande ? Je reste disponible pour toute clarification.</p>
+<p>Cordialement,<br>[Prénom]</p>`
+            },
+            {
+                id: 6,
+                type: 'formel',
+                badge: '📋 FORMEL',
+                object: 'Demande de revue de code — PR #47 module notification dunning',
+                content: `<p><strong>Objet :</strong> Demande de revue de code — PR #47 module notification dunning</p>
+<p>Bonjour Karim,</p>
+<p>Je vous informe que la nouvelle fonctionnalité pour le module de notification du dunning system est désormais terminée. Veuillez trouver ci-dessous le lien de la pull request.</p>
+<p>Je souhaiterais particulièrement avoir votre avis sur la logique de relance automatique. J'ai essayé de traiter tous les cas d'erreur, mais j'ai encore quelques doutes sur certains points.</p>
+<p>Je propose que nous organisions un point afin d'en discuter ensemble dès que vous serez disponible. Pourriez-vous m'indiquer vos disponibilités ?</p>
+<p>Merci d'avance pour votre retour.</p>
+<p>Cordialement,<br>Karim</p>`
+            },
+            {
+                id: 8,
+                type: 'formel',
+                badge: '📋 FORMEL',
+                object: 'Réponse à vos préoccupations — compatibilité système',
+                content: `<p><strong>Objet :</strong> Réponse à vos préoccupations — compatibilité système</p>
+<p>Bonjour,</p>
+<p>Je vous remercie pour vos observations détaillées qui nous aident à assurer la qualité de notre travail et à concevoir une solution parfaite. Je comprends vos préoccupations et j'accepte tout à fait un certain scepticisme de votre part dans ce contexte.</p>
+<p>Tout d'abord, je souhaite insister sur un point important concernant la méthodologie suivie : les équipes d'Inetum et leurs partenaires à Djibouti sont actuellement en train de comprendre l'état actuel de chaque partie du système. Cela s'applique à notre façon de travailler et au contexte spécifique de Djibouti.</p>
+<p>Concernant l'état d'avancement, nous avons rédigé un document HLD (High-Level Design) qui offre une vision globale de la manière dont notre système répondra à vos besoins. À ce stade, nous proposons une première approche, qui reste bien sûr ouverte à la discussion — c'est précisément l'objectif des ateliers à venir.</p>
+<p>Notre vision est d'organiser des ateliers de travail entre les équipes d'Inetum et de Djibouti afin de valider les points clés et de comprendre chaque spécification. Cela nous permettra de finaliser une solution 100% compatible avec votre infrastructure.</p>
+<p>Je reste à votre disposition pour tout complément d'information.</p>
+<p>Cordialement,<br>Karim</p>`
+            }
+        ];
+
+        // État des e-mails ouverts (pour "Lire la suite / Lire moins")
+        const openStates = {};
+
+        // Fonction pour afficher les e-mails d'un type donné
+        function filterEmails(type) {
+            // Mettre à jour les onglets actifs
+            document.getElementById('tabInformel').classList.remove('active');
+            document.getElementById('tabFormel').classList.remove('active');
+            
+            if (type === 'informel') {
+                document.getElementById('tabInformel').classList.add('active');
+                document.getElementById('sectionTitle').textContent = 'E-mails informels';
+            } else {
+                document.getElementById('tabFormel').classList.add('active');
+                document.getElementById('sectionTitle').textContent = 'E-mails formels';
+            }
+            
+            // Filtrer les e-mails
+            const filteredEmails = emailsData.filter(email => email.type === type);
+            
+            // Générer le HTML
+            const container = document.getElementById('emailsContainer');
+            
+            if (filteredEmails.length === 0) {
+                container.innerHTML = '<div class="no-emails">Aucun e-mail disponible</div>';
+                return;
+            }
+            
+            let html = '';
+            filteredEmails.forEach(email => {
+                const badgeClass = type === 'informel' ? 'badge-informel' : 'badge-formel';
+                const contentId = `email-content-${email.id}`;
+                
+                html += `
+                    <article class="email-card" data-type="${email.type}">
+                        <div class="email-header">
+                            <span class="email-badge ${badgeClass}">${email.badge}</span>
+                            <h2 class="email-object">${email.object}</h2>
+                            <div class="email-meta">
+                                <span><i class="far fa-calendar"></i> [Date]</span>
+                            </div>
+                        </div>
+                        
+                        <div class="email-body">
+                            <div class="email-content" id="${contentId}">
+                                ${email.content}
+                            </div>
+                        </div>
+                        
+                        <div class="email-footer">
+                            <button class="read-more-btn" onclick="toggleEmail(${email.id})" id="btn-${email.id}">Lire la suite</button>
+                        </div>
+                    </article>
+                `;
+            });
+            
+            container.innerHTML = html;
+            
+            // Initialiser tous les e-mails en mode tronqué
+            filteredEmails.forEach(email => {
+                const content = document.getElementById(`email-content-${email.id}`);
+                if (content) {
+                    content.style.maxHeight = '300px';
+                    content.style.overflow = 'hidden';
+                }
+                // Réinitialiser l'état
+                openStates[email.id] = false;
+            });
+        }
+
+        // Fonction pour basculer l'affichage d'un e-mail
+        function toggleEmail(id) {
+            const content = document.getElementById(`email-content-${id}`);
+            const btn = document.getElementById(`btn-${id}`);
+            
+            if (!content || !btn) return;
+            
+            if (openStates[id]) {
+                // Fermer
+                content.style.maxHeight = '300px';
+                content.style.overflow = 'hidden';
+                btn.textContent = 'Lire la suite';
+                openStates[id] = false;
+            } else {
+                // Ouvrir
+                content.style.maxHeight = 'none';
+                content.style.overflow = 'visible';
+                btn.textContent = 'Lire moins';
+                openStates[id] = true;
+            }
+        }
+
+        // Initialisation : afficher les e-mails informels par défaut
+        document.addEventListener('DOMContentLoaded', function() {
+            filterEmails('informel');
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navMenu.classList.contains('show')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('show')) {
+                    navMenu.classList.remove('show');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>

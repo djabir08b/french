@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expressions Réunion - Software Engineering</title>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2232/2232688.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --border-radius: 10px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            
+            --presentateur-bg: #cfe2ff;
+            --presentateur-color: #084298;
+            --presentateur-border: #084298;
+            
+            --invite-bg: #d1e7dd;
+            --invite-color: #0f5132;
+            --invite-border: #0f5132;
+
+            --chitchat-bg: #fff3cd;
+            --chitchat-color: #856404;
+            --chitchat-border: #856404;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .logo i {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .logo-text span {
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        nav a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 40px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-section h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .hero-section h1 i {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 50%;
+        }
+        
+        .hero-section p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+        
+        .date-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 30px 0 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .date-btn {
+            background: white;
+            border: 1px solid #dee2e6;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            color: var(--dark-color);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+        
+        .date-btn:hover {
+            background: #e9ecef;
+        }
+        
+        .date-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .expressions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .expression-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid var(--primary-color);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .expression-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            padding: 18px 22px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .card-date {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .original-expr {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .original-expr i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .card-body {
+            padding: 22px;
+            flex-grow: 1;
+        }
+        
+        .tech-context {
+            background: #f1f4ff;
+            padding: 18px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .tech-context i {
+            color: var(--primary-color);
+            margin-right: 8px;
+            opacity: 0.8;
+        }
+        
+        .tech-context p {
+            color: #1e293b;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .card-footer {
+            padding: 15px 22px;
+            border-top: 1px dashed #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .no-expressions {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px;
+            background: white;
+            border-radius: var(--border-radius);
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .expressions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-code"></i>
+                <div class="logo-text">Tech<span>French</span></div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#" class="active">Expressions</a></li>
+                    <li><a href="#">Débats</a></li>
+                    <li><a href="#">Ressources</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero-section">
+        <div class="container hero-content">
+            <h1><i class="fas fa-comments"></i> Expressions Réunion</h1>
+            <p>Software Engineering · Full Stack · Communication entre collègues</p>
+            <p style="margin-top: 15px; font-size: 1rem; opacity: 0.9;">De l'expression informelle à la formulation technique</p>
+        </div>
+    </section>
+    
+    <section class="container">
+        <div class="date-filter" id="dateFilter">
+            <button class="date-btn active" data-date="all">Toutes les dates</button>
+            <button class="date-btn" data-date="2026-01-26">26-01-2026</button>
+            <button class="date-btn" data-date="2026-01-28">28-01-2026</button>
+            <button class="date-btn" data-date="2026-01-29">29-01-2026</button>
+            <button class="date-btn" data-date="2026-01-31">31-01-2026</button>
+            <button class="date-btn" data-date="2026-02-02">02-02-2026</button>
+            <button class="date-btn" data-date="2026-02-03">03-02-2026</button>
+            <button class="date-btn" data-date="2026-02-13">13-02-2026</button>
+            <button class="date-btn" data-date="2026-02-14">14-02-2026</button>
+            <button class="date-btn" data-date="2026-02-15">15-02-2026</button>
+            <button class="date-btn" data-date="2026-02-17">17-02-2026</button>
+            <button class="date-btn" data-date="2026-02-21">21-02-2026</button>
+        </div>
+        
+        <div id="expressionsGrid" class="expressions-grid"></div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>TechFrench</h3>
+                    <p>Ressources pour maîtriser le français technique en environnement software engineering.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Ressources</h3>
+                    <ul>
+                        <li><a href="#">Expressions réunion</a></li>
+                        <li><a href="#">Débats techniques</a></li>
+                        <li><a href="#">Vocabulaire dev</a></li>
+                        <li><a href="#">Daily meeting</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>À propos</h3>
+                    <ul>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 TechFrench. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
+    <script>
+        // Base de données complète des expressions
+        const expressionsData = [
+            // 26-01-2026
+            { date: "2026-01-26", original: "À quoi ça sert ?", tech: "À quoi ça sert de créer un service séparé pour ça si le monolithe gère déjà ce cas d'usage ?" },
+            { date: "2026-01-26", original: "Pour qu'on soit alignés", tech: "Je t'envoie le schéma d'architecture pour qu'on soit alignés avant la réunion avec le client." },
+            { date: "2026-01-26", original: "Je vais commencer à travailler dessus", tech: "J'ai vu le ticket Jira — je vais commencer à travailler dessus cet après-midi." },
+            { date: "2026-01-26", original: "Il va y avoir des blocages", tech: "Si on n'a pas accès au serveur de staging avant vendredi, il va y avoir des blocages sur toute la chaîne de déploiement." },
+            { date: "2026-01-26", original: "Je vais renvoyer la demande", tech: "Je vais renvoyer la demande d'accès au serveur — ça fait deux jours que l'équipe infra n'a pas répondu." },
+            { date: "2026-01-26", original: "Je n'avais pas idée que ça devait être traité", tech: "Je n'avais pas idée que ce bug devait être traité en priorité — il n'était pas marqué comme critique dans Jira." },
+            { date: "2026-01-26", original: "Je n'avais pas idée de ce qui devait être traité", tech: "Je n'avais pas idée de ce qui devait être traité en premier — le bug de prod ou la migration de base de données." },
+            { date: "2026-01-26", original: "Qu'est-ce qui doit être préparé pour la valorisation ?", tech: "Qu'est-ce qui doit être préparé pour la démo client — les APIs, les maquettes ou les deux ?" },
+            { date: "2026-01-26", original: "Ça concerne du développement ou bien juste une étude ?", tech: "Ce ticket, ça concerne du développement ou bien juste une étude d'impact sur l'architecture existante ?" },
+            { date: "2026-01-26", original: "Qu'est-ce qu'on doit faire concernant le recouvrement ?", tech: "Qu'est-ce qu'on doit faire concernant les données corrompues en prod — on les restaure ou on les recalcule ?" },
+            { date: "2026-01-26", original: "Ça sera la même chose ? C'est du Jasper aussi ?", tech: "Pour ce nouveau module, ça sera la même structure que le précédent ? On utilise le même framework aussi ?" },
+            { date: "2026-01-26", original: "Qu'est-ce qu'on doit faire ?", tech: "Qu'est-ce qu'on doit faire concernant la migration — on attend la validation du client ou on avance ?" },
+            { date: "2026-01-26", original: "Je t'entends mal", tech: "Je t'entends mal — le son se coupe de ton côté, tu peux te reconnecter au call ?" },
+            { date: "2026-01-26", original: "Le son se coupe", tech: "Le son se coupe à chaque fois que tu partages ton écran — essaie de baisser la qualité vidéo." },
+            { date: "2026-01-26", original: "Tu m'entends ?", tech: "Tu m'entends ? Je viens de partager mon écran pour te montrer le bug en prod." },
+            { date: "2026-01-26", original: "Il y a beaucoup de choses à faire", tech: "Il y a beaucoup de choses à faire sur ce sprint — il faudrait qu'on priorise ensemble avant de commencer." },
+            { date: "2026-01-26", original: "Ce n'est pas compliqué, non ?", tech: "Le endpoint est déjà documenté dans Swagger — ce n'est pas compliqué, non ? Il suffit de le tester avec Postman." },
+            { date: "2026-01-26", original: "Normalement, de quoi tu t'occupes ?", tech: "Normalement, de quoi tu t'occupes sur ce projet — tu es côté frontend, backend ou DevOps ?" },
+            { date: "2026-01-26", original: "Pour Jasper, faut-il installer un outil ou est-ce que Jasper est lui-même l'outil à installer ?", tech: "Pour ce module de reporting, faut-il configurer une dépendance externe ou est-ce que la librairie est déjà embarquée dans le projet ?" },
+            
+            // 28-01-2026
+            { date: "2026-01-28", original: "Jusqu'aux ateliers, on en discutera avec eux en détail", tech: "Jusqu'au prochain sprint planning, on en discutera avec l'équipe en détail — pour le moment on continue sur la base actuelle." },
+            { date: "2026-01-28", original: "Désolé, je reçois un appel, je reviens tout de suite", tech: "Désolé, je reçois un message urgent de l'infra, je reviens tout de suite — ne fermez pas le call." },
+            { date: "2026-01-28", original: "Quand on reçoit depuis le fournisseur, on les charge vers le CRM", tech: "Quand on reçoit les fichiers XML depuis l'API externe, on les parse et on les charge directement dans la base de données." },
+            
+            // 29-01-2026
+            { date: "2026-01-29", original: "Je n'ai pas encore commencé. Normalement, je dois fixer une date pour me mettre la pression", tech: "Je n'ai pas encore commencé la migration. Normalement, je dois fixer une date de livraison pour me mettre la pression et avancer sérieusement." },
+            { date: "2026-01-29", original: "Normalement, on va garder la même structure. Il n'y a pas de raison de la changer", tech: "Normalement, on va garder la même structure de repo que dans le projet précédent — il n'y a pas de raison de la changer si elle fonctionne." },
+            { date: "2026-01-29", original: "Normalement, si quelqu'un me parle mal, je lui dirai : non, garde ça pour toi", tech: "Normalement, si quelqu'un remet en question mes choix techniques sans argument, je lui dis clairement : non, garde ça pour toi, amène des données à la place." },
+            { date: "2026-01-29", original: "Juste pour que tu le saches, je maîtrise le dev, le DevOps et l'IA", tech: "Juste pour que tu le saches, je m'occupe à la fois du dev et du DevOps sur ce projet — c'est pour ça que je vois les deux côtés du problème." },
+            { date: "2026-01-29", original: "Toutes les technos dont tu as parlé, juste pour rester clair, je les connais", tech: "Toutes les technos dont tu as parlé — Kafka, Kubernetes, Terraform — juste pour rester clair, je les connais et je les maîtrise déjà." },
+            { date: "2026-01-29", original: "Ni l'un ni l'autre", tech: "Ni l'un ni l'autre — ce n'est pas un problème de frontend ni de backend, c'est un problème de configuration réseau entre les deux." },
+            { date: "2026-01-29", original: "Je ne sais pas quoi faire", tech: "Ils m'ont demandé de configurer le SSO avec Keycloak, mais je ne sais pas quoi faire — tu as déjà travaillé avec cet outil ?" },
+            { date: "2026-01-29", original: "Concernant les tickets Jira ? Oui, qu'en est-il ?", tech: "Concernant les tickets non assignés dans le backlog — qu'en est-il ? On les redistribue ou on les reporte au prochain sprint ?" },
+            { date: "2026-01-29", original: "Normalement, les documents LLD sont suspendus jusqu'aux ateliers", tech: "Normalement, les spécifications détaillées sont suspendues jusqu'aux ateliers avec le client — pour le moment la priorité, ce sont les documents d'architecture HLD." },
+            { date: "2026-01-29", original: "On ne veut pas que ce soit entièrement dépendant", tech: "On ne veut pas que le système soit entièrement dépendant d'un seul cloud provider — il faut une stratégie multi-cloud dès le départ." },
+            { date: "2026-01-29", original: "Inetum a déjà une stratégie. Est-ce qu'elle a déjà un plan ?", tech: "L'équipe a déjà une stratégie pour intégrer l'IA dans le pipeline CI/CD. Est-ce qu'elle a déjà un plan pour préparer l'infrastructure en interne pour tout ça ?" },
+            { date: "2026-01-29", original: "Je veux vous remercier pour ce geste", tech: "Je veux remercier toute l'équipe pour le support pendant la semaine de mise en prod — c'était un vrai travail collectif." },
+            { date: "2026-01-29", original: "Je ne me sens pas bien", tech: "Je ne me sens pas bien aujourd'hui — je vais travailler en remote et couper le micro pendant les calls si ça ne dérange pas." },
+            { date: "2026-01-29", original: "Je n'ai pas bien dormi", tech: "Je n'ai pas bien dormi — il y avait une alerte de monitoring à 3h du matin qui m'a réveillé." },
+            { date: "2026-01-29", original: "Ça m'a pris un peu de temps, surtout sur la partie… si je me rappelle bien", tech: "Ça m'a pris un peu de temps, surtout sur la partie authentification — si je me rappelle bien, c'était un problème de CORS, non, en fait c'était le token qui expirait trop vite." },
+            { date: "2026-01-29", original: "As-tu un moment qui te convient ? Quelles sont tes disponibilités ?", tech: "Je ne sais pas si tu es dispo pour un petit call demain sur l'architecture Kafka — quelles sont tes disponibilités ?" },
+            { date: "2026-01-29", original: "Même si ce n'est pas mon domaine, je l'ai choisi pour comprendre", tech: "Même si la facturation n'est pas mon domaine principal, je l'ai choisi pour comprendre le métier et comment le système est organisé." },
+            { date: "2026-01-29", original: "Mon intégration s'est bien passée grâce à l'équipe", tech: "Mon intégration dans le projet s'est bien passée grâce à l'équipe, qui m'a facilité la prise en main et m'a accueilli comme un des leurs." },
+            { date: "2026-01-29", original: "Non, non, ça n'a rien à voir", tech: "Non, non, ça n'a rien à voir avec le cache — le problème vient directement de la requête SQL qui timeout." },
+            { date: "2026-01-29", original: "C'est une séquence où tout est interconnecté", tech: "C'est une séquence où tout est interconnecté — si le service d'auth tombe, tout le reste tombe avec lui, parce que chaque appel passe par lui." },
+            { date: "2026-01-29", original: "Si ton planning est chargé, je ferai un premier point, tu me définis juste le cadre", tech: "Si ton planning est chargé, je ferai un premier point avec elle — tu me définis juste le cadre : c'est une étude, du dev, ou une validation HLD ?" },
+            { date: "2026-01-29", original: "Par exemple, cette discussion porte sur quoi exactement ?", tech: "Par exemple, cette réunion porte sur la configuration de Kafka, le plan de migration des données, ou quoi exactement ?" },
+            { date: "2026-01-29", original: "Bien sûr, je te tiendrai au courant, je t'enverrai un compte rendu", tech: "Bien sûr, je te tiendrai au courant — je t'enverrai un compte rendu après le call avec l'équipe infra." },
+            { date: "2026-01-29", original: "Si ça te convient, je peux lancer un call", tech: "Si ça te convient, je peux lancer un call avec elle maintenant en attendant ta disponibilité pour un deuxième point." },
+            { date: "2026-01-29", original: "Il faut faire passer ce message au plus vite / dès que possible", tech: "Il faudrait planifier ce point technique au plus tôt — la réunion devrait être programmée dès que possible avant le sprint." },
+            { date: "2026-01-29", original: "Il faudrait... Il serait nécessaire de... Il fallait...", tech: "Il faudrait revoir l'architecture avant la livraison. Il serait nécessaire de documenter chaque décision technique. Il fallait tester la montée en charge avant de partir en prod." },
+            { date: "2026-01-29", original: "Vers où dois-je déplacer ce dossier ? Je crée un dossier séparé ?", tech: "Vers où dois-je déplacer ce module dans le repo ? Je crée un package séparé ou je l'intègre dans le service existant ?" },
+            { date: "2026-01-29", original: "Les données doivent s'afficher de manière dynamique. Quel que soit le nombre", tech: "Les données doivent s'afficher de manière dynamique et automatique — quel que soit le nombre de lignes en base, le tableau doit se générer correctement." },
+            { date: "2026-01-29", original: "Je ne sais pas si tu as déjà vu un cas d'usage comme celui-là", tech: "Les données ne s'affichent pas correctement sur mobile — je ne sais pas si tu as déjà vu un cas d'usage comme celui-là avec ce framework." },
+            { date: "2026-01-29", original: "Un cas d'usage consiste à afficher le détail de chaque contrat par page", tech: "Un cas d'usage consiste à afficher le détail de chaque transaction par page, de manière automatique et paginée." },
+            { date: "2026-01-29", original: "Non, la tâche est à moi, c'est moi qui vais m'en occuper", tech: "Non, ce ticket est à moi — c'est moi qui vais m'en occuper, il n'y a pas eu de réassignation dans Jira." },
+            { date: "2026-01-29", original: "Mettons les choses au clair une fois pour toutes", tech: "Mettons les choses au clair une fois pour toutes : le frontend ne fait jamais de logique métier — c'est la responsabilité du backend." },
+            { date: "2026-01-29", original: "Je tiens à vous informer / Je voulais vous signaler", tech: "Je tiens à vous informer qu'il y a un bug critique en production sur le module de paiement — il faudrait le traiter en priorité." },
+            { date: "2026-01-29", original: "Pour expliquer une intention passée → je voulais dire. Pour une intention future/polie → je voudrais dire", tech: "Je voulais dire que le service était instable — pas qu'il était inutilisable. Je voudrais dire qu'on devrait revoir cette décision avant de continuer." },
+            
+            // 31-01-2026
+            { date: "2026-01-31", original: "12 heures peuvent suffire", tech: "Pour un correctif bien préparé, 12 heures peuvent suffire pour tester, valider et déployer en production sans risque." },
+            { date: "2026-01-31", original: "Lis chaque point et liste-les tous en une seule fois", tech: "Parcours chaque log d'erreur et liste-les tous en une seule fois pour qu'on puisse prioriser rapidement." },
+            { date: "2026-01-31", original: "Lis chaque point pour comprendre la sagesse et les bonnes pratiques", tech: "Lis chaque section de la doc d'architecture en une seule fois pour comprendre les décisions prises et les bonnes pratiques à appliquer." },
+            { date: "2026-01-31", original: "Ne me donne pas une définition de ton côté, base-toi sur le détail discuté", tech: "Ne me donne pas ta propre interprétation — base-toi sur les spécifications discutées dans le dernier atelier avec le client." },
+            
+            // 02-02-2026
+            { date: "2026-02-02", original: "Le nom exact des balises devrait être facile à changer, l'essentiel étant la mise en place", tech: "Le nom exact des variables peut changer plus tard — l'essentiel c'est que la structure du contrat d'API soit bien en place dès maintenant." },
+            { date: "2026-02-02", original: "Juste pour qu'on soit alignés. On était un peu flous à ce sujet", tech: "Juste pour qu'on soit alignés — toi et moi, on était un peu flous sur le scope du ticket, il faudrait qu'on le clarifie avec le PO." },
+            { date: "2026-02-02", original: "J'attends le point avec X pour qu'il me fournisse les docs", tech: "J'attends le point avec l'équipe infra pour qu'ils me fournissent les accès et la documentation sur lesquels je peux me baser." },
+            { date: "2026-02-02", original: "Principalement, je vais me concentrer sur... on peut estimer environ X jours", tech: "Principalement, je vais me concentrer sur la partie API Gateway — il y a beaucoup de scénarios à couvrir, on peut estimer environ 4 jours." },
+            { date: "2026-02-02", original: "C'était un problème, car je n'avais pas accès, c'est pourquoi on n'a pas avancé", tech: "C'était un problème, car je n'avais pas accès au serveur de staging — c'est pourquoi on n'a pas avancé sur cette tâche depuis lundi." },
+            { date: "2026-02-02", original: "Tu peux essayer le premier essai en attendant qu'on soit sûr", tech: "Tu peux lancer un premier test en attendant qu'on soit sûr de la structure définitive du JSON de retour." },
+            { date: "2026-02-02", original: "Car je ne le savais pas", tech: "Je vais demander à l'équipe DevOps comment configurer les variables d'environnement en prod, car je ne le savais pas." },
+            { date: "2026-02-02", original: "Les use cases à tester sont X, et non Y", tech: "Les use cases à tester sont les APIs côté consommateur, et non les APIs internes entre microservices." },
+            { date: "2026-02-02", original: "Les fichiers sont non téléchargeables", tech: "Les fichiers de logs sont non accessibles depuis mon compte — je n'ai pas les permissions suffisantes." },
+            { date: "2026-02-02", original: "Je pense qu'il voulait dire X, et non Y", tech: "Je pense qu'il voulait dire les APIs appelées par le frontend, et non celles appelées entre services internes." },
+            { date: "2026-02-02", original: "Je vais te dire ce que j'ai compris afin de gagner du temps", tech: "Oui, j'ai lu la documentation. J'ai une compréhension globale — je vais te dire ce que j'ai compris afin de gagner du temps et passer à autre chose." },
+            { date: "2026-02-02", original: "De manière générale, X gère... tandis que Y gère...", tech: "De manière générale, le service A gère les commandes et la facturation, tandis que le service B gère le stock et les notifications." },
+            { date: "2026-02-02", original: "Il y a beaucoup de détails, n'est-ce pas ? Mais le processus est simple à comprendre", tech: "Il y a beaucoup de détails dans la spec, n'est-ce pas ? Mais le flux en général est simple à comprendre une fois qu'on a le schéma sous les yeux." },
+            { date: "2026-02-02", original: "On n'a pas un environnement de test pour voir comment ça fonctionne ?", tech: "Normalement, on n'a pas un environnement de test dédié pour valider ce scénario ? Je dois tester directement en staging ?" },
+            { date: "2026-02-02", original: "Préparer pour chaque API les paramètres, les arguments, le type de retour", tech: "Normalement, ce qu'il doit faire c'est documenter pour chaque endpoint les paramètres, les arguments, le type de retour et les cas d'erreur." },
+            { date: "2026-02-02", original: "Je te donnerai un article, et tu me le rendras tel quel", tech: "Je te donnerai le composant React tel quel — tu le testes et tu me le rends avec tes observations, sans le modifier." },
+            
+            // 03-02-2026
+            { date: "2026-02-03", original: "J'ai payé la voiture en une seule fois", tech: "J'ai livré toute la feature en une seule fois — refactorisation, tests et documentation inclus." },
+            { date: "2026-02-03", original: "Je m'occupe à la fois de DevOps et de dev", tech: "Je m'occupe à la fois du DevOps et du développement sur ce projet — c'est pour ça que je vois les deux côtés du problème." },
+            { date: "2026-02-03", original: "Je fais du DevOps et du dev en même temps", tech: "Je fais du DevOps et du dev en même temps — ce n'est pas toujours facile, mais ça me donne une vision complète du système." },
+            { date: "2026-02-03", original: "C'est ça que je voulais dire", tech: "C'est ça que je voulais dire — pas qu'on supprime le service, mais qu'on le refactorise pour le rendre indépendant." },
+            { date: "2026-02-03", original: "Il faut que tu veuilles changer", tech: "Il faut que tu veuilles changer ta façon de coder — sans tests unitaires, on ne peut pas garantir la stabilité du système." },
+            { date: "2026-02-03", original: "Il faut que tu saches la vérité", tech: "Il faut que tu saches la vérité : ce module n'est pas stable — si on le livre cette semaine, on va avoir des incidents en prod." },
+            { date: "2026-02-03", original: "Il faut que tu viennes avec nous", tech: "Il faut que tu viennes avec nous à la réunion avec le client — ton expertise sur la partie API est indispensable." },
+            { date: "2026-02-03", original: "Il faut que tu prennes une décision", tech: "Il faut que tu prennes une décision sur la stack avant vendredi — on ne peut pas commencer le développement sans ça." },
+            { date: "2026-02-03", original: "Il faut que tu dises la vérité", tech: "Il faut que tu dises la vérité au client sur les délais — promettre une livraison en deux semaines n'est pas réaliste." },
+            
+            // 13-02-2026
+            { date: "2026-02-13", original: "Ce qui me met parfois en retard", tech: "Les revues de code non planifiées en début de journée, c'est ce qui me met parfois en retard sur mes propres tâches." },
+            { date: "2026-02-13", original: "Je n'aime pas manger le matin", tech: "Je n'aime pas commencer par les réunions le matin — je préfère coder d'abord quand mon niveau de concentration est au maximum." },
+            { date: "2026-02-13", original: "Je n'aime pas marcher le matin", tech: "Je n'aime pas traiter les tickets urgents le matin sans contexte — j'ai besoin de 15 minutes pour relire l'historique avant d'intervenir." },
+            { date: "2026-02-13", original: "Je n'arrive plus fatigué", tech: "Depuis que j'ai automatisé les tâches répétitives avec des scripts, je n'arrive plus fatigué en fin de sprint." },
+            { date: "2026-02-13", original: "Je vais me coucher", tech: "Je vais terminer ce dernier bug fix et après je coupe — il est déjà 22h et demain on a le daily à 9h." },
+            { date: "2026-02-13", original: "Je suis assez nouveau dans le domaine des télécoms", tech: "Je suis assez nouveau dans ce projet, c'est pourquoi je pose beaucoup de questions — mais je progresse vite." },
+            
+            // 14-02-2026
+            { date: "2026-02-14", original: "On devrait tous être d'accord", tech: "On devrait tous être d'accord sur un point : sans tests d'intégration, on ne peut pas valider une release en toute confiance." },
+            { date: "2026-02-14", original: "J'ai essayé, sans succès, ça n'a pas marché", tech: "J'ai essayé de reproduire le bug en local, sans succès — ça n'a pas marché, le comportement est différent de la prod." },
+            { date: "2026-02-14", original: "Donne-moi seulement ce qu'il est important de savoir", tech: "À partir de cette documentation, donne-moi seulement ce qu'il est important de savoir pour intégrer ce service — le reste je lirai plus tard." },
+            { date: "2026-02-14", original: "Reformule-le en gardant tout ce qui est important", tech: "Reformule cette spec technique en gardant tout ce qui est important pour le développeur, sans le jargon business." },
+            { date: "2026-02-14", original: "Je me considère toujours comme nouveau, même après un an", tech: "Je me considère toujours comme nouveau sur ce projet, même après presque un an — il y a encore beaucoup de contexte métier que je n'ai pas." },
+            { date: "2026-02-14", original: "J'ai pris au sérieux ce qu'on m'a demandé", tech: "J'ai pris au sérieux ce qu'on m'a demandé — j'ai documenté chaque endpoint et testé tous les cas limites avant de livrer." },
+            { date: "2026-02-14", original: "Je délègue afin de me concentrer sur les tâches critiques", tech: "Je délègue les tâches répétitives à mon collègue junior afin de me concentrer sur les parties critiques de l'architecture." },
+            { date: "2026-02-14", original: "Je prends des notes afin de ne rien oublier", tech: "Je prends des notes pendant chaque réunion technique afin de ne rien oublier — je t'enverrai un compte rendu après." },
+            { date: "2026-02-14", original: "Je lui explique afin qu'il puisse avancer", tech: "Je lui explique l'architecture du service afin qu'il puisse avancer sur son ticket sans être bloqué." },
+            { date: "2026-02-14", original: "J'ai fini mon travail tôt cette fois", tech: "J'ai fini mon implémentation tôt cette fois — j'ai pu commencer les tests dès le début de l'après-midi." },
+            { date: "2026-02-14", original: "On a pris ça sérieusement", tech: "On a pris la dette technique sérieusement ce sprint — on a alloué 30% du temps au refactoring." },
+            { date: "2026-02-14", original: "Je suis arrivé en retard à cause du trafic", tech: "Je suis arrivé en retard au daily à cause d'une alerte de monitoring qui m'a pris plus de temps que prévu." },
+            { date: "2026-02-14", original: "J'aime mon travail, car les problèmes sont intéressants", tech: "J'aime mon travail, car les problèmes sont complexes et chaque bug résolu m'apprend quelque chose de nouveau." },
+            { date: "2026-02-14", original: "Je progresse vite grâce à mes collègues qui m'aident", tech: "Je progresse vite grâce à mes collègues qui partagent leur contexte et prennent le temps d'expliquer l'architecture du système." },
+            { date: "2026-02-14", original: "Je pose beaucoup de questions parce que je suis nouveau", tech: "Je pose beaucoup de questions parce que je suis assez nouveau sur ce projet — mais c'est comme ça qu'on progresse vite." },
+            { date: "2026-02-14", original: "Si je me réveille tard, je vais arriver en retard", tech: "Si je ne teste pas en local avant de pusher, je vais casser le build et bloquer toute l'équipe." },
+            { date: "2026-02-14", original: "Si je pratique davantage, je vais devenir beaucoup mieux", tech: "Si je pratique davantage sur Kubernetes, je vais devenir beaucoup mieux et plus autonome sur les déploiements." },
+            { date: "2026-02-14", original: "Je viens de rentrer chez moi, je suis assez fatigué", tech: "Je viens de terminer la session de debug, je suis assez fatigué — je reprends demain matin avec un regard neuf." },
+            { date: "2026-02-14", original: "Je termine le code, ensuite je fais les tests", tech: "Je termine l'implémentation, ensuite je fais les tests — dans cet ordre, pas l'inverse." },
+            { date: "2026-02-14", original: "J'aime mon travail, mais les réunions sont parfois trop longues", tech: "J'aime mon travail, mais les réunions de synchronisation sont parfois trop longues — on pourrait les remplacer par un message async." },
+            { date: "2026-02-14", original: "Je suis assez nouveau dans l'équipe, c'est pourquoi je pose beaucoup de questions", tech: "Je suis assez nouveau dans l'équipe, c'est pourquoi je pose beaucoup de questions — même après presque un an, il y a encore du contexte que je découvre." },
+            { date: "2026-02-14", original: "Je délègue mes tâches répétitives, puis je reprends les critiques", tech: "Je délègue mes tâches répétitives à mon collègue junior, puis je reprends les parties critiques qui nécessitent plus d'expertise." },
+            { date: "2026-02-14", original: "Je me réveille, m'habille et prends ma trottinette pour aller au bureau", tech: "Je démarre mon ordinateur, je lis mes emails et je rejoins le daily — c'est ma routine chaque matin en arrivant." },
+            { date: "2026-02-14", original: "Depuis quand utilises-tu ce framework ?", tech: "Depuis quand utilises-tu ce framework ? J'aimerais savoir si tu as déjà eu des problèmes de performance avec lui en production." },
+            { date: "2026-02-14", original: "Je documente mon code afin que mon collègue comprenne", tech: "Je documente mon code afin que mon collègue puisse reprendre sans avoir besoin de me demander à chaque fois." },
+            { date: "2026-02-14", original: "Je pars tôt afin d'éviter le trafic", tech: "Je pousse mon code tôt le matin afin d'éviter les conflits de merge avec les autres branches de l'équipe." },
+            { date: "2026-02-14", original: "Je pose des questions afin de mieux comprendre l'architecture", tech: "Je pose des questions lors des réunions afin de mieux comprendre les choix d'architecture et les contraintes métier." },
+            { date: "2026-02-14", original: "En ce qui concerne l'application RM, je souhaitais signaler un bug", tech: "En ce qui concerne le service de facturation, je souhaitais signaler un bug en production qui impacte les calculs de TVA." },
+            { date: "2026-02-14", original: "Je tenais à mentionner qu'il y a une architecture qui semble plus adaptée", tech: "Je tenais à mentionner qu'il y a une approche event-driven qui semble plus adaptée à notre cas d'usage que l'architecture REST actuelle." },
+            { date: "2026-02-14", original: "Je voudrais porter à votre attention que les réunions prennent beaucoup de temps", tech: "Je voudrais porter à votre attention que les réunions de synchronisation prennent beaucoup de temps — on devrait en réduire la fréquence." },
+            
+            // 15-02-2026
+            { date: "2026-02-15", original: "Ton travail se limite à la correction", tech: "Ta responsabilité sur ce ticket se limite à la correction du bug — la refactorisation complète sera faite dans un sprint dédié." },
+            { date: "2026-02-15", original: "On passe maintenant à un autre sujet", tech: "On a terminé la discussion sur le déploiement — on passe maintenant à un autre sujet : la revue d'architecture du module de paiement." },
+            { date: "2026-02-15", original: "Je voudrais tous les retenir en mémoire", tech: "Je documente toutes ces décisions techniques afin de les retenir et de pouvoir les expliquer lors des prochaines réunions." },
+            
+            // 17-02-2026
+            { date: "2026-02-17", original: "Elle se présente comme une journaliste", tech: "Il se présente comme expert DevOps, mais en réunion il n'a pas pu répondre à des questions basiques sur Kubernetes." },
+            { date: "2026-02-17", original: "Jeter la suspicion sur moi", tech: "Ce n'est pas juste de jeter la suspicion sur mon code sans avoir regardé les logs — la cause de l'incident n'est pas encore identifiée." },
+            { date: "2026-02-17", original: "La personne avec qui j'ai affaire", tech: "La personne avec qui j'ai affaire dans ce projet a tendance à valider les specs sans les lire — ça crée des malentendus en cours de développement." },
+            { date: "2026-02-17", original: "Pour qu'on soit clair", tech: "Pour qu'on soit clair : le service de notification ne doit pas appeler directement la base de données — il passe obligatoirement par l'API." },
+            { date: "2026-02-17", original: "Il ne s'agit pas de...", tech: "Il ne s'agit pas de réécrire tout le service — il s'agit juste d'isoler le problème et de le corriger proprement." },
+            { date: "2026-02-17", original: "Je ne m'associe pas à ce discours", tech: "Je ne m'associe pas à ce discours : dire que les tests ralentissent le développement, c'est une vision à court terme qui coûte cher sur le long terme." },
+            { date: "2026-02-17", original: "Je suis le garant", tech: "Je suis le garant de la qualité sur ce module — c'est pourquoi je bloque la PR tant que les tests de régression ne passent pas." },
+            { date: "2026-02-17", original: "Si tel est le cas", tech: "Si tel est le cas — si le service répond en plus de 2 secondes — alors il faut revoir le design de la requête SQL." },
+            { date: "2026-02-17", original: "Je manque de logique", tech: "Là je manque de logique dans mon raisonnement — laisse-moi reprendre le schéma depuis le début pour être sûr de ce que j'avance." },
+            { date: "2026-02-17", original: "Il n'a pas osé", tech: "Il n'a pas osé dire que le module n'était pas prêt devant le client — alors qu'on savait tous en interne que ce n'était pas le cas." },
+            { date: "2026-02-17", original: "Votre interprétation est sélective, partielle et partiale", tech: "Ton interprétation de la spec est sélective, partielle et partiale — tu n'as pris en compte que le cas nominal, pas les cas d'erreur." },
+            { date: "2026-02-17", original: "Comment dirais-je ?", tech: "Comment dirais-je… le service fonctionne, mais il fonctionne mal — les temps de réponse sont trois fois supérieurs à ce qu'on avait promis." },
+            { date: "2026-02-17", original: "Cela met en évidence le caractère liberticide", tech: "Ce processus de validation bloquant met en évidence le caractère contre-productif de notre workflow actuel — ça freine toute l'équipe." },
+            { date: "2026-02-17", original: "Vous interprétez en choisissant ce qui vous arrange", tech: "Tu interprètes les résultats des benchmarks en choisissant uniquement les métriques qui montrent ce que tu veux voir." },
+            { date: "2026-02-17", original: "Comment dire ?", tech: "Comment dire… le code fonctionne, mais personne d'autre que toi ne peut le lire — il faudrait vraiment le refactoriser." },
+            { date: "2026-02-17", original: "Ça montre à quel point", tech: "Ça montre à quel point notre process de déploiement est fragile — un seul changement de config a suffi pour tout casser en prod." },
+            { date: "2026-02-17", original: "Je n'ai pas cédé", tech: "Je n'ai pas cédé sur la revue de code — même sous la pression du client, j'ai maintenu que le module devait être testé avant livraison." },
+            
+            // 21-02-2026
+            { date: "2026-02-21", original: "Ce qu'il dit, ce n'est pas ce que tu dis", tech: "Ce qu'il dit dans la doc technique, ce n'est pas ce que tu dis en réunion — il faut qu'on clarifie avant d'avancer." },
+            { date: "2026-02-21", original: "Je dirais : qu'est-ce que c'est ça ?", tech: "En voyant ce code en prod, je dirais : qu'est-ce que c'est ça ? Il n'y a aucun commentaire, aucun test, aucune doc." },
+            { date: "2026-02-21", original: "J'ai une cohérence", tech: "J'ai une cohérence dans mes choix techniques — je privilégie toujours la maintenabilité sur la performance à court terme." },
+            { date: "2026-02-21", original: "Dans ce débat, la pluralité des voix permet de mieux comprendre", tech: "Dans cette discussion d'architecture, la pluralité des points de vue nous permet de mieux comprendre les trade-offs avant de décider." },
+            { date: "2026-02-21", original: "On a énormément évolué", tech: "Sur ce projet, on a énormément évolué depuis le début — l'architecture qu'on avait au départ n'a plus rien à voir avec ce qu'on a aujourd'hui." },
+            { date: "2026-02-21", original: "Mais c'est lié", tech: "Mais c'est lié — le problème de performance qu'on voit côté API est directement lié au manque d'index sur la base de données." },
+            { date: "2026-02-21", original: "C'est très dur", tech: "C'est très dur de maintenir la qualité du code quand on est sous pression de livraison permanente — mais c'est indispensable." },
+            { date: "2026-02-21", original: "C'est une position indéfendable", tech: "Dire que les tests en prod remplacent les tests unitaires, c'est une position indéfendable — on ne peut pas valider une architecture comme ça." },
+            { date: "2026-02-21", original: "Celui qui promeut X ne peut pas parler de Y", tech: "Celui qui dit qu'on n'a pas le temps pour la revue de code ne peut pas parler de qualité logicielle — les deux sont directement liés." },
+            { date: "2026-02-21", original: "Vous avez des torts", tech: "On a des torts collectivement — on a validé une architecture sans avoir testé la montée en charge, et on le paie maintenant." },
+            { date: "2026-02-21", original: "La marginalisation des minorités empêche l'égalité des chances", tech: "La marginalisation des développeurs juniors dans les décisions d'architecture empêche l'équipe de bénéficier de points de vue nouveaux et pertinents." },
+            { date: "2026-02-21", original: "Ce que je fais, à savoir X, me passionne / prend du temps / nécessite de la patience", tech: "Ce que je fais, à savoir gérer à la fois le dev et le DevOps, prend beaucoup de temps — mais c'est ce qui me donne une vision complète du système." },
+            { date: "2026-02-21", original: "On en vient toujours aux mêmes conclusions", tech: "On en vient toujours aux mêmes conclusions après ces discussions : le problème de fond, c'est qu'on n'a pas assez de tests d'intégration." },
+            { date: "2026-02-21", original: "Tu m'accuses à tort", tech: "Tu m'accuses à tort — ce n'est pas ma branche qui a cassé le build, vérifie l'historique Git avant d'affirmer quoi que ce soit." },
+            { date: "2026-02-21", original: "Me blâmes-tu pour cette erreur ?", tech: "Me blâmes-tu pour cette erreur en prod ? Le déploiement a été validé par toute l'équipe, pas seulement par moi." },
+            { date: "2026-02-21", original: "Les deux ont raté", tech: "Les deux ont raté — ni les tests unitaires ni la revue de code n'ont détecté cette régression avant la mise en production." },
+            { date: "2026-02-21", original: "Je voulais une discussion rationnelle. C'est dur, mais on peut y revenir", tech: "Je voulais une discussion rationnelle sur les choix d'architecture. C'est dur quand tout le monde défend son approche, mais on peut toujours revenir aux faits et aux données." },
+            { date: "2026-02-21", original: "C'est quoi ça ?", tech: "C'est quoi ça dans les logs — une NullPointerException à chaque appel ? Qui a mergé ça sans tester ?" }
+        ];
+
+        const grid = document.getElementById('expressionsGrid');
+        const dateBtns = document.querySelectorAll('.date-btn');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        const backToTop = document.getElementById('backToTop');
+
+        function renderExpressions(date = 'all') {
+            const filtered = date === 'all' 
+                ? expressionsData 
+                : expressionsData.filter(exp => exp.date === date);
+            
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="no-expressions"><i class="fas fa-comment-slash"></i> Aucune expression pour cette date</div>';
+                return;
+            }
+
+            let html = '';
+            filtered.forEach(exp => {
+                // Formater la date pour affichage (JJ-MM-AAAA)
+                const dateParts = exp.date.split('-');
+                const displayDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+                
+                html += `
+                    <div class="expression-card">
+                        <div class="card-header">
+                            <span class="card-date">${displayDate}</span>
+                            <div class="original-expr">
+                                <i class="fas fa-quote-left"></i> ${exp.original}
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="tech-context">
+                                <i class="fas fa-code"></i>
+                                <p>${exp.tech}</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <span><i class="far fa-comment"></i> Expression réunion</span>
+                            <span><i class="far fa-copy"></i> Contexte technique</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            grid.innerHTML = html;
+        }
+
+        // Gestion des filtres par date
+        dateBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                dateBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderExpressions(btn.dataset.date);
+            });
+        });
+
+        // Initialisation
+        renderExpressions('all');
+
+        // Mobile menu
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('show');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (navMenu.classList.contains('show')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+
+        // Back to top
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        if (backToTop) {
+            backToTop.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+</body>
+</html>
