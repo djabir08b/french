@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dialogue Philosophique — Comment je vois le monde</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@300;400;600;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf7f2;
+  --bg-card: #ffffff;
+  --bg-question: #fff8ed;
+  --bg-answer-user: #eef6ee;
+  --bg-answer-direct: #eeedf8;
+  --accent-orange: #e07832;
+  --accent-green: #2a9d5c;
+  --accent-purple: #7c5cbf;
+  --accent-blue: #3a7bd5;
+  --accent-rose: #d94f6b;
+  --accent-teal: #1a8a7a;
+  --accent-gold: #c8922a;
+  --text-dark: #2d2a26;
+  --text-body: #3d3a36;
+  --text-muted: #8a8580;
+  --border: #e8e2d8;
+  --shadow: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow-hover: 0 4px 20px rgba(0,0,0,0.1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text-body);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  line-height: 1.75;
+}
+.hero {
+  background: linear-gradient(135deg, #fff8ed 0%, #eeedf8 40%, #eef6ee 70%, #fce8ec 100%);
+  padding: 56px 24px 44px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(224,120,50,0.12) 0%, transparent 70%);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: -40px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124,92,191,0.1) 0%, transparent 70%);
+}
+.hero-eyebrow {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-orange);
+  margin-bottom: 12px;
+  position: relative; z-index: 1;
+}
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 5vw, 46px);
+  color: var(--text-dark);
+  line-height: 1.15;
+  margin-bottom: 12px;
+  position: relative; z-index: 1;
+}
+.hero h1 em { color: var(--accent-orange); font-style: italic; }
+.hero-desc {
+  font-size: 15px;
+  color: var(--text-muted);
+  max-width: 540px;
+  margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.tab-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250, 247, 242, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--border);
+  display: flex;
+  justify-content: center;
+}
+.tab-btn {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 16px 32px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  position: relative;
+  transition: color 0.3s;
+}
+.tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%; right: 50%;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  transition: left 0.3s, right 0.3s;
+}
+.tab-btn:hover { color: var(--text-dark); }
+.tab-btn.tab-user.active { color: var(--accent-green); }
+.tab-btn.tab-user.active::after { left: 16px; right: 16px; background: var(--accent-green); }
+.tab-btn.tab-direct.active { color: var(--accent-purple); }
+.tab-btn.tab-direct.active::after { left: 16px; right: 16px; background: var(--accent-purple); }
+.section-nav {
+  overflow-x: auto;
+  padding: 12px 20px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.section-nav::-webkit-scrollbar { height: 0; }
+.nav-pill {
+  flex-shrink: 0;
+  border: 1.5px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+.nav-pill:hover { border-color: var(--accent-orange); color: var(--accent-orange); }
+.nav-pill.active { background: var(--accent-orange); color: white; border-color: var(--accent-orange); }
+.container { max-width: 760px; margin: 0 auto; padding: 32px 20px 80px; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.section { margin-bottom: 48px; scroll-margin-top: 130px; }
+.section-head { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+.section-badge {
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px; color: white; flex-shrink: 0;
+}
+.c1 .section-badge { background: linear-gradient(135deg, #e07832, #f0a050); }
+.c2 .section-badge { background: linear-gradient(135deg, #2a9d5c, #4cc77a); }
+.c3 .section-badge { background: linear-gradient(135deg, #3a7bd5, #5a9cf5); }
+.c4 .section-badge { background: linear-gradient(135deg, #d94f6b, #f07090); }
+.c5 .section-badge { background: linear-gradient(135deg, #1a8a7a, #3abaa8); }
+.c6 .section-badge { background: linear-gradient(135deg, #7c5cbf, #a080df); }
+.c7 .section-badge { background: linear-gradient(135deg, #c8922a, #e8b85a); }
+.c8 .section-badge { background: linear-gradient(135deg, #d94f6b, #e07832); }
+.c9 .section-badge { background: linear-gradient(135deg, #2a9d5c, #3a7bd5); }
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(18px, 3vw, 23px);
+  color: var(--text-dark);
+  line-height: 1.3;
+}
+.exchange { margin-bottom: 28px; animation: slideUp 0.4s ease both; }
+@keyframes slideUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+.q-card {
+  background: var(--bg-question);
+  border: 1.5px solid #f0dfc0;
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin-bottom: 12px;
+  transition: box-shadow 0.3s;
+}
+.q-card:hover { box-shadow: var(--shadow); }
+.q-label { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.q-tag {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--accent-gold); background: rgba(200,146,42,0.12);
+  padding: 3px 10px; border-radius: 8px; font-weight: 600;
+}
+.q-card p {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic; font-size: 16px;
+  color: var(--text-dark); line-height: 1.6;
+}
+.a-card {
+  border-radius: 14px; padding: 20px 24px; margin-bottom: 8px;
+  border-left: 4px solid; transition: box-shadow 0.3s;
+}
+.a-card:hover { box-shadow: var(--shadow); }
+.a-card.user { background: var(--bg-answer-user); border-left-color: var(--accent-green); }
+.a-card.direct { background: var(--bg-answer-direct); border-left-color: var(--accent-purple); }
+.a-label { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.a-tag {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 8px; font-weight: 600;
+}
+.a-tag.user { color: var(--accent-green); background: rgba(42,157,92,0.1); }
+.a-tag.direct { color: var(--accent-purple); background: rgba(124,92,191,0.1); }
+.a-card p { font-size: 15px; color: var(--text-body); line-height: 1.8; }
+.btn-speak {
+  display: inline-flex; align-items: center; gap: 5px;
+  border: 1.5px solid var(--border); background: var(--bg-card);
+  color: var(--text-muted); font-family: 'Fira Code', monospace;
+  font-size: 10px; padding: 4px 12px; border-radius: 12px;
+  cursor: pointer; transition: all 0.25s;
+}
+.btn-speak:hover { border-color: var(--accent-orange); color: var(--accent-orange); }
+.btn-speak.playing { border-color: var(--accent-rose); color: var(--accent-rose); background: #fce8ec; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{border-color:var(--accent-rose)} 50%{border-color:rgba(217,79,107,0.3)} }
+.btn-speak svg { width: 11px; height: 11px; }
+.context-box {
+  background: linear-gradient(135deg, #fff8ed, #fef4e8);
+  border: 1.5px solid #f0dfc0; border-radius: 14px;
+  padding: 18px 22px; margin-bottom: 20px;
+  font-size: 14px; color: var(--text-muted); line-height: 1.7;
+}
+.context-box strong { color: var(--accent-gold); }
+.divider { display: flex; align-items: center; gap: 12px; margin: 36px 0; }
+.divider-line { flex: 1; height: 1px; background: var(--border); }
+.divider-dots { display: flex; gap: 6px; }
+.divider-dots span { width: 5px; height: 5px; border-radius: 50%; }
+.divider-dots span:nth-child(1) { background: var(--accent-orange); }
+.divider-dots span:nth-child(2) { background: var(--accent-purple); }
+.divider-dots span:nth-child(3) { background: var(--accent-green); }
+.controls-float {
+  position: fixed; bottom: 20px; right: 20px;
+  background: var(--bg-card); border: 1.5px solid var(--border);
+  border-radius: 14px; padding: 10px 14px; box-shadow: var(--shadow-hover);
+  z-index: 200; display: flex; align-items: center; gap: 10px;
+}
+.controls-float label { font-family: 'Fira Code', monospace; font-size: 10px; color: var(--text-muted); }
+.controls-float select {
+  font-family: 'Fira Code', monospace; font-size: 11px;
+  border: 1.5px solid var(--border); border-radius: 8px;
+  padding: 3px 6px; background: var(--bg); color: var(--text-dark); cursor: pointer;
+}
+.btn-stop {
+  border: 1.5px solid rgba(217,79,107,0.3); background: none;
+  color: var(--accent-rose); font-family: 'Fira Code', monospace;
+  font-size: 10px; padding: 3px 10px; border-radius: 8px; cursor: pointer; transition: all 0.25s;
+}
+.btn-stop:hover { background: #fce8ec; }
+.progress {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: linear-gradient(90deg, var(--accent-orange), var(--accent-purple), var(--accent-green));
+  z-index: 999; transition: width 0.1s; border-radius: 0 2px 2px 0;
+}
+@media (max-width: 600px) {
+  .hero { padding: 40px 16px 32px; }
+  .tab-btn { padding: 14px 20px; font-size: 13px; }
+  .q-card, .a-card { padding: 16px 18px; }
+  .container { padding: 24px 14px 80px; }
+  .controls-float { bottom: 12px; right: 12px; padding: 8px 10px; }
+  .section-nav { justify-content: flex-start; }
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="hero">
+  <div class="hero-eyebrow">Exercice de pensée en français</div>
+  <h1>Comment je vois <em>le monde</em></h1>
+  <p class="hero-desc">Un dialogue philosophique inspiré par Einstein — liberté, religion, morale, science et existence.</p>
+</div>
+<div class="tab-bar">
+  <button class="tab-btn tab-user active" onclick="switchTab('user')">✍️ Mes Réponses</button>
+  <button class="tab-btn tab-direct" onclick="switchTab('direct')">⚡ Style Direct</button>
+</div>
+<div class="section-nav" id="sectionNav"></div>
+<div class="container">
+  <div class="tab-content active" id="tab-user"></div>
+  <div class="tab-content" id="tab-direct"></div>
+</div>
+<div class="controls-float">
+  <label>Vitesse</label>
+  <select id="speed">
+    <option value="0.6">0.6×</option>
+    <option value="0.8" selected>0.8×</option>
+    <option value="1">1×</option>
+    <option value="1.2">1.2×</option>
+  </select>
+  <button class="btn-stop" onclick="stopSpeech()">■ Stop</button>
+</div>
+<script>
+const S=[
+{id:"s1",n:"I",t:"Est-ce que l'homme est libre ou pas ?",c:"c1",ctx:"Einstein dit que l'homme croit qu'il est libre, mais en réalité, tout est déjà déterminé.",ex:[
+{q:"Toi, tu penses que tu es vraiment libre dans tes choix ? Ou bien c'est ton éducation, ta famille, ta religion qui décident pour toi sans que tu le saches ?",u:"La liberté pour moi c'est de laisser chacun faire ce qu'il veut, chacun d'entre nous a le droit d'être ce qu'il veut être et personne n'a le droit d'imposer à une autre personne sa façon de penser, ni culture ni tradition ni gouvernement ne devrait contrôler la vie d'une personne. Tant que la personne respecte l'autre et ses actions ne les impactent pas négativement.",d:"La liberté pour moi c'est simple : chacun fait ce qu'il veut de sa vie. Personne a le droit de te dire comment penser. Ni ta culture, ni ta tradition, ni ton gouvernement. Tu es libre d'être ce que tu veux être. La seule limite ? C'est l'autre. Tant que tu respectes les gens et que tes actions leur font pas de mal, t'es libre."},
+{q:"Mais est-ce que tu penses que c'est vraiment possible ? Dès que tu nais, ta famille te donne une langue, une religion, des habitudes. Tu choisis rien de tout ça.",u:"Non attends, il faut clarifier une chose, la liberté se limite à tes décisions, t'as le droit de penser à ta manière, d'être à ta manière, décider, vivre, tout à ta manière. Mais y'a des choses que tu ne contrôles pas et qui sont déjà définies, parmi elles ta famille, tu ne peux pas choisir tes parents mais tu peux choisir ton partenaire et définir le type de parent que tu veux être, tu peux pas choisir tes traditions mais tu peux les filtrer ou les remplacer par des nouvelles d'ailleurs, les habitudes c'est une question de pratique quotidienne de tes actions donc tu peux les contrôler, la religion y'a plein de religions et chacun d'entre nous a le droit de croire à ce qu'il pense être la vraie religion.",d:"Attends, faut pas mélanger. Y'a des choses que tu contrôles pas : tes parents, ton pays, ta langue de naissance. Ça c'est donné, tu choisis rien. Mais après, le reste c'est toi qui décides. Tu choisis ton partenaire. Tu décides quel parent tu veux être. Tes traditions ? Tu peux les garder, les filtrer ou les remplacer par d'autres. Tes habitudes ? C'est juste ce que tu répètes chaque jour, donc tu peux les changer. Et la religion, y'en a plein. Chacun a le droit de croire à ce qui lui semble vrai. La liberté c'est pas tout contrôler. C'est contrôler ce qui dépend de toi."}]},
+{id:"s2",n:"II",t:"La loi, la laïcité et les limites",c:"c2",ex:[
+{q:"Une personne qui naît dans une famille très stricte, très religieuse, dans un petit village. Est-ce qu'elle peut vraiment « filtrer » ou « choisir » ?",u:"On parle pas de ces cas, car c'est une exception c'est pas la norme, la vie juste ou équitable c'est une autre question philosophique qu'on peut pas résumer en une seule ou deux phrases, il faut étudier la planète complète. Mais notre rôle c'est donner à ces personnes de comprendre que c'est pas normal d'imposer à n'importe qui ce qu'on croit être vrai, on peut présenter nos pensées nos religions nos traditions nos idées, mais il faut laisser l'autre choisir et on peut les convaincre avec des arguments si et seulement s'il veut, bien sûr c'est pourquoi la nation ne doit pas se baser sur des lois religieuses, il faut appliquer la laïcité pour donner le droit de vivre et la liberté à n'importe quelle personne athée, musulman, juif, chrétien, bouddhiste... donc c'est la loi qui doit protéger les droits des personnes.",d:"Ces cas extrêmes c'est des exceptions. La question de la justice dans le monde, c'est un autre débat, on peut pas le résumer en deux phrases. Mais ce qu'on peut faire, c'est simple : notre rôle c'est montrer à ces gens que c'est pas normal d'imposer aux autres ce qu'on croit vrai. Tu peux présenter tes idées, ta religion, tes traditions. Mais tu imposes rien. Tu laisses l'autre choisir. Tu peux le convaincre avec des arguments, mais seulement s'il veut écouter. Et c'est exactement pour ça qu'un pays doit pas se baser sur des lois religieuses. Il faut la laïcité. Pourquoi ? Pour que tout le monde soit libre : athée, musulman, juif, chrétien, bouddhiste, peu importe. C'est pas la religion qui protège les gens. C'est la loi."},
+{q:"La loi c'est écrit par des humains. Les humains ont des intérêts, des biais. Est-ce que la loi peut vraiment être neutre et juste ?",u:"Logiquement, qui tu veux qui définisse ces lois, est-ce qu'il y a quelqu'un qui nous comprend mieux que nous-mêmes ? On est pas parfaits, ça je peux confirmer, mais on a déjà une connaissance cumulée depuis des millions d'années grâce à l'expérience et l'observation d'autres cultures d'autres civilisations d'autres tribus, on les filtre par conscience est-ce que ça nous convient ou pas. Donc on peut définir ce qui nous fait mal et impacte négativement et ce qui ne nous fait pas mal. Le rôle de la loi c'est de protéger les personnes contre ceux qui font du mal aux autres physiquement, les pensées il faut les libérer, on peut pas punir une personne parce qu'elle critique ou même se moque des idées des autres.",d:"Qui d'autre va définir ces lois ? Y'a personne qui nous comprend mieux que nous-mêmes. On est pas parfaits, ça c'est sûr. Mais on a une connaissance cumulée depuis des millions d'années. L'expérience de toutes les civilisations, toutes les cultures, toutes les tribus. On a filtré tout ça avec notre conscience : est-ce que ça nous convient ou pas ? Est-ce que ça fait du mal ou pas ? Donc oui, on sait déjà ce qui fait mal et ce qui fait pas mal. Le rôle de la loi c'est simple : protéger les gens contre ceux qui font du mal physiquement. Point. Mais les pensées, ça se punit pas. On peut pas punir quelqu'un parce qu'il critique ou même parce qu'il se moque des idées des autres. Les pensées, tu les libères. Toujours."},
+{q:"Est-ce qu'une pensée peut faire autant de mal qu'un coup ? Les mots peuvent pousser d'autres à la violence. Là, on fait quoi ?",u:"Je pense que j'ai pas détaillé mon point de vue, ce que je voulais dire par punir les personnes qui font du mal physiquement c'est tout ce qui est lié au mal et à la violence, ça inclut la violence verbale parce que ça peut mener à la violence physique, tu peux critiquer les pensées le comportement, mais tu peux pas insulter et injurier les personnes et appeler ça la liberté, je dis pas que c'est pas légal, mais on retourne toujours sur les choses qu'un ensemble de personnes ont décidé ensemble comme étant correctes, c'est ce qu'on appelle la loi.",d:"Attends, j'ai pas bien détaillé mon point. Quand je dis punir ceux qui font du mal physiquement, je parle de tout ce qui est lié à la violence. Et ça inclut la violence verbale. Pourquoi ? Parce que les mots peuvent mener aux coups. Tu peux critiquer les idées de quelqu'un, son comportement, sa façon de penser. Ça c'est libre. Mais insulter une personne, l'injurier, et après dire « c'est la liberté d'expression » ? Non. C'est pas ça la liberté. Maintenant, est-ce que c'est légal ou pas ? Ça dépend. Et c'est là qu'on revient toujours au même point : la loi, c'est quoi ? C'est juste un groupe de personnes qui se sont mises d'accord sur ce qui est correct et ce qui l'est pas. C'est ça qu'on appelle la loi."},
+{q:"Mais qui décide où s'arrête la critique et où commence l'insulte ?",u:"C'est nous-mêmes qui décidons où ça s'arrête, c'est ce que je disais tout à l'heure, on s'est mis d'accord sur ce qui blesse ce qui fait du mal ce qui est de l'extrême en violence verbale tout ça c'est décidé par nous.",d:"C'est nous-mêmes qui décidons où ça s'arrête. C'est exactement ce que je disais tout à l'heure. On s'est mis d'accord ensemble sur ce qui blesse, ce qui fait du mal, ce qui est de l'extrême en violence verbale. Tout ça c'est pas tombé du ciel. C'est nous qui l'avons défini. Par nous, pour nous."}]},
+{id:"s3",n:"III",t:"La science et la religion : deux chemins distincts",c:"c3",ctx:"Einstein a dit : « La science sans la religion est boiteuse. La religion sans la science est aveugle. »",ex:[
+{q:"Est-ce que la science et la religion peuvent marcher ensemble ?",u:"La religion et la science sont deux chemins distincts, ni ne dépend de l'autre ni n'a besoin de l'autre ni n'explique l'autre ni ne complète l'autre, parce que tout simplement l'un se base sur l'expérience et les arguments réalistes et tangibles d'une certaine manière pas de manière explicite mais ça reste accessible à vérifier car sa méthodologie se base sur la réalité. La religion se base sur la croyance la foi la spiritualité t'as pas besoin d'arguments ou de convaincre ou de vérifier et même tu peux pas les vérifier avec des arguments, et tous les arguments qu'on a aujourd'hui ce sont des arguments raisonnables mais vagues et généraux. Peut-être que la religion donne à la science une touche intime et spirituelle qui nous fait comprendre pourquoi mais c'est pas quelque chose qu'on peut vérifier ou tester.",d:"La religion et la science c'est deux chemins complètement distincts. L'un ne dépend pas de l'autre, n'a pas besoin de l'autre, n'explique pas l'autre et ne complète pas l'autre. Pourquoi ? Tout simplement parce qu'ils marchent pas pareil. La science se base sur l'expérience, les arguments tangibles, la vérification. Sa méthodologie repose sur la réalité. Même si c'est pas toujours explicite, ça reste vérifiable. La religion c'est l'inverse. Elle se base sur la croyance, la foi, la spiritualité. T'as pas besoin de prouver, pas besoin de convaincre, pas besoin de vérifier. Et même si tu voulais, tu pourrais pas. Les arguments qu'on a aujourd'hui pour la religion restent vagues et généraux. Maintenant, est-ce que la religion peut donner à la science une touche spirituelle, un sens plus profond, un « pourquoi » ? Peut-être. Mais c'est pas quelque chose qu'on peut tester ou prouver. Ça reste du domaine de l'intime."},
+{q:"Est-ce que la science c'est plus important que la religion ?",u:"Tout ce que je disais c'est que la science c'est un chemin différent de la croyance et la spiritualité, c'est tout. Si on veut un moyen de transport on utilise pas l'amour, si on veut comprendre notre corps physiquement et psychiquement on utilise la science on utilise des méthodes basées sur l'expérience scientifique on utilise des médicaments ainsi de suite. L'intimité c'est tout à fait différent. Je peux aimer quelqu'un comme je veux je définis l'amour à ma manière je vis l'amour à ma manière j'ai le droit de pratiquer la spiritualité et la croyance dans la vie privée, j'ai pas besoin de te convaincre que tu devrais aimer comme moi ou te dire que cette religion est correcte pour te donner des arguments.",d:"Tout ce que je disais c'est simple : la science et la croyance c'est deux chemins différents. C'est tout. Si tu veux un moyen de transport, tu utilises pas l'amour. Si tu veux comprendre ton corps physiquement ou psychiquement, tu utilises la science, des méthodes basées sur l'expérience, des médicaments, ainsi de suite. L'intimité c'est tout à fait différent. Je définis l'amour à ma manière. Je vis l'amour à ma manière. Je pratique ma spiritualité et ma croyance dans ma vie privée. J'ai pas besoin de te convaincre que tu devrais aimer comme moi ou de te dire que ma religion est la bonne. Chacun son domaine. Chacun sa liberté."}]},
+{id:"s4",n:"IV",t:"Le mystère de l'existence",c:"c4",ctx:"Einstein dit que le mystère c'est la plus belle chose qu'on peut ressentir.",ex:[
+{q:"C'est quoi le dernier truc qui t'a fait dire « c'est incroyable » ?",u:"L'existence, parce que quelle que soit la réponse, par hasard ou par intention. Les deux restent fascinants d'exister dans cet univers très grand qu'on ne connaît même pas ses limites.",d:"L'existence. Tout simplement. Parce que quelle que soit la réponse, par hasard ou par intention, les deux restent fascinants. On existe. Dans un univers tellement grand qu'on connaît même pas ses limites. Juste ça, c'est déjà incroyable."},
+{q:"Ça te fait peur ou ça te donne de l'espoir de savoir qu'on est aussi petits dans un univers aussi grand ?",u:"D'être seul me fait peur et d'être avec d'autres êtres vivants c'est pareil. Matériellement on a besoin de vivre en communauté donc ce serait une image terrifiante d'être seul, et au cas où on serait pas seuls c'est aussi terrifiant car on sait pas l'intention de l'autre ou sa puissance.",d:"D'être seuls dans l'univers, ça fait peur. Mais d'être avec d'autres êtres vivants, c'est pareil. Matériellement, on a besoin de vivre en communauté, donc imaginer qu'on est seuls c'est terrifiant. Mais si on est pas seuls ? C'est tout aussi terrifiant. Parce qu'on connaît pas l'intention de l'autre. Ni sa puissance."},
+{q:"La vraie peur c'est pas les extraterrestres ou la solitude, mais juste l'autre en général ?",u:"Au moins on sait que les autres sur la Terre nous ressemblent, on est de la même espèce.",d:"Au moins sur Terre, les autres nous ressemblent. On est de la même espèce. On partage quelque chose. Avec l'inconnu là-haut, on a même pas ça."}]},
+{id:"s5",n:"V",t:"La solitude et l'introversion",c:"c5",ctx:"Einstein dit qu'il préfère la solitude. Les gens le fatiguent.",ex:[
+{q:"T'es quelqu'un qui a besoin des autres pour réfléchir ou tu réfléchis mieux tout seul ?",u:"Moi comme personne introvertie je trouve mon confort dans un environnement calme, je partage la vision d'Einstein, quand je suis seul je peux réfléchir je peux réinitialiser mon énergie j'organise mes plans et tout ça. Je pense que c'est important que les personnes prennent un moment tout seul pour se comprendre soi-même.",d:"Moi, en tant que personne introvertie, je trouve mon confort dans un environnement calme. Je partage la vision d'Einstein sur ça. Quand je suis seul, je réfléchis mieux, je réinitialise mon énergie, j'organise mes plans. Et je pense que c'est important que tout le monde prenne un moment seul pour se comprendre soi-même."}]},
+{id:"s6",n:"VI",t:"Pourquoi Dieu a besoin qu'on le prie ?",c:"c6",ctx:"Si Dieu est parfait, tout-puissant, il a besoin de rien. Alors pourquoi il demande qu'on le prie ?",ex:[
+{q:"La prière c'est un besoin de Dieu ou un besoin de l'homme ?",u:"Selon les religions abrahamiques, le sens de l'existence c'est de le prier. Mais je comprends pas pourquoi il veut ça, normalement le Dieu n'a pas besoin de nous finalement donc pourquoi nous a-t-il créés d'après ses idéologies.",d:"Selon les religions abrahamiques, le sens de l'existence c'est de prier Dieu. Mais je comprends pas pourquoi il veut ça. Normalement, Dieu a pas besoin de nous. Donc pourquoi nous créer ? Et surtout, pourquoi nous créer selon ses propres règles pour qu'on le prie ? Si il a besoin de rien, pourquoi il demande quelque chose ?"},
+{q:"« La prière c'est pas pour Dieu, c'est pour toi. » Ça te convainc ?",u:"Et pourquoi alors quand on dit que je ne veux pas il me fait du mal et me punit.",d:"Si la prière c'est pour mon bien, alors pourquoi quand je dis « non merci » on me punit ? Un cadeau, tu le refuses, il se passe rien. Mais là, si tu pries pas, c'est l'enfer. Donc c'est pas un cadeau. C'est un ordre. Et un ordre qui vient d'un être qui a besoin de rien, ça a pas de sens."},
+{q:"« C'est comme un père qui oblige son fils à étudier pour son bien. » Cette comparaison marche ?",u:"Le problème c'est que ce besoin-là c'est le Dieu qui l'a créé en nous, pourquoi il crée un besoin en nous pour le prier.",d:"Le problème c'est que ce besoin de prier, c'est Dieu lui-même qui l'a mis en nous. Il nous a créés avec un manque. Puis il nous dit « prie-moi pour le combler ». Donc il a créé le problème et il te vend la solution. C'est comme quelqu'un qui te casse la jambe et qui te dit « viens je vais te soigner »."},
+{q:"Soit Dieu a un besoin et il est pas parfait, soit il joue un jeu et il est pas juste. Troisième possibilité ?",u:"C'est le problème dans les religions, même si tu trouves une réponse différente à n'importe quelle question ça ni affirme ni confirme la validité des religions et des croyances.",d:"C'est ça le problème avec les religions. Même si tu trouves une réponse différente à n'importe quelle question, ça change rien. Ça confirme pas la validité de la religion. Et ça la détruit pas non plus. Les croyances restent des croyances. Tu peux ni les prouver ni les casser avec la logique. C'est pour ça que le débat tourne en rond depuis des milliers d'années."},
+{q:"Croire ou pas croire c'est juste un choix personnel ?",u:"C'est exactement ça, le fait de croire c'est une chose spirituelle dans la vie privée, ça n'a pas besoin de preuves d'arguments ou quoi que ce soit.",d:"C'est exactement ça. Croire c'est une chose spirituelle. C'est intime. C'est dans ta vie privée. T'as pas besoin de preuves, pas besoin d'arguments, pas besoin de convaincre personne. Tu crois ou tu crois pas. Point. C'est entre toi et toi."}]},
+{id:"s7",n:"VII",t:"L'athée, le croyant et la morale",c:"c7",ex:[
+{q:"Un athée qui base sa morale sur la logique, sa morale est plus solide que celle d'un croyant ?",u:"Tu vas trouver que la morale de l'athée est différente de celui d'un croyant si tu affirmes que la religion est vraiment une source de morale. Mais je ne vois pas ça, quelles sont les morales qui viennent avec les religions et qui n'existaient pas avant ?",d:"On va trouver que la morale de l'athée est différente de celle du croyant seulement si on accepte que la religion est vraiment une source de morale. Mais moi je vois pas ça. Quelles sont les morales qui sont venues avec les religions et qui existaient pas avant ? Ne pas tuer ? Les humains savaient déjà ça. Ne pas voler ? Pareil. Respecter les autres ? Les tribus faisaient ça bien avant les livres sacrés. Donc la religion a pas inventé la morale. Elle l'a juste récupérée et mise dans un livre."},
+{q:"« C'est Dieu qui a mis cette morale dans le cœur de l'homme avant les religions. » Comment tu réponds ?",u:"C'est du blabla, t'as aucune preuve tu te bases sur rien. Tu commences par des points qui sont déjà sujets de discussion et sujets de désaccord. Tu dis que c'est mon Dieu qui a fait ça, si on accepte ta croyance, il n'y aura aucune discussion à la base.",d:"C'est du blabla. T'as aucune preuve, tu te bases sur rien de concret. Tu commences par des points qui sont déjà eux-mêmes sujets de débat. Tu dis « c'est mon Dieu qui a fait ça ». Mais si j'accepte ta croyance comme vérité de départ, y'a plus aucune discussion possible. T'as déjà décidé la réponse avant de poser la question. C'est pas un argument. C'est un cercle fermé."},
+{q:"Si la morale vient pas de Dieu, elle vient d'où ? Est-ce qu'elle a une valeur universelle ?",u:"C'est nous qui décidons ce qui est mal pour nous d'après nous et nous qui décidons ce qui est bien pour nous d'après nous. En se basant sur la conscience sur l'expérience cumulée depuis des millions d'années de civilisations et de cultures et de tribus. Ce n'est pas une chose miracle ou mystérieuse.",d:"C'est nous qui décidons ce qui est mal pour nous. Et c'est nous qui décidons ce qui est bien pour nous. On se base sur la conscience, sur l'expérience cumulée depuis des millions d'années de civilisations, de cultures, de tribus. Y'a rien de miraculeux là-dedans. Y'a rien de mystérieux. C'est juste des humains qui apprennent, qui se trompent, qui corrigent, et qui transmettent."},
+{q:"L'esclavage c'était normal pendant des siècles. Maintenant c'est un crime. Y'a quelque chose qui est vraiment mal en soi ?",u:"C'est un fait qui a été défini comme erreur consciemment, tout ce qui est violence et qui fait mal à l'autre il faut le stopper. Donc logiquement il faut pas que ça soit acceptable en futur, mais est-ce que les gens peuvent le faire même si la logique et humainement c'est incorrect oui ils peuvent. Comme les gens croyants qui disent que c'est le Dieu qui ordonne ça et peuvent faire le contraire.",d:"L'esclavage c'est un fait qu'on a reconnu consciemment comme une erreur. Tout ce qui est violence et qui fait du mal à l'autre, il faut le stopper. Donc logiquement, ça devrait plus jamais être acceptable. Mais est-ce que les gens peuvent le refaire même si la logique et l'humanité disent que c'est incorrect ? Oui, ils peuvent. Comme les croyants qui disent « c'est Dieu qui ordonne ça » et qui font exactement le contraire de la morale. La logique empêche pas les humains de faire le mal. Elle leur enlève juste l'excuse."},
+{q:"C'est la faute de la religion ou des gens qui l'interprètent mal ?",u:"Des deux, la religion n'explique pas ce qu'elle voulait exactement et donne à chaque personne d'interpréter à sa manière, et les gens qui acceptent une chose qui est ambiguë et vague et qui n'explique rien.",d:"Les deux sont responsables. La religion explique pas clairement ce qu'elle veut dire. Elle laisse chacun interpréter à sa manière. Un verset peut dire une chose pour toi et le contraire pour moi. Et de l'autre côté, les gens qui acceptent quelque chose d'aussi vague et ambigu sans poser de questions, ils sont aussi responsables. Si quelqu'un te donne un texte flou et te dit « c'est la vérité absolue », et que tu dis oui sans réfléchir, le problème c'est pas juste le texte. C'est toi aussi."},
+{q:"Dieu a laissé le texte ouvert pour tester la foi et l'intelligence. C'est un argument valable ?",u:"Qui a défini cette intelligence et la foi, est-ce que ce n'est pas le Dieu ? Donc pourquoi il me teste sur quelque chose que c'est lui qui l'a déterminé et il va me punir si je ne comprends pas bien.",d:"Attends. L'intelligence, c'est qui qui l'a définie ? C'est Dieu. La foi, c'est qui qui l'a mise en moi ? C'est Dieu. Donc c'est lui qui a décidé mes capacités, mes limites, ma façon de comprendre. Et après il me teste sur quelque chose que lui-même a déterminé ? Et si je comprends pas bien, il me punit ? Il m'a donné un cerveau limité, un texte vague, et il me dit « débrouille-toi ». Et si je me trompe, c'est l'enfer. C'est pas un test. C'est un piège."}]},
+{id:"s8",n:"VIII",t:"L'origine des religions et la fin possible",c:"c8",ex:[
+{q:"Le problème c'est l'idée de Dieu elle-même, ou la façon dont les religions présentent Dieu ?",u:"Les religions de manière générale sont apparues par les humains pour expliquer quelque chose qu'on ne comprenait pas, tout ce qui n'est pas vérifiable dans certaines époques ou bien on n'a pas la possibilité ou la connaissance suffisante on l'envoie vers quelque chose de métaphysique.",d:"Les religions de manière générale sont apparues par les humains pour expliquer ce qu'on comprenait pas. Tout ce qui était pas vérifiable à une certaine époque, soit parce qu'on avait pas les outils, soit parce qu'on avait pas la connaissance suffisante, on l'a envoyé vers le métaphysique. Ce qu'on pouvait pas expliquer en bas, on l'a mis en haut."},
+{q:"Plus la science avance, plus la religion recule ? Si la science explique tout, la religion disparaît ?",u:"À un certain point tôt ou tard je pense que l'humanité devra choisir l'un ou l'autre, parce que dans les religions elles disent quelque chose et si on prouve le contraire par la science c'est la fin des religions en fait.",d:"À un certain point, tôt ou tard, je pense que l'humanité devra choisir l'un ou l'autre. Parce que les religions disent des choses concrètes sur le monde. Et si la science prouve le contraire, c'est la fin. Tu peux pas dire « la Terre a 6000 ans » et ignorer les preuves qui disent le contraire. Soit tu acceptes la réalité, soit tu restes dans la croyance. Mais les deux ensemble, à un moment, ça tient plus."},
+{q:"La science contredit les religions depuis des siècles. Pourtant elles sont toujours là. Les gens ont pas besoin que ce soit vrai pour croire ?",u:"Les croyants fuient toujours dans la porte de : « ah non, c'est nous qui n'avons pas compris bien ce que le Dieu voulait dire c'est pas le problème de la religion. » Mais à un certain moment ça ne reste plus possible. Par exemple si on comprend l'univers complet ou on trouve une manière de vivre pour toujours donc y'a plus de jugement y'a plus ce que toutes les religions disent. Donc à ce point-là c'est tôt ou tard.",d:"Les croyants fuient toujours par la même porte : « Ah non, c'est nous qui avons pas bien compris ce que Dieu voulait dire, c'est pas le problème de la religion. » Ça marche un temps. Mais à un certain moment, ça tient plus. Par exemple, si un jour on comprend l'univers en entier, ou si on trouve un moyen de vivre pour toujours, alors y'a plus de jugement. Y'a plus de vie après la mort. Y'a plus rien de ce que les religions promettent. Et à ce point-là, tôt ou tard, il faudra choisir."},
+{q:"Imaginons que la science explique tout et l'homme vit pour toujours. Les gens vont chercher quelque chose de spirituel ?",u:"À un certain moment je pense qu'on aura pas besoin de répondre ni besoin de se réfugier dans ce qui nous manque. On contrôle nos émotions nos instincts tout. Donc on a plus besoin de ce qui est métaphysique.",d:"À un certain moment, je pense qu'on aura même plus besoin de répondre à ces questions. On aura plus besoin de se réfugier dans ce qui nous manque. Si on contrôle nos émotions, nos instincts, tout ce qui nous pousse vers l'inconnu, alors le métaphysique sert plus à rien. La spiritualité c'était une réponse au vide. Si y'a plus de vide, y'a plus besoin de réponse."}]},
+{id:"s9",n:"IX",t:"L'humain : un animal qui s'adapte",c:"c9",ex:[
+{q:"Un humain qui contrôle tout, comprend tout, vit pour toujours et a besoin de rien... est-ce que c'est encore un humain ?",u:"Le rôle de l'humain dès le départ c'est l'adaptation, on a créé une histoire pour rester courageux et motivé à continuer à vivre mais si quelque chose apparaît en futur on aura plus besoin de ça.",d:"Le rôle de l'humain depuis le départ c'est l'adaptation. On a créé des histoires pour rester courageux, motivés, pour continuer à vivre. Les mythes, les religions, le sens de la vie, c'était des outils. Pas des vérités. Des outils de survie. Et si un jour quelque chose de nouveau apparaît qui remplace tout ça, on aura plus besoin de ces histoires. On les jettera comme on a jeté tous les outils qui servaient plus."}]}
+];
+
+let curTab='user',activeBtn=null;
+const playIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg> Écouter';
+const pauseIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Pause';
+
+function render(){
+  let uH='',dH='',nH='';
+  S.forEach((s,i)=>{
+    nH+=`<button class="nav-pill${i===0?' active':''}" data-s="${s.id}" onclick="goTo('${s.id}')">${s.n} · ${s.t.split(':')[0].substring(0,20)}</button>`;
+    const hd=`<div class="section-head"><div class="section-badge">${s.n}</div><div class="section-title">${s.t}</div></div>`;
+    const cx=s.ctx?`<div class="context-box"><strong>Contexte :</strong> ${s.ctx}</div>`:'';
+    const dv=i<S.length-1?'<div class="divider"><div class="divider-line"></div><div class="divider-dots"><span></span><span></span><span></span></div><div class="divider-line"></div></div>':'';
+    let ue='',de='';
+    s.ex.forEach(e=>{
+      const qb=`<div class="q-card"><div class="q-label"><span class="q-tag">Question</span><button class="btn-speak" onclick="speak(this)">${playIcon}</button></div><p>${e.q}</p></div>`;
+      ue+=`<div class="exchange">${qb}<div class="a-card user"><div class="a-label"><span class="a-tag user">Ma réponse</span><button class="btn-speak" onclick="speak(this)">${playIcon}</button></div><p>${e.u}</p></div></div>`;
+      de+=`<div class="exchange">${qb}<div class="a-card direct"><div class="a-label"><span class="a-tag direct">Style direct</span><button class="btn-speak" onclick="speak(this)">${playIcon}</button></div><p>${e.d}</p></div></div>`;
+    });
+    uH+=`<div class="section ${s.c}" id="${s.id}-u">${hd}${cx}${ue}${dv}</div>`;
+    dH+=`<div class="section ${s.c}" id="${s.id}-d">${hd}${cx}${de}${dv}</div>`;
+  });
+  document.getElementById('tab-user').innerHTML=uH;
+  document.getElementById('tab-direct').innerHTML=dH;
+  document.getElementById('sectionNav').innerHTML=nH;
+}
+
+function switchTab(t){
+  curTab=t;
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector(t==='user'?'.tab-user':'.tab-direct').classList.add('active');
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById('tab-'+t).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function goTo(id){
+  const el=document.getElementById(id+'-'+(curTab==='user'?'u':'d'));
+  if(el)el.scrollIntoView({behavior:'smooth'});
+  document.querySelectorAll('.nav-pill').forEach(p=>p.classList.remove('active'));
+  const pill=document.querySelector(`.nav-pill[data-s="${id}"]`);
+  if(pill)pill.classList.add('active');
+}
+
+function speak(btn){
+  const txt=btn.closest('.q-card,.a-card').querySelector('p').textContent;
+  if(activeBtn===btn){stopSpeech();return;}
+  stopSpeech();
+  const u=new SpeechSynthesisUtterance(txt);
+  u.lang='fr-FR';
+  u.rate=parseFloat(document.getElementById('speed').value);
+  const v=speechSynthesis.getVoices().find(v=>v.lang.startsWith('fr'));
+  if(v)u.voice=v;
+  btn.classList.add('playing');
+  btn.innerHTML=pauseIcon;
+  activeBtn=btn;
+  u.onend=()=>{resetB(btn);activeBtn=null;};
+  speechSynthesis.speak(u);
+}
+
+function stopSpeech(){
+  speechSynthesis.cancel();
+  if(activeBtn){resetB(activeBtn);activeBtn=null;}
+}
+
+function resetB(b){b.classList.remove('playing');b.innerHTML=playIcon;}
+speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();
+
+window.addEventListener('scroll',()=>{
+  const p=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100;
+  document.getElementById('progress').style.width=p+'%';
+});
+
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      const sid=e.target.id.replace('-u','').replace('-d','');
+      document.querySelectorAll('.nav-pill').forEach(p=>p.classList.remove('active'));
+      const pill=document.querySelector(`.nav-pill[data-s="${sid}"]`);
+      if(pill)pill.classList.add('active');
+    }
+  });
+},{threshold:0.15,rootMargin:'-120px 0px 0px 0px'});
+
+render();
+setTimeout(()=>document.querySelectorAll('.section').forEach(s=>obs.observe(s)),100);
+</script>
+</body>
+</html>
